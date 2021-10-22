@@ -17,9 +17,8 @@ public class PlayerController : MonoBehaviour
     public Weapon weapon { private set; get; }
     public PlayerScript player { private set; get; }
     public Hazard possessedHazard { private set; get; }
-    
+    public bool paused { private set; get; } = false;
 
-    bool paused = false;
     Animator animator;
     string currentAnimation = "";
     List<Hazard> availableHazards = new List<Hazard>();
@@ -42,8 +41,6 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if (paused) return;
-
         controllerState.Update(this);
 
         if (availableHazards.Count == 0)

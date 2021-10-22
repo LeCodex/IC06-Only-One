@@ -12,14 +12,20 @@ namespace PlayerControllerState
         {
             float horizontal = Input.GetAxisRaw("Horizontal" + context.player.id);
             float vertical = Input.GetAxisRaw("Vertical" + context.player.id);
-            context.rb.velocity = (Vector2.right * horizontal + Vector2.up * vertical).normalized * context.speed * Time.fixedDeltaTime;
 
             if (horizontal > 0f) context.lookingRight = true; else if (horizontal < 0f) context.lookingRight = false;
             if (vertical > 0f) context.lookingUp = true; else context.lookingUp = false;
 
+            if (context.paused)
+            {
+                context.rb.velocity = Vector2.zero;
+                return;
+            }
+            context.rb.velocity = (Vector2.right * horizontal + Vector2.up * vertical).normalized * context.speed * Time.fixedDeltaTime;
+
             // Debug.Log(Mathf.Sign(horizontal));
-            if (horizontal != 0f) context.transform.localScale.Set(Mathf.Sign(horizontal), 1f, 1f);
-		}
+            // if (horizontal != 0f) context.transform.localScale.Set(Mathf.Sign(horizontal), 1f, 1f);
+        }
         public abstract void ExitState(PlayerController context);
     }
 }

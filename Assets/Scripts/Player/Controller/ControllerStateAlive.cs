@@ -28,7 +28,7 @@ namespace PlayerControllerState
         }
 
 		public override void FixedUpdate(PlayerController context)
-		{   
+		{
 			base.FixedUpdate(context);
 
             if (context.rb.velocity.magnitude > 0f) context.PlayAnimation("Walk" + context.GetAnimationStateDirection()); else context.PlayAnimation("Idle" + context.GetAnimationFlipHorizontal());
