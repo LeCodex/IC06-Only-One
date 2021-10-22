@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 namespace GameRoundState
@@ -8,11 +7,18 @@ namespace GameRoundState
 	{
 		public override void EnterState()
 		{
-			// Unready players for next intermission and reactivate inputs;
+			List<Transform> spawns = new List<Transform>(GameObject.FindWithTag("Spawnpoints").GetComponentsInChildren<Transform>());
+
+			// Unready players for next intermission, reactivate inputs, and move them to spawnpoints
 			foreach (PlayerScript player in GameManager.current.players)
 			{
 				player.ready = false;
 				player.controller.Unpause();
+
+				Transform target = spawns[Random.Range(0, spawns.Count)];
+				spawns.Remove(target);
+
+				player.transform.position = target.position;
 			}
 		}
 
@@ -28,7 +34,7 @@ namespace GameRoundState
 
 			if (alive <= 1)
 			{
-				GameManager.current.ChangeState(RoundState.Intermission);
+				GameManager.current.ChangeState(RoundState.Intermission, 3f);
 			}
 		}
 

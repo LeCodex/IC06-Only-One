@@ -15,6 +15,7 @@ namespace GameRoundState
 			GameEventSystem.current.OnEndRound();
 
 			// Show intermission screen over gameplay screen
+			GameManager.current.intermissionTransition.Play("Show");
 		}
 
 		public override void Update()
@@ -40,6 +41,7 @@ namespace GameRoundState
 		public override void ExitState()
 		{
 			// Hide intermission screen
+			GameManager.current.intermissionTransition.Play("Hide");
 		}
 	}
 }
