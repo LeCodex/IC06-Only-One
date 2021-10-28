@@ -16,6 +16,12 @@ namespace GameRoundState
 
 			// Show intermission screen over gameplay screen
 			GameManager.current.intermissionTransition.Play("Show");
+
+			// Put controller in OOG state
+			foreach(PlayerScript player in GameManager.current.players)
+			{
+				player.controller.ChangeState(PlayerState.OutOfGame);
+			}
 		}
 
 		public override void Update()
@@ -42,6 +48,12 @@ namespace GameRoundState
 		{
 			// Hide intermission screen
 			GameManager.current.intermissionTransition.Play("Hide");
+
+			// Revert controller to correct state
+			foreach (PlayerScript player in GameManager.current.players)
+			{
+				player.controller.ChangeState(player.playerState);
+			}
 		}
 	}
 }

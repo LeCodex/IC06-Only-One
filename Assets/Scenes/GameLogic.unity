@@ -910,7 +910,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   players: []
-  intermissionTransition: {fileID: 0}
+  intermissionTransition: {fileID: 291973655}
 --- !u!114 &1917073769
 MonoBehaviour:
   m_ObjectHideFlags: 0

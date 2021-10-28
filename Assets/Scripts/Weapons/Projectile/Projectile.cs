@@ -10,7 +10,7 @@ public abstract class Projectile : MonoBehaviour
     public Vector2 direction { private set; get; }
     public PlayerScript owner { private set; get; }
 
-    Rigidbody2D rb;
+    protected Rigidbody2D rb;
 
 	private void Awake()
 	{
@@ -24,8 +24,6 @@ public abstract class Projectile : MonoBehaviour
 
 	void FixedUpdate()
     {
-        rb.MovePosition(rb.position + direction * speed * Time.fixedDeltaTime);
-
         Tick();
     }
 
@@ -34,5 +32,6 @@ public abstract class Projectile : MonoBehaviour
     public void Throw(Vector2 dir)
     {
         direction = dir.normalized;
+        rb.velocity = direction * speed * Time.fixedDeltaTime;
     }
 }

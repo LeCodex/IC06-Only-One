@@ -72,6 +72,7 @@
     <Compile Include="Assets\Scripts\Game\GameManager.cs" />
     <Compile Include="Assets\Scripts\Game\RoundState\RoundState.cs" />
     <Compile Include="Assets\Scripts\Player\Controller\PlayerController.cs" />
+    <Compile Include="Assets\Scripts\Weapons\Projectile\Cannonball.cs" />
     <Compile Include="Assets\Scripts\Environment\Spawner.cs" />
     <Compile Include="Assets\Scripts\Player\Controller\ControllerStatePossession.cs" />
     <Compile Include="Assets\Scripts\Game\RoundState\RoundStateIntermission.cs" />
@@ -88,7 +89,7 @@
     <Compile Include="Assets\Scripts\Game\GameRules.cs" />
     <Compile Include="Assets\Scripts\Perks\PerkCollectible.cs" />
     <Compile Include="Assets\Scripts\Weapons\Projectile\Dynamite.cs" />
-    <Compile Include="Assets\Scripts\Weapons\Projectile\Cannonball.cs" />
+    <Compile Include="Assets\Scripts\Player\Controller\ControllerStateOOG.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

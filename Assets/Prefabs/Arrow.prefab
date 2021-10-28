@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2625554864857027487}
   - component: {fileID: -4554748329173716615}
   - component: {fileID: 6667177424180183512}
-  m_Layer: 7
+  m_Layer: 10
   m_Name: Arrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,7 +97,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6eeeb2e2a1f6bf54e8aaf83ff1cf4866, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 30
+  speed: 300
 --- !u!61 &-4554748329173716615
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -132,9 +132,9 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 991169007482329965}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
-  m_UseFullKinematicContacts: 0
+  m_UseFullKinematicContacts: 1
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0

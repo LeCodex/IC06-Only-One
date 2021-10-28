@@ -6,5 +6,6 @@ public enum PlayerState
     Alive, 
     Dead,
     Ghost,
-    Possession
+    Possession,
+    OutOfGame
 };

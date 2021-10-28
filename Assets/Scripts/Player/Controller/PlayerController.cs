@@ -29,7 +29,8 @@ public class PlayerController : MonoBehaviour
         { PlayerState.Alive, new ControllerStateAlive() },
         { PlayerState.Ghost, new ControllerStateGhost() },
         { PlayerState.Dead, new ControllerStateDead() },
-        { PlayerState.Possession, new ControllerStatePossession() }
+        { PlayerState.Possession, new ControllerStatePossession() },
+        { PlayerState.OutOfGame, new ControllerStateOOG() }
     };
 
     void Awake()
