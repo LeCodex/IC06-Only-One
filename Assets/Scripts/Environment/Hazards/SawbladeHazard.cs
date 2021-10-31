@@ -99,6 +99,7 @@ namespace ArenaEnvironment
         private void OnCollisionEnter2D(Collision2D collision)
         {
             PlayerScript player = collision.gameObject.GetComponent<PlayerScript>();
+            if (!player) return;
             if (player.playerState != PlayerState.Alive) return;
 
             player.Damage(new DamageInfo(ghost ? ghost.player.id : -1, player.id, 50, "Sawblade"));

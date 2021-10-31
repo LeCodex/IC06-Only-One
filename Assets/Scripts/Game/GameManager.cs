@@ -13,6 +13,8 @@ public class GameManager : MonoBehaviour
     public int currentArenaScene { private set; get; }
     public AsyncOperation sceneLoading { private set; get; }
 
+    [SerializeField]
+    RoundState currentState;
     RoundStateBase state;
     Dictionary<RoundState, RoundStateBase> roundStates = new Dictionary<RoundState, RoundStateBase>()
     {
@@ -24,7 +26,7 @@ public class GameManager : MonoBehaviour
     void Awake()
     {
         current = this;
-        state = roundStates[RoundState.Selection];
+        state = roundStates[currentState];
     }
 
     void Update()
@@ -34,9 +36,12 @@ public class GameManager : MonoBehaviour
 
     public void ChangeState(RoundState newState, float delay = 0f)
 	{
+        if (currentState == newState) return;
+
         if (delay == 0f)
 		{
             state.ExitState();
+            currentState = newState;
             state = roundStates[newState];
             state.EnterState();
         } 

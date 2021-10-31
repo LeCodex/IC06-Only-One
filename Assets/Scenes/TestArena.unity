@@ -360,7 +360,7 @@ GameObject:
   - component: {fileID: 334998405}
   - component: {fileID: 334998404}
   - component: {fileID: 334998403}
-  m_Layer: 3
+  m_Layer: 11
   m_Name: Armor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -912,7 +912,7 @@ GameObject:
   - component: {fileID: 932021319}
   - component: {fileID: 932021323}
   - component: {fileID: 932021318}
-  m_Layer: 7
+  m_Layer: 11
   m_Name: Saw
   m_TagString: Untagged
   m_Icon: {fileID: 0}
