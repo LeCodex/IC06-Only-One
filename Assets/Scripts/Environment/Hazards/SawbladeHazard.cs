@@ -12,8 +12,8 @@ namespace ArenaEnvironment
         public Transform[] path;
         public bool looped;
 
-        [ReadOnlySerialize]
         [SerializeField]
+        [ReadOnlySerialize]
         int currentNode;
         Vector2 pathDirection;
         Rigidbody2D rb;

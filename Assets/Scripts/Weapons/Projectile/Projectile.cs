@@ -9,6 +9,7 @@ public abstract class Projectile : MonoBehaviour
 
     public Vector2 direction { private set; get; }
     public PlayerScript owner { private set; get; }
+    public ProjectileWeapon weapon { private set; get; }
 
     protected Rigidbody2D rb;
 
@@ -20,6 +21,7 @@ public abstract class Projectile : MonoBehaviour
 	public void Claim(PlayerScript player)
 	{
         owner = player;
+        weapon = (ProjectileWeapon)player.controller.weapon;
 	}
 
 	void FixedUpdate()

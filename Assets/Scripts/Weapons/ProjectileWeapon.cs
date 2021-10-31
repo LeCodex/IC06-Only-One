@@ -4,18 +4,23 @@ using UnityEngine;
 
 public class ProjectileWeapon : Weapon
 {
-    public GameObject ammo;
+    public GameObject ammunition;
+    public int maxAmmo;
+    public int ammo;
     
     Animator animator;
     Projectile projectile;
 
     void Start()
     {
+        ammo = maxAmmo;
         animator = GetComponent<Animator>();
     }
 
     public override void Attack(float charge)
     {
+        ammo -= 1;
+
         projectile.Throw(transform.right);
         projectile.GetComponent<Transform>().parent = null;
 
@@ -25,7 +30,9 @@ public class ProjectileWeapon : Weapon
 
     public override void Charge(float charge)
     {
-        if (!projectile) projectile = Instantiate(ammo, attackPoint.position, transform.rotation, transform).GetComponent<Projectile>();
+        if (ammo == 0) return;
+
+        if (!projectile) projectile = Instantiate(ammunition, attackPoint.position, transform.rotation, transform).GetComponent<Projectile>();
 
         owner.controller.Pause();
         Vector2 input = Input.GetAxisRaw("Horizontal" + owner.id) * Vector2.right + Input.GetAxisRaw("Vertical" + owner.id) * Vector2.up;
