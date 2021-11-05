@@ -6,6 +6,7 @@ using UnityEngine;
 public class Arrow : Projectile
 {
 	public Collider2D solidCollider;
+	public Collider2D pickupCollider;
 
 	void OnCollisionEnter2D(Collision2D collision)
 	{
@@ -14,15 +15,18 @@ public class Arrow : Projectile
 		transform.rotation = Quaternion.AngleAxis(Vector2.SignedAngle(Vector2.right, direction), Vector3.forward);
 
 		solidCollider.enabled = false;
+		pickupCollider.enabled = true;
 	}
 
 	void OnTriggerEnter2D(Collider2D collision)
 	{
-		ProjectileWeapon wep = collision.GetComponent<ProjectileWeapon>();
-		if (!wep) return;
+		PlayerScript player = collision.GetComponent<PlayerScript>();
+		if (player != owner) return;
+
+		Weapon wep = player.controller.weapon;
 		if (wep != weapon) return;
 
-		weapon.ammo = Math.Min(weapon.maxAmmo, weapon.ammo + 1);
+		weapon.UpdateAmmoCount(1);
 
 		Destroy(gameObject);
 	}

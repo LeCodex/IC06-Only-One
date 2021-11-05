@@ -7,7 +7,8 @@ using GameRoundState;
 public class GameManager : MonoBehaviour
 {
     static public GameManager current;
-    public List<PlayerScript> players = new List<PlayerScript>(); // The Game mamanger takes care of all the players (creation, access)
+    public Transform playersGroup;
+    public List<PlayerScript> players; // The Game manager takes care of all the players (creation, access)
     public Animator intermissionTransition;
 
     public int currentArenaScene { private set; get; }
@@ -27,6 +28,7 @@ public class GameManager : MonoBehaviour
     {
         current = this;
         state = roundStates[currentState];
+        players = new List<PlayerScript>(playersGroup.GetComponentsInChildren<PlayerScript>());
     }
 
     void Update()

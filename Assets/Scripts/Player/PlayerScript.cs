@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerScript : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class PlayerScript : MonoBehaviour
     public int id;
     public bool ready;
     public Transform weaponAttachment;
+    public Slider ammoDisplay;
 
     public PlayerState playerState;
 
@@ -19,6 +21,7 @@ public class PlayerScript : MonoBehaviour
     void Awake()
     {
         controller = GetComponent<PlayerController>();
+        id = transform.GetSiblingIndex() + 1;
     }
 
     void Start()
@@ -55,8 +58,9 @@ public class PlayerScript : MonoBehaviour
     {
         if (amount == 0) return;
         
-        health = Math.Min(health + amount, GameRules.current.PLAYER_MAX_HEALTH);
-        healthChanges.Add(new HealthChange(amount, cause));
+        int newHealth = Math.Min(health + amount, GameRules.current.PLAYER_MAX_HEALTH);
+        health = newHealth;
+        healthChanges.Add(new HealthChange(newHealth - health, cause));
     }
 
     public void GainPerk(Perk perk)
