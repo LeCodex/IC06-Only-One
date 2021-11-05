@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using GameRoundState;
+using Cinemachine;
 
 public class GameManager : MonoBehaviour
 {
@@ -29,6 +30,7 @@ public class GameManager : MonoBehaviour
         current = this;
         state = roundStates[currentState];
         players = new List<PlayerScript>(playersGroup.GetComponentsInChildren<PlayerScript>());
+        foreach (PlayerScript player in players) FindObjectOfType<CinemachineTargetGroup>().AddMember(player.GetComponent<Transform>(), 1, 5);
     }
 
     void Update()
