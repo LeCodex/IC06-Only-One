@@ -1,7 +1,7 @@
-Temp/
 # ===========================
 # Default Collab Ignore Rules
 # ===========================
+
 # OS Generated
 # ============
 .DS_Store
@@ -12,6 +12,7 @@ Icon?
 ehthumbs.db
 [Tt]humbs.db
 [Dd]esktop.ini
+
 # Visual Studio / MonoDevelop generated
 # =====================================
 [Ee]xported[Oo]bj/
@@ -23,7 +24,10 @@ ehthumbs.db
 *.user
 *.unityproj
 *.booproj
+
 # Unity generated
 # ===============
 [Oo]bj/
 [Bb]uild
+sysinfo.txt
+*.stackdump
