@@ -5,7 +5,6 @@ using UnityEngine;
 public class MeleeWeapon : Weapon
 {
     public float attackRange = .5f;
-    public int attackDamage = 30;
     public LayerMask enemyLayers;
     
     Animator animator;

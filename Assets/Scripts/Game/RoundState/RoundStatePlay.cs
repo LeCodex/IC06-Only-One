@@ -5,6 +5,8 @@ namespace GameRoundState
 {
 	public class RoundStatePlay : RoundStateBase
 	{
+		bool roundEnded = false;
+
 		public override void EnterState()
 		{
 			List<Transform> spawns = new List<Transform>(GameObject.FindWithTag("Spawnpoints").GetComponentsInChildren<Transform>());
@@ -20,6 +22,8 @@ namespace GameRoundState
 
 				player.transform.position = target.position;
 			}
+
+			roundEnded = false;
 		}
 
 		public override void Update()
@@ -32,8 +36,9 @@ namespace GameRoundState
 				if (player.playerState == PlayerState.Alive) alive += 1;
 			}
 
-			if (alive <= 1)
+			if (alive <= 1 && !roundEnded)
 			{
+				roundEnded = true;
 				GameManager.current.ChangeState(RoundState.Intermission, 3f);
 			}
 		}

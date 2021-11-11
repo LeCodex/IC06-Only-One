@@ -16,6 +16,11 @@ public class Arrow : Projectile
 
 		solidCollider.enabled = false;
 		pickupCollider.enabled = true;
+
+		PlayerScript player = collision.gameObject.GetComponent<PlayerScript>();
+		if (!player) return;
+
+		player.Damage(new DamageInfo(owner.id, player.id, weapon.attackDamage, "Arrow"));
 	}
 
 	void OnTriggerEnter2D(Collider2D collision)

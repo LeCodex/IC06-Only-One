@@ -22,6 +22,7 @@ public class PlayerController : MonoBehaviour
     Animator animator;
     string currentAnimation = "";
     List<Hazard> availableHazards = new List<Hazard>();
+    List<Weapon> availableWeapons = new List<Weapon>();
     Hazard closestHazard;
     ControllerStateBase controllerState;
     Dictionary<PlayerState, ControllerStateBase> controllerStates = new Dictionary<PlayerState, ControllerStateBase>()
@@ -94,6 +95,23 @@ public class PlayerController : MonoBehaviour
         weapon.transform.localPosition = Vector2.zero;
 
         weapon.SetOwner(player);
+        UnfindWeapon(newWeapon);
+    }
+
+    public void TakeClosestWeapon()
+	{
+        if (availableWeapons.Count == 0) return;
+
+        Weapon closestWeapon = availableWeapons[0];
+        foreach (Weapon wep in availableWeapons)
+        {
+            if (Vector2.Distance(transform.position, wep.transform.position) < Vector2.Distance(transform.position, closestWeapon.transform.position))
+            {
+                closestWeapon = wep;
+            }
+        }
+
+        TakeWeapon(closestWeapon);
     }
 
     public void DropWeapon()
@@ -118,6 +136,18 @@ public class PlayerController : MonoBehaviour
     {
         Debug.Log("Unfound " + hazard.gameObject.name);
         if (availableHazards.Contains(hazard)) availableHazards.Remove(hazard);
+    }
+
+    public void FindWeapon(Weapon wep)
+	{
+        availableWeapons.Add(wep);
+
+        if (!weapon) TakeWeapon(wep);
+	}
+
+    public void UnfindWeapon(Weapon wep)
+    {
+        if (availableWeapons.Contains(wep)) availableWeapons.Remove(wep);
     }
 
     public void PossessClosest()

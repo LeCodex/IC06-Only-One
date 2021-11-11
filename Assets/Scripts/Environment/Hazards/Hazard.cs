@@ -27,7 +27,10 @@ namespace ArenaEnvironment
         // IMPORTANT: Hazard triggers should only detect players, even alive ones
         private void OnTriggerEnter2D(Collider2D collision)
         {
+            Debug.Log(collision.gameObject);
+
             PlayerController controller = collision.GetComponent<PlayerController>();
+            if (!controller) return;
             if (controller.player.playerState != PlayerState.Ghost) return;
 
             controller.FindHazard(this);
@@ -37,8 +40,9 @@ namespace ArenaEnvironment
         private void OnTriggerExit2D(Collider2D collision)
         {
             PlayerController controller = collision.GetComponent<PlayerController>();
-            // Just to be safe, we always try and unfind hazards
+            if (!controller) return;
 
+            // Just to be safe, we always try and unfind hazards
             controller.UnfindHazard(this);
             playersInRange--;
         }

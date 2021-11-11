@@ -29,9 +29,14 @@ namespace PlayerControllerState
                 } 
                 else if (Input.GetAxisRaw("Horizontal" + context.player.id) != 0f)
 			    {
-                    context.weapon.transform.rotation = Input.GetAxisRaw("Horizontal" + context.player.id) > 0 ? Quaternion.AngleAxis(0f, Vector3.forward) : Quaternion.AngleAxis(180f, Vector3.forward);
+                    context.weapon.transform.localScale = new Vector3(context.lookingRight ? 1 : -1, 1, 1);
 			    }
 			}
+
+            if (Input.GetButtonDown("Secondary" + context.player.id))
+            {
+                context.TakeClosestWeapon();
+            }
         }
 
 		public override void FixedUpdate(PlayerController context)

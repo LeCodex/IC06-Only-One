@@ -22,7 +22,12 @@ public abstract class Projectile : MonoBehaviour
 	{
         owner = player;
         weapon = (ProjectileWeapon)player.controller.weapon;
-	}
+
+        foreach(Collider2D col in GetComponents<Collider2D>())
+		{
+            if (!col.isTrigger) Physics2D.IgnoreCollision(col, owner.GetComponent<BoxCollider2D>());
+        }
+    }
 
 	void FixedUpdate()
     {

@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
     public List<PlayerScript> players; // The Game manager takes care of all the players (creation, access)
     public Animator intermissionTransition;
 
-    public int currentArenaScene { private set; get; }
+    public int currentArenaScene { private set; get; } = 1;
     public AsyncOperation sceneLoading { private set; get; }
 
     [SerializeField]
@@ -63,10 +63,17 @@ public class GameManager : MonoBehaviour
 
     public void LoadNextLevel()
 	{
-        SceneManager.UnloadSceneAsync(currentArenaScene);
+        StartCoroutine(CoLoadNextLevel());
+    }
+
+    IEnumerator CoLoadNextLevel()
+	{
+        yield return new WaitForSeconds(2f);
+
+        if (currentArenaScene > 0) SceneManager.UnloadSceneAsync(currentArenaScene);
 
         int nextLevelIndex = 1;
         currentArenaScene = nextLevelIndex;
-        sceneLoading = SceneManager.LoadSceneAsync(nextLevelIndex);
+        sceneLoading = SceneManager.LoadSceneAsync(nextLevelIndex, LoadSceneMode.Additive);
     }
 }

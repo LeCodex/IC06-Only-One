@@ -5,6 +5,7 @@ using UnityEngine;
 public abstract class Weapon : MonoBehaviour
 {
     public Transform attackPoint;
+    public int attackDamage = 30;
 
     protected PlayerScript owner;
 
@@ -14,16 +15,25 @@ public abstract class Weapon : MonoBehaviour
     public virtual void SetOwner(PlayerScript player)
     {
         owner = player;
+        GetComponent<CircleCollider2D>().enabled = !owner;
     }
 
     // Weapons should only collide with players, they don't move anyway outside of animations
-	private void OnCollisionEnter2D(Collision2D collision)
+	private void OnTriggerEnter2D(Collider2D collision)
 	{
         if (owner) return; // Don't steal weapons out of players' hands
 
-        PlayerScript player = collision.gameObject.GetComponent<PlayerScript>();
+        PlayerScript player = collision.GetComponent<PlayerScript>();
 		if (!player) return;
 
-        player.controller.TakeWeapon(this);
+        player.controller.FindWeapon(this);
 	}
+
+	private void OnTriggerExit2D(Collider2D collision)
+	{
+        PlayerScript player = collision.GetComponent<PlayerScript>();
+        if (!player) return;
+
+        player.controller.UnfindWeapon(this);
+    }
 }
