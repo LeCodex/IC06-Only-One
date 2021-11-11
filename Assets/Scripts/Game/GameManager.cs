@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     public Transform playersGroup;
     public List<PlayerScript> players; // The Game manager takes care of all the players (creation, access)
     public Animator intermissionTransition;
+    public Transform intermissionHuds;
 
     public int currentArenaScene { private set; get; } = 1;
     public AsyncOperation sceneLoading { private set; get; }
@@ -30,7 +31,12 @@ public class GameManager : MonoBehaviour
         current = this;
         state = roundStates[currentState];
         players = new List<PlayerScript>(playersGroup.GetComponentsInChildren<PlayerScript>());
-        foreach (PlayerScript player in players) FindObjectOfType<CinemachineTargetGroup>().AddMember(player.GetComponent<Transform>(), 1, 5);
+
+        foreach (PlayerScript player in players)
+        {
+            FindObjectOfType<CinemachineTargetGroup>().AddMember(player.GetComponent<Transform>(), 1, 5);
+            intermissionHuds.GetChild(player.id).gameObject.SetActive(true);
+        }
     }
 
     void Update()

@@ -12,7 +12,7 @@ public class ProjectileWeapon : Weapon
     Animator animator;
     Projectile projectile;
 
-    void Awake()
+    void Start()
     {
         ammo = maxAmmo;
         animator = GetComponent<Animator>();
