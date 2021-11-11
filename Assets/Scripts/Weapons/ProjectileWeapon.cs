@@ -12,10 +12,12 @@ public class ProjectileWeapon : Weapon
     Animator animator;
     Projectile projectile;
 
-    void Start()
+    void Awake()
     {
         ammo = maxAmmo;
         animator = GetComponent<Animator>();
+
+        GameEventSystem.current.onEndRound += OnEndRound;
     }
 
     public override void Attack(float charge)
@@ -59,5 +61,17 @@ public class ProjectileWeapon : Weapon
 	{
         ammo = Math.Max(Math.Min(ammo + amount, maxAmmo), 0);
         owner.ammoDisplay.value = (float)ammo / maxAmmo;
+    }
+
+    void OnEndRound()
+	{
+        ammo = maxAmmo;
+	}
+
+    void OnDestroy()
+    {
+        if (!GameEventSystem.current) return;
+
+        GameEventSystem.current.onEndRound -= OnEndRound;
     }
 }

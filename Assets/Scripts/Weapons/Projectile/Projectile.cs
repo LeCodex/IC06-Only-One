@@ -16,6 +16,8 @@ public abstract class Projectile : MonoBehaviour
 	private void Awake()
 	{
         rb = GetComponent<Rigidbody2D>();
+
+        GameEventSystem.current.onEndRound += OnEndRound;
 	}
 
 	public void Claim(PlayerScript player)
@@ -40,5 +42,18 @@ public abstract class Projectile : MonoBehaviour
     {
         direction = dir.normalized;
         rb.velocity = direction * speed * Time.fixedDeltaTime;
+    }
+
+    void OnEndRound()
+	{
+        // Remove projectiles once round ends
+        Destroy(gameObject);
+	}
+
+    void OnDestroy()
+    {
+        if (!GameEventSystem.current) return;
+
+        GameEventSystem.current.onEndRound -= OnEndRound;
     }
 }
