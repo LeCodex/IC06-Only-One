@@ -20,7 +20,7 @@ public class Arrow : Projectile
 		PlayerScript player = collision.gameObject.GetComponent<PlayerScript>();
 		if (!player) return;
 
-		player.Damage(new DamageInfo(owner.id, player.id, weapon.attackDamage, "Arrow"));
+		player.Damage(new DamageInfo(owner.id, player.id, attackDamage, "Arrow"));
 	}
 
 	void OnTriggerEnter2D(Collider2D collision)

@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour
     public List<PlayerScript> players; // The Game manager takes care of all the players (creation, access)
     public Animator intermissionTransition;
     public Transform intermissionHuds;
+    public GameObject playHUD;
+    public Transform playerHUDs;
 
     public int currentArenaScene { private set; get; } = 1;
     public AsyncOperation sceneLoading { private set; get; }

@@ -6,6 +6,7 @@ using UnityEngine;
 public abstract class Projectile : MonoBehaviour
 {
     public float speed;
+    public int attackDamage;
 
     public Vector2 direction { private set; get; }
     public PlayerScript owner { private set; get; }
@@ -23,7 +24,7 @@ public abstract class Projectile : MonoBehaviour
 	public void Claim(PlayerScript player)
 	{
         owner = player;
-        weapon = (ProjectileWeapon)player.controller.weapon;
+        if (player.controller.weapon is ProjectileWeapon) weapon = (ProjectileWeapon)player.controller.weapon;
 
         foreach(Collider2D col in GetComponents<Collider2D>())
 		{

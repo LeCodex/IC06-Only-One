@@ -16,6 +16,7 @@ namespace GameRoundState
 
 			// Show intermission screen over gameplay screen
 			GameManager.current.intermissionTransition.Play("Show");
+			GameManager.current.playHUD.SetActive(false);
 
 			// Put controller in OOG state
 			foreach(PlayerScript player in GameManager.current.players)
@@ -38,7 +39,17 @@ namespace GameRoundState
 			}
 
 			//...and for scenes to be done loading
-			if (ready && GameManager.current.sceneLoading.isDone)
+			if (GameManager.current.sceneLoading != null)
+			{
+				if (!GameManager.current.sceneLoading.isDone) ready = false;
+			} 
+			else
+			{
+				ready = false;
+			}
+
+
+			if (ready)
 			{
 				GameManager.current.ChangeState(RoundState.Play);
 			}
@@ -48,6 +59,7 @@ namespace GameRoundState
 		{
 			// Hide intermission screen
 			GameManager.current.intermissionTransition.Play("Hide");
+			GameManager.current.playHUD.SetActive(true);
 
 			// Revert controller to correct state
 			foreach (PlayerScript player in GameManager.current.players)

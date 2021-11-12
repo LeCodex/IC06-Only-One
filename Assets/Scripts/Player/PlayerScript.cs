@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class PlayerScript : MonoBehaviour
 {
-    public int health = 100;
+    public int health;
     public int id;
     public bool ready;
     public Transform weaponAttachment;
@@ -17,6 +17,7 @@ public class PlayerScript : MonoBehaviour
 
     List<Perk> perks = new List<Perk>();
     List<HealthChange> healthChanges = new List<HealthChange>(); // Storing what changed your health for intermission puproses
+    Transform HUD;
 
     void Awake()
     {
@@ -26,6 +27,9 @@ public class PlayerScript : MonoBehaviour
 
     void Start()
     {
+        health = GameRules.current.PLAYER_MAX_HEALTH;
+        HUD = GameManager.current.playerHUDs.GetChild(id - 1);
+
         ChangeState(playerState);
 
         GameEventSystem.current.onDamage += OnDamage;
@@ -35,6 +39,9 @@ public class PlayerScript : MonoBehaviour
     void Update()
     {
         // Maybe move the controller update into here
+
+        //Update the HUD
+        HUD.GetComponentInChildren<Slider>().value = (float)health / GameRules.current.PLAYER_MAX_HEALTH;
     }
 
     public void Damage(DamageInfo info)

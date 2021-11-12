@@ -41,7 +41,12 @@ public class PlayerController : MonoBehaviour
         animator = GetComponentInChildren<Animator>();
     }
 
-    void Update()
+	private void Start()
+	{
+        GameEventSystem.current.onEndRound += OnEndRound;
+	}
+
+	void Update()
     {
         controllerState.Update(this);
 
@@ -54,6 +59,12 @@ public class PlayerController : MonoBehaviour
             closestHazard = availableHazards[0];
             foreach (Hazard hazard in availableHazards)
             {
+                if (!hazard)
+                {
+                    availableHazards.Remove(hazard);
+                    continue;
+                }
+
                 if (Vector2.Distance(transform.position, hazard.transform.position) < Vector2.Distance(transform.position, closestHazard.transform.position))
                 {
                     closestHazard = hazard;
@@ -105,13 +116,19 @@ public class PlayerController : MonoBehaviour
         Weapon closestWeapon = availableWeapons[0];
         foreach (Weapon wep in availableWeapons)
         {
+            if (!wep)
+            {
+                availableWeapons.Remove(wep);
+                continue;
+            }
+
             if (Vector2.Distance(transform.position, wep.transform.position) < Vector2.Distance(transform.position, closestWeapon.transform.position))
             {
                 closestWeapon = wep;
             }
         }
 
-        TakeWeapon(closestWeapon);
+        if (closestWeapon) TakeWeapon(closestWeapon);
     }
 
     public void DropWeapon()
@@ -171,6 +188,12 @@ public class PlayerController : MonoBehaviour
 
         currentAnimation = animation;
         animator.Play(animation);
+	}
+
+    void OnEndRound()
+	{
+        availableHazards.Clear();
+        availableWeapons.Clear();
 	}
 
     public string GetAnimationStateDirection() { return GetAnimationFlipVertical() + GetAnimationFlipHorizontal(); }
