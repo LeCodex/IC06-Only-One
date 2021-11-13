@@ -9,7 +9,12 @@ public abstract class Weapon : MonoBehaviour
 
     protected PlayerScript owner;
 
-    public abstract void Attack(float charge);
+	void Start()
+	{
+        GameEventSystem.current.onEndRound += OnEndRound;
+	}
+
+	public abstract void Attack(float charge);
     public abstract void Charge(float charge);
 
     public virtual void SetOwner(PlayerScript player)
@@ -35,5 +40,17 @@ public abstract class Weapon : MonoBehaviour
         if (!player) return;
 
         player.controller.UnfindWeapon(this);
+    }
+
+    public virtual void OnEndRound()
+	{
+        if (!owner) Destroy(gameObject);
+	}
+
+    void OnDestroy()
+    {
+        if (!GameEventSystem.current) return;
+
+        GameEventSystem.current.onEndRound -= OnEndRound;
     }
 }

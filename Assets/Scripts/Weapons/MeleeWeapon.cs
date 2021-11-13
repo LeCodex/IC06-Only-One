@@ -14,7 +14,14 @@ public class MeleeWeapon : Weapon
         animator = GetComponentInChildren<Animator>();
     }
 
-    public override void Attack(float charge)
+	private void Update()
+	{
+        if (!owner) return;
+
+        transform.localScale = new Vector3(owner.controller.lookingRight ? 1 : -1, 1, 1);
+    }
+
+	public override void Attack(float charge)
     {
         animator.SetTrigger("Attack");
 

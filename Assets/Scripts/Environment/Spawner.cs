@@ -45,6 +45,7 @@ public class Spawner : MonoBehaviour
 			availableSpawnpoints.Remove(point);
 		} while (Physics2D.OverlapCircleAll(point, .1f).Length > 0 && availableSpawnpoints.Count > 0);
 
+		// No valid spawnpoint
 		if (availableSpawnpoints.Count == 0) return;
 
 		GameObject obj = objects[Random.Range(0, objects.Length)];

@@ -11,6 +11,11 @@ public class PlayerScript : MonoBehaviour
     public Transform weaponAttachment;
     public Slider ammoDisplay;
 
+    [ReadOnlySerialize]
+    public Transform playerHud;
+    [ReadOnlySerialize]
+    public Transform intermissionHud;
+
     public PlayerState playerState;
 
     public PlayerController controller { private set; get; }
@@ -28,7 +33,7 @@ public class PlayerScript : MonoBehaviour
     void Start()
     {
         health = GameRules.current.PLAYER_MAX_HEALTH;
-        HUD = GameManager.current.playerHUDs.GetChild(id - 1);
+        HUD = GameManager.current.playerHuds.GetChild(id - 1);
 
         ChangeState(playerState);
 

@@ -7,17 +7,15 @@ public abstract class Projectile : MonoBehaviour
 {
     public float speed;
     public int attackDamage;
+    public Rigidbody2D rb;
 
     public Vector2 direction { private set; get; }
     public PlayerScript owner { private set; get; }
     public ProjectileWeapon weapon { private set; get; }
 
-    protected Rigidbody2D rb;
 
-	private void Start()
+	private void Awake()
 	{
-        rb = GetComponent<Rigidbody2D>();
-
         GameEventSystem.current.onEndRound += OnEndRound;
 	}
 
@@ -28,7 +26,7 @@ public abstract class Projectile : MonoBehaviour
 
         foreach(Collider2D col in GetComponents<Collider2D>())
 		{
-            if (!col.isTrigger) Physics2D.IgnoreCollision(col, owner.GetComponent<BoxCollider2D>());
+            if (!col.isTrigger) Physics2D.IgnoreCollision(col, owner.controller.projectileCollider);
         }
     }
 

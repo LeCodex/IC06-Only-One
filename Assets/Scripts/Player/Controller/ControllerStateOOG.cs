@@ -20,6 +20,7 @@ namespace PlayerControllerState
             if (Input.GetButtonDown("Attack" + context.player.id))
             {
                 context.player.ready = !context.player.ready;
+                context.player.intermissionHud.Find("Ready Icon").gameObject.SetActive(context.player.ready);
             }
         }
 

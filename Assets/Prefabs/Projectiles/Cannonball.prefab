@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6641492033930493420}
   - component: {fileID: 6641492033930493421}
+  - component: {fileID: 1916355940800203225}
   - component: {fileID: 6641492033930493422}
   - component: {fileID: 7936097185304281237}
   - component: {fileID: 6385373122779599223}
@@ -85,6 +86,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!50 &1916355940800203225
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6641492033930493423}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 1
+  m_Constraints: 0
 --- !u!58 &6641492033930493422
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -113,7 +135,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6bd3093cb0c6e242be7e654d6e43275, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 6
+  speed: 2000
+  attackDamage: 10
+  rb: {fileID: 1916355940800203225}
 --- !u!114 &6385373122779599223
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -126,8 +150,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6898ce5c58aea64408524d42c6fd6976, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 0
-  damage: 0
+  radius: 4
+  damage: 20
   enemyLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8

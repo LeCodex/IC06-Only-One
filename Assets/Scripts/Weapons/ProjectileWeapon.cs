@@ -8,7 +8,7 @@ public class ProjectileWeapon : Weapon
     public GameObject ammunition;
     public int maxAmmo;
     public int ammo;
-    
+
     Animator animator;
     Projectile projectile;
 
@@ -16,11 +16,16 @@ public class ProjectileWeapon : Weapon
     {
         ammo = maxAmmo;
         animator = GetComponent<Animator>();
-
-        GameEventSystem.current.onEndRound += OnEndRound;
     }
 
-    public override void Attack(float charge)
+	private void Update()
+	{
+        if (!owner) return;
+
+        if (owner.controller.rb.velocity.magnitude > 0f) transform.rotation = Quaternion.Euler(owner.controller.lookingRight ? Vector2.right : Vector2.left);
+    }
+
+	public override void Attack(float charge)
     {
         if (ammo == 0) return;
         UpdateAmmoCount(-1);
@@ -41,7 +46,7 @@ public class ProjectileWeapon : Weapon
         projectile.Claim(owner);
         owner.controller.Pause();
         Vector2 input = Input.GetAxisRaw("Horizontal" + owner.id) * Vector2.right + Input.GetAxisRaw("Vertical" + owner.id) * Vector2.up;
-        if (input.sqrMagnitude > 0f) transform.rotation = Quaternion.Euler(0f, 0f, Vector2.SignedAngle(Vector2.right, input));
+        if (input.sqrMagnitude > 0f) transform.rotation = Quaternion.Euler(0f, 0f, Vector2.SignedAngle(owner.transform.right, input));
     }
 
     public override void SetOwner(PlayerScript player)
@@ -58,20 +63,14 @@ public class ProjectileWeapon : Weapon
     }
 
     public void UpdateAmmoCount(int amount)
-	{
+    {
         ammo = Math.Max(Math.Min(ammo + amount, maxAmmo), 0);
         owner.ammoDisplay.value = (float)ammo / maxAmmo;
     }
 
-    void OnEndRound()
-	{
-        ammo = maxAmmo;
-	}
-
-    void OnDestroy()
+    public override void OnEndRound()
     {
-        if (!GameEventSystem.current) return;
-
-        GameEventSystem.current.onEndRound -= OnEndRound;
+        UpdateAmmoCount(maxAmmo);
+        base.OnEndRound();
     }
 }

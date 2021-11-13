@@ -12,6 +12,12 @@ class GameEventSystem : MonoBehaviour
         current = this;
     }
 
+    public Action onStartRound;
+    public void OnStartRound()
+    {
+        onStartRound?.Invoke();
+    }
+
     public Action<DamageInfo> onDamage;
     public void OnDamage(DamageInfo damageInfo)
     {

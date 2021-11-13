@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     public Animator intermissionTransition;
     public Transform intermissionHuds;
     public GameObject playHUD;
-    public Transform playerHUDs;
+    public Transform playerHuds;
 
     public int currentArenaScene { private set; get; } = 1;
     public AsyncOperation sceneLoading { private set; get; }
@@ -37,7 +37,11 @@ public class GameManager : MonoBehaviour
         foreach (PlayerScript player in players)
         {
             FindObjectOfType<CinemachineTargetGroup>().AddMember(player.GetComponent<Transform>(), 1, 5);
-            intermissionHuds.GetChild(player.id).gameObject.SetActive(true);
+            player.intermissionHud = intermissionHuds.GetChild(player.id);
+            player.intermissionHud.gameObject.SetActive(true);
+
+            player.playerHud = playerHuds.GetChild(player.id - 1);
+            player.playerHud.gameObject.SetActive(true);
         }
     }
 

@@ -24,6 +24,9 @@ namespace GameRoundState
 			}
 
 			roundEnded = false;
+
+			// Call the event
+			GameEventSystem.current.OnStartRound();
 		}
 
 		public override void Update()

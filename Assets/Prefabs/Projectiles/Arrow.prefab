@@ -99,6 +99,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3000
+  attackDamage: 50
+  rb: {fileID: 6667177424180183512}
   solidCollider: {fileID: -4554748329173716615}
   pickupCollider: {fileID: -864427651914198003}
 --- !u!61 &-4554748329173716615

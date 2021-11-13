@@ -11,6 +11,7 @@ namespace PlayerControllerState
         {
             context.speed = GameRules.current.PLAYER_ALIVE_SPEED;
             context.gameObject.layer = LayerMask.NameToLayer("Player"); // Collide with players and walls
+            context.projectileCollider.enabled = true;
         }
 
         public override void Update(PlayerController context)
@@ -26,10 +27,6 @@ namespace PlayerControllerState
                 {
                     context.weapon.Attack(context.charge);
                     context.charge = 0f;
-                } 
-                else if (Input.GetAxisRaw("Horizontal" + context.player.id) != 0f)
-			    {
-                    context.weapon.transform.localScale = new Vector3(context.lookingRight ? 1 : -1, 1, 1);
 			    }
 			}
 
@@ -48,7 +45,7 @@ namespace PlayerControllerState
 
 		public override void ExitState(PlayerController context)
         {
-            
+            context.projectileCollider.enabled = false;
         }
     }
 }

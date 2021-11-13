@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using PlayerControllerState;
 using ArenaEnvironment;
 
@@ -9,9 +10,9 @@ public class PlayerController : MonoBehaviour
 {
     public float charge;
     public float speed;
-
     public bool lookingRight = true;
     public bool lookingUp = false;
+    public Collider2D projectileCollider;
 
     public Rigidbody2D rb { private set; get; }
     public Weapon weapon { private set; get; }
@@ -43,8 +44,8 @@ public class PlayerController : MonoBehaviour
 
 	private void Start()
 	{
-        GameEventSystem.current.onEndRound += OnEndRound;
-	}
+        GameEventSystem.current.onStartRound += OnStartRound;
+    }
 
 	void Update()
     {
@@ -62,7 +63,7 @@ public class PlayerController : MonoBehaviour
                 if (!hazard)
                 {
                     availableHazards.Remove(hazard);
-                    continue;
+                    break;
                 }
 
                 if (Vector2.Distance(transform.position, hazard.transform.position) < Vector2.Distance(transform.position, closestHazard.transform.position))
@@ -119,7 +120,7 @@ public class PlayerController : MonoBehaviour
             if (!wep)
             {
                 availableWeapons.Remove(wep);
-                continue;
+                break;
             }
 
             if (Vector2.Distance(transform.position, wep.transform.position) < Vector2.Distance(transform.position, closestWeapon.transform.position))
@@ -134,7 +135,7 @@ public class PlayerController : MonoBehaviour
     public void DropWeapon()
 	{
         // Unattach the weapon
-        weapon.transform.parent = null;
+        weapon.transform.SetParent(null);
 
         // Drop it at your feet
         weapon.transform.position = transform.position;
@@ -190,7 +191,7 @@ public class PlayerController : MonoBehaviour
         animator.Play(animation);
 	}
 
-    void OnEndRound()
+    void OnStartRound()
 	{
         availableHazards.Clear();
         availableWeapons.Clear();
@@ -199,4 +200,9 @@ public class PlayerController : MonoBehaviour
     public string GetAnimationStateDirection() { return GetAnimationFlipVertical() + GetAnimationFlipHorizontal(); }
     public string GetAnimationFlipHorizontal() { return lookingRight ? "R" : "L"; }
     public string GetAnimationFlipVertical() { return lookingUp ? "U" : "D"; }
+
+	private void OnDestroy()
+	{
+        GameEventSystem.current.onStartRound -= OnStartRound;
+    }
 }

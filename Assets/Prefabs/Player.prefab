@@ -295,6 +295,7 @@ MonoBehaviour:
   speed: 0
   lookingRight: 1
   lookingUp: 0
+  projectileCollider: {fileID: 4365756344907254839}
 --- !u!114 &2066159708438674037
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -312,6 +313,8 @@ MonoBehaviour:
   ready: 0
   weaponAttachment: {fileID: 2066159708168556905}
   ammoDisplay: {fileID: 5186445874550923388}
+  playerHud: {fileID: 0}
+  intermissionHud: {fileID: 0}
   playerState: 0
 --- !u!1 &2066159708677970965
 GameObject:

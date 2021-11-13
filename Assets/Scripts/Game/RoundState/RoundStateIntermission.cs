@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace GameRoundState
 {
@@ -22,6 +23,8 @@ namespace GameRoundState
 			foreach(PlayerScript player in GameManager.current.players)
 			{
 				player.controller.ChangeState(PlayerState.OutOfGame);
+				player.intermissionHud.Find("Ready Icon").gameObject.SetActive(false);
+				player.intermissionHud.GetComponentInChildren<Slider>().value = (float)player.health / GameRules.current.PLAYER_MAX_HEALTH;
 			}
 		}
 
@@ -37,8 +40,8 @@ namespace GameRoundState
 					break;
 				}
 			}
-
-			//...and for scenes to be done loading
+			
+			//...and for the next scene to be done loading
 			if (GameManager.current.sceneLoading != null)
 			{
 				if (!GameManager.current.sceneLoading.isDone) ready = false;
