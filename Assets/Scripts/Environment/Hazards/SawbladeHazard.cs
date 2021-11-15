@@ -78,9 +78,8 @@ namespace ArenaEnvironment
             pathDirection = path[(currentNode + 1) % path.Length].position - path[currentNode].position;
 
             // Delta should only be 1 or -1
-            float newProgress = Math.Sign(delta) * oldProgress - delta;
-            rb.MovePosition((Vector2)path[currentNode].position + pathDirection * newProgress);
-            rb.velocity = Math.Abs(Vector2.Dot(pathDirection.normalized, rb.velocity)) * pathDirection.normalized;
+            float newProgress = delta * oldProgress - delta;
+            rb.MovePosition((Vector2)path[currentNode].position + pathDirection * newProgress + rb.velocity * Time.deltaTime);
         }
 
         float GetProgress()

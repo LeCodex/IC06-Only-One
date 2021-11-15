@@ -24,7 +24,7 @@ namespace GameRoundState
 			{
 				player.controller.ChangeState(PlayerState.OutOfGame);
 				player.intermissionHud.Find("Ready Icon").gameObject.SetActive(false);
-				player.intermissionHud.GetComponentInChildren<Slider>().value = (float)player.health / GameRules.current.PLAYER_MAX_HEALTH;
+				player.intermissionHud.GetComponentInChildren<Slider>().value = (float)player.score / GameRules.current.GAME_MAX_SCORE;
 			}
 		}
 

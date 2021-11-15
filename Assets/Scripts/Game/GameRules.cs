@@ -7,6 +7,8 @@ public class GameRules : MonoBehaviour
 {
     public static GameRules current;
 
+    public int GAME_MAX_SCORE = 10;
+
     public int PLAYER_MAX_HEALTH = 100;
     public int PLAYER_ALIVE_SPEED = 500;
     public int PLAYER_GHOST_SPEED = 700;
