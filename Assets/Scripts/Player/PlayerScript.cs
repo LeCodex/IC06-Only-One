@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class PlayerScript : MonoBehaviour
 {
+    public int score;
     public int health;
     public int id;
     public bool ready;
@@ -45,15 +46,13 @@ public class PlayerScript : MonoBehaviour
     {
         // Maybe move the controller update into here
 
-        //Update the HUD
+        // Update the HUD
         HUD.GetComponentInChildren<Slider>().value = (float)health / GameRules.current.PLAYER_MAX_HEALTH;
     }
 
     public void Damage(DamageInfo info)
     {
         if (info.amount == 0) return;
-
-        ChangeState(PlayerState.Dead);
 
         health -= info.amount;
         healthChanges.Add(new HealthChange(info.amount, info.cause));
@@ -62,6 +61,7 @@ public class PlayerScript : MonoBehaviour
         if (health <= 0)
         {
             health = 0;
+            ChangeState(PlayerState.Dead);
             GameEventSystem.current.OnKill(info);
         }
     }
@@ -73,6 +73,8 @@ public class PlayerScript : MonoBehaviour
         int newHealth = Math.Min(health + amount, GameRules.current.PLAYER_MAX_HEALTH);
         health = newHealth;
         healthChanges.Add(new HealthChange(newHealth - health, cause));
+
+        if (playerState != PlayerState.Alive && health == GameRules.current.PLAYER_MAX_HEALTH) ChangeState(PlayerState.Alive);
     }
 
     public void GainPerk(Perk perk)
@@ -99,9 +101,9 @@ public class PlayerScript : MonoBehaviour
 
     void OnEndRound()
     {
-        if (playerState == PlayerState.Possession) ChangeState(PlayerState.Ghost);
+        // if (playerState == PlayerState.Possession) ChangeState(PlayerState.Ghost);
 
-        if (playerState == PlayerState.Dead)
+        /* if (playerState == PlayerState.Dead)
         {
             ChangeState(health == 0 ? PlayerState.Ghost : PlayerState.Alive);
         } 
@@ -109,7 +111,7 @@ public class PlayerScript : MonoBehaviour
         {
             Heal(GameRules.current.GHOST_ROUND_REGEN, "Ghost Regeneration");
             if (health == GameRules.current.PLAYER_MAX_HEALTH) ChangeState(PlayerState.Alive);
-        }
+        } */
     }
 
     void OnDestroy()

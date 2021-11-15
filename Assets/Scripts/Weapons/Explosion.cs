@@ -8,17 +8,11 @@ public class Explosion : MonoBehaviour
 	public float radius;
 	public int damage;
 	public LayerMask enemyLayers;
-
-	ParticleSystem system;
-
-	private void Awake()
-	{
-		system = GetComponent<ParticleSystem>();
-	}
+	public GameObject system;
 
 	public void Explode(PlayerScript player)
 	{
-		if (system) system.Play();
+		if (system) Instantiate(system, transform.position, Quaternion.identity);
 
 		Collider2D[] hit = Physics2D.OverlapCircleAll(transform.position, radius, enemyLayers);
 		foreach (Collider2D col in hit)

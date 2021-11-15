@@ -32,15 +32,24 @@ namespace GameRoundState
 		public override void Update()
 		{
 			int alive = 0;
+			PlayerScript lastOne = null;
 			
 			// Check if players are all eliminated save for one
 			foreach (PlayerScript player in GameManager.current.players)
 			{
-				if (player.playerState != PlayerState.Dead) alive += 1;
+				if (player.playerState == PlayerState.Alive)
+				{
+					alive += 1;
+					lastOne = player;
+				}
 			}
+
+			alive = 2;
 
 			if (alive <= 1 && !roundEnded)
 			{
+				if (lastOne) lastOne.score++;
+
 				roundEnded = true;
 				GameManager.current.ChangeState(RoundState.Intermission, 3f);
 			}

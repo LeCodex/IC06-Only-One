@@ -31,7 +31,7 @@ namespace ArenaEnvironment
             rb.velocity = Vector2.Dot(pathDirection.normalized, rb.velocity) * pathDirection.normalized;
             transform.position = (Vector2)path[currentNode].position + GetProgress() * pathDirection;
 
-            if (GetProgress() >= 1f)
+            if (GetProgress() > 1f)
             {
                 if (currentNode < path.Length - 2 || looped)
                 {
@@ -71,18 +71,16 @@ namespace ArenaEnvironment
 
         void ChangeNode(int delta)
         {
-            float oldProgress = Math.Abs(GetProgress() % 1f);
+            float oldProgress = GetProgress();
             Vector2 oldDirection = pathDirection;
 
             currentNode = (currentNode + delta + path.Length) % path.Length;
             pathDirection = path[(currentNode + 1) % path.Length].position - path[currentNode].position;
 
-            // TODO: Not perfect, needs reworkng
-            float newProgress = (delta == 1 ? 0 : .99f) + Vector2.Dot(oldDirection.normalized, pathDirection.normalized) * oldProgress;
-            rb.velocity = Math.Max(0f, Vector2.Dot(pathDirection.normalized, rb.velocity.normalized)) // Dampening factor based on the angle of change (>= 90° means full stop)
-                        * Vector2.Dot(rb.velocity.normalized, oldDirection.normalized)                // Previous relative speed
-                        * pathDirection;                                                              // New direction
-            transform.position = (Vector2)path[currentNode].position + newProgress * pathDirection; // Update position to be on the new path
+            // Delta should only be 1 or -1
+            float newProgress = Math.Sign(delta) * oldProgress - delta;
+            rb.MovePosition((Vector2)path[currentNode].position + pathDirection * newProgress);
+            rb.velocity = Math.Abs(Vector2.Dot(pathDirection.normalized, rb.velocity)) * pathDirection.normalized;
         }
 
         float GetProgress()

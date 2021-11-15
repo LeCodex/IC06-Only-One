@@ -67,7 +67,8 @@ namespace GameRoundState
 			// Revert controller to correct state
 			foreach (PlayerScript player in GameManager.current.players)
 			{
-				player.controller.ChangeState(player.playerState);
+				player.ChangeState(PlayerState.Alive);
+				player.health = GameRules.current.PLAYER_MAX_HEALTH;
 			}
 		}
 	}
