@@ -30,6 +30,7 @@ namespace PlayerControllerState
 
         public void PossessClosest(PlayerController context)
         {
+            // No hazard available
             if (context.availableHazards.Count == 0) return;
             
             Hazard closestHazard = context.availableHazards[0];
