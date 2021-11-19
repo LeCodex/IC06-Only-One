@@ -27,7 +27,7 @@ namespace WeaponSystem
 
 		void OnTriggerEnter2D(Collider2D collision)
 		{
-			PlayerScript player = collision.GetComponent<PlayerScript>();
+			PlayerScript player = collision.GetComponentInParent<PlayerScript>();
 			if (player != owner) return;
 
 			Weapon wep = player.controller.weapon;

@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf48bbc189ef4834c9e1b935c49c3e48, type: 3}
   m_Name: Vampirism
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: c8e9c69f31d4b28469b3808b5c80aeaf, type: 3}
+  sprite: {fileID: 7748856869982843874, guid: bf158750ee654a940ad09c3059804c4e, type: 3}
   title: Vampirism
+  healthGain: 10

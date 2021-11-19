@@ -27,7 +27,7 @@ public class ButtonHint : MonoBehaviour
 
 	public void ShowHint(string hint, Sprite button)
 	{
-		hintCanvas.enabled = true;
+		hintCanvas.gameObject.SetActive(true);
 		hintCanvas.transform.Find("Hint Text").GetComponent<Text>().text = hint;
 		hintCanvas.transform.Find("Hint Button").GetComponent<Image>().sprite = button;
 
@@ -36,6 +36,6 @@ public class ButtonHint : MonoBehaviour
 
 	public void HideHint()
 	{
-		hintCanvas.enabled = false;
+		hintCanvas.gameObject.SetActive(false);
 	}
 }

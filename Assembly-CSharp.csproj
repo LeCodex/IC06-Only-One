@@ -8,8 +8,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <RootNamespace>
-    </RootNamespace>
+    <RootNamespace></RootNamespace>
     <ProjectGuid>{5AC2D14E-7E80-DEF0-6FCF-44C71E77D6AC}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -54,10 +53,9 @@
     <UnityVersion>2020.3.19f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Weapons\ShieldWeapon.cs" />
     <Compile Include="Assets\Scripts\Player\Controller\ControllerStateAlive.cs" />
     <Compile Include="Assets\Scripts\Player\HealthChange.cs" />
-    <Compile Include="Assets\Scripts\UI\ButtonHint.cs" />
-    <Compile Include="Assets\Scripts\Weapons\ShieldWeapon.cs" />
     <Compile Include="Assets\Scripts\Weapons\Projectile\Arrow.cs" />
     <Compile Include="Assets\Scripts\Player\Controller\ControllerStateGhost.cs" />
     <Compile Include="Assets\Scripts\Weapons\Weapon.cs" />
@@ -92,7 +90,11 @@
     <Compile Include="Assets\Scripts\Game\GameRules.cs" />
     <Compile Include="Assets\Scripts\Perks\PerkCollectible.cs" />
     <Compile Include="Assets\Scripts\Weapons\Projectile\Dynamite.cs" />
+    <Compile Include="Assets\Scripts\UI\ButtonHint.cs" />
     <Compile Include="Assets\Scripts\Player\Controller\ControllerStateOOG.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Fonts\Typo Round\Read_Me.txt" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
@@ -765,9 +767,7 @@
       <HintPath>Library\ScriptAssemblies\Unity.2D.SpriteShape.Runtime.dll</HintPath>
     </Reference>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <None Include="Assets\Fonts\Typo Round\Read_Me.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

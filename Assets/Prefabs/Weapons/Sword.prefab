@@ -48,10 +48,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackPoint: {fileID: 4774201688666291476}
   attackDamage: 30
+  hintSprite: {fileID: -3333449033900058284, guid: a6784e48b69d18a46813cdc35f990108, type: 3}
   attackRange: 0.5
   enemyLayers:
     serializedVersion: 2
     m_Bits: 8
+  chargeSlowdown: 0
 --- !u!58 &4774201688614000881
 CircleCollider2D:
   m_ObjectHideFlags: 0

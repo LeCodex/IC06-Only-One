@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d6ceb86ff13df04b86c0b6297bdceaa, type: 3}
   m_Name: Speed
   m_EditorClassIdentifier: 
-  sprite: {fileID: 0}
+  sprite: {fileID: -8113171414992458262, guid: bf158750ee654a940ad09c3059804c4e, type: 3}
   title: Speed
   speedGain: 0.2

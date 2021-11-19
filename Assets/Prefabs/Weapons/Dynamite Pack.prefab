@@ -196,6 +196,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackPoint: {fileID: 3544155817743322774}
   attackDamage: 30
+  hintSprite: {fileID: -3333449033900058284, guid: a6784e48b69d18a46813cdc35f990108, type: 3}
   ammunition: {fileID: 991169007482329965, guid: 05667a50674481043860f610126ff98b, type: 3}
   maxAmmo: 3
   ammo: 0

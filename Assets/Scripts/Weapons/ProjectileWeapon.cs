@@ -30,7 +30,8 @@ namespace WeaponSystem
 
 		public override void Attack(float charge)
 		{
-			if (charge == 0) return;
+			if (ammo == 0) return;
+			UpdateAmmoCount(-1);
 
 			projectile.Throw(transform.right);
 			projectile.GetComponent<Transform>().SetParent(null);
@@ -42,7 +43,6 @@ namespace WeaponSystem
 		public override void Charge(float charge)
 		{
 			if (ammo == 0) return;
-			UpdateAmmoCount(-1);
 
 			if (!projectile) projectile = Instantiate(ammunition, attackPoint.position, transform.rotation, transform).GetComponent<Projectile>();
 

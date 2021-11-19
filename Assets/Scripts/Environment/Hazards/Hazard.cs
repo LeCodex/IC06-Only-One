@@ -9,12 +9,19 @@ namespace ArenaEnvironment
     {
         public Sprite hintSprite;
 
-        public PlayerController ghost { private set; get; }
+        public PlayerController ghost { private set; get; } = null;
 
         int playersInRange = 0;
+        ButtonHint hint;
 
-        public virtual void OnPossess(PlayerController possessor)
+		private void Start()
+		{
+            hint = GetComponent<ButtonHint>();
+		}
+
+		public virtual void OnPossess(PlayerController possessor)
         {
+            hint.HideHint();
             ghost = possessor;
         }
 
@@ -22,6 +29,7 @@ namespace ArenaEnvironment
 
         public virtual void OnUnpossess()
         {
+            hint.ShowHint("Possess", hintSprite);
             ghost = null;
         }
 
@@ -29,14 +37,12 @@ namespace ArenaEnvironment
         // IMPORTANT: Hazard triggers should only detect players, even alive ones
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            Debug.Log(collision.gameObject);
-
             PlayerController controller = collision.GetComponent<PlayerController>();
             if (!controller) return;
             if (controller.player.playerState != PlayerState.Ghost) return;
 
             controller.FindHazard(this);
-            GetComponent<ButtonHint>().ShowHint("Possess", hintSprite);
+            if (!ghost) hint.ShowHint("Possess", hintSprite);
             playersInRange++;
         }
 
@@ -48,7 +54,7 @@ namespace ArenaEnvironment
             // Just to be safe, we always try and unfind hazards
             controller.UnfindHazard(this);
             playersInRange--;
-            if (playersInRange == 0) GetComponent<ButtonHint>().HideHint();
+            if (playersInRange == 0) hint.HideHint();
         }
     }
 }

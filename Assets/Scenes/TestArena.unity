@@ -5235,6 +5235,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cannon
       objectReference: {fileID: 0}
+    - target: {fileID: 6426123913410593642, guid: ec693fa5150c3fc40bede6e83b8af97f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ec693fa5150c3fc40bede6e83b8af97f, type: 3}
 --- !u!1001 &4677375127274687414
@@ -5244,18 +5248,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4677375126394179568, guid: 899200f99c3c3a84e95af45683988a12, type: 3}
-      propertyPath: drag
-      value: 0.01
-      objectReference: {fileID: 0}
-    - target: {fileID: 4677375126394179568, guid: 899200f99c3c3a84e95af45683988a12, type: 3}
-      propertyPath: maxSpeed
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4677375126394179568, guid: 899200f99c3c3a84e95af45683988a12, type: 3}
-      propertyPath: acceleration
-      value: 0.1
-      objectReference: {fileID: 0}
     - target: {fileID: 4677375126394179568, guid: 899200f99c3c3a84e95af45683988a12, type: 3}
       propertyPath: path.Array.data[0]
       value: 
@@ -5443,6 +5435,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4600714221203404350, guid: bf4b52f856964fd428b5e9d418f9dff3, type: 3}
+      propertyPath: m_Name
+      value: Hint Button
+      objectReference: {fileID: 0}
     - target: {fileID: 8492712841959605376, guid: bf4b52f856964fd428b5e9d418f9dff3, type: 3}
       propertyPath: m_Name
       value: Armor

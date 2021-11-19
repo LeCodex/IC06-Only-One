@@ -38,6 +38,8 @@ namespace ArenaEnvironment
 
 		public override void Tick()
 		{
+			if (!ghost) return;
+
 			rb.velocity = (Input.GetAxisRaw("Horizontal" + ghost.player.id) * Vector2.right + Input.GetAxisRaw("Vertical" + ghost.player.id) * Vector2.up) * speed * Time.fixedDeltaTime;
 		}
 
