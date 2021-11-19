@@ -8,6 +8,7 @@ namespace WeaponSystem
 	{
 		public Transform attackPoint;
 		public int attackDamage = 30;
+		public Sprite hintSprite;
 
 		protected PlayerScript owner;
 
@@ -22,6 +23,7 @@ namespace WeaponSystem
 		public virtual void SetOwner(PlayerScript player)
 		{
 			owner = player;
+			owner.GetComponent<ButtonHint>().ShowHint("Attack", hintSprite);
 			GetComponent<CircleCollider2D>().enabled = !owner;
 		}
 

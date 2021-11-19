@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     public bool lookingUp = false;
     public Collider2D projectileCollider;
     public Hazard possessedHazard;
+    public Sprite pickUpSpriteHint;
 
     public Rigidbody2D rb { private set; get; }
     public Weapon weapon { private set; get; }
@@ -138,7 +139,14 @@ public class PlayerController : MonoBehaviour
 	{
         availableWeapons.Add(wep);
 
-        if (!weapon) TakeWeapon(wep);
+        if (!weapon)
+        {
+            TakeWeapon(wep);
+        }
+        else
+		{
+            GetComponent<ButtonHint>().ShowHint("Take", pickUpSpriteHint);
+		}
 	}
 
     public void UnfindWeapon(Weapon wep)

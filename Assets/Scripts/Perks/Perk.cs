@@ -22,6 +22,8 @@ namespace PerkSystem
 
 		~Perk()
 		{
+			if (!GameEventSystem.current) return;
+
 			RemoveEvents();
 		}
 	}

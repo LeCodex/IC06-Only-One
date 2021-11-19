@@ -7,6 +7,8 @@ namespace ArenaEnvironment
 {
     public abstract class Hazard : MonoBehaviour
     {
+        public Sprite hintSprite;
+
         public PlayerController ghost { private set; get; }
 
         int playersInRange = 0;
@@ -34,6 +36,7 @@ namespace ArenaEnvironment
             if (controller.player.playerState != PlayerState.Ghost) return;
 
             controller.FindHazard(this);
+            GetComponent<ButtonHint>().ShowHint("Possess", hintSprite);
             playersInRange++;
         }
 
@@ -45,6 +48,7 @@ namespace ArenaEnvironment
             // Just to be safe, we always try and unfind hazards
             controller.UnfindHazard(this);
             playersInRange--;
+            if (playersInRange == 0) GetComponent<ButtonHint>().HideHint();
         }
     }
 }
