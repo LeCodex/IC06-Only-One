@@ -22,6 +22,7 @@ public class PlayerController : MonoBehaviour
     public PlayerScript player { private set; get; }
     public bool paused { private set; get; } = false;
     public List<Hazard> availableHazards { private set; get; } = new List<Hazard>();
+    public float stun { private set; get; }
 
     Animator animator;
     string currentAnimation = "";
@@ -51,6 +52,17 @@ public class PlayerController : MonoBehaviour
 	void Update()
     {
         controllerState.Update(this);
+
+        if (stun > 0f)
+		{
+            stun -= Time.deltaTime;
+		}
+
+        if (stun < 0f)
+		{
+            stun = 0f;
+            rb.velocity = Vector2.zero;
+		}
     }
 
     void FixedUpdate()
@@ -66,6 +78,12 @@ public class PlayerController : MonoBehaviour
     public void Unpause()
 	{
 		paused = false;
+	}
+
+    public void Knockback(float duration, Vector2 force)
+	{
+        stun = duration;
+        rb.velocity = force;
 	}
 
 	public void ChangeState(PlayerState newState)

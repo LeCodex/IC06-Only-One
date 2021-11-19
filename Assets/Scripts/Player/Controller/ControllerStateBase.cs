@@ -16,11 +16,17 @@ namespace PlayerControllerState
             if (horizontal > 0f) context.lookingRight = true; else if (horizontal < 0f) context.lookingRight = false;
             if (vertical > 0f) context.lookingUp = true; else context.lookingUp = false;
 
+            if (context.stun > 0f)
+			{
+                return;
+			}
+
             if (context.paused)
             {
                 context.rb.velocity = Vector2.zero;
                 return;
             }
+
             context.rb.velocity = (Vector2.right * horizontal + Vector2.up * vertical).normalized * context.speed * Time.fixedDeltaTime;
 
             // Debug.Log(Mathf.Sign(horizontal));

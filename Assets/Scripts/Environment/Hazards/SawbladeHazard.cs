@@ -29,20 +29,22 @@ namespace ArenaEnvironment
             pathDirection = path[1].position - path[0].position;
             transform.position = (Vector2)path[0].position;
         }
-
-        void FixedUpdate()
+        
+        public override void Tick()
         {
-            progress += speed / pathDirection.magnitude;
+            MoveAlongPath(Vector2.right * Input.GetAxisRaw("Horizontal" + ghost.player.id) + Vector2.up * Input.GetAxisRaw("Vertical" + ghost.player.id));
+
+            progress += speed / pathDirection.magnitude * Time.fixedDeltaTime;
             speed *= (1 - drag);
 
             if (looped)
-			{
+            {
                 progress = (progress + path.Length) % path.Length;
-			} 
+            }
             else
-			{
+            {
                 progress = Math.Min(Math.Max(0f, progress), path.Length);
-			}
+            }
 
             int currentNode = (int)Math.Floor(progress);
             float localProgress = progress - currentNode;
@@ -54,21 +56,11 @@ namespace ArenaEnvironment
 
             oldNode = currentNode;
         }
-        
-        public override void Tick()
-        {
-            MoveAlongPath(Vector2.right * Input.GetAxisRaw("Horizontal" + ghost.player.id) + Vector2.up * Input.GetAxisRaw("Vertical" + ghost.player.id));
-        }
 
         void MoveAlongPath(Vector2 direction)
         {
             float force = Vector2.Dot(direction, pathDirection.normalized);
             speed = Math.Min(maxSpeed, speed + acceleration * force * Time.fixedDeltaTime);
-        }
-
-        public override void OnUnpossess()
-        {
-            speed /= 2;
         }
 
         private void OnCollisionEnter2D(Collision2D collision)
@@ -78,6 +70,7 @@ namespace ArenaEnvironment
             if (player.playerState != PlayerState.Alive) return;
 
             player.Damage(new DamageInfo(ghost ? ghost.player.id : -1, player.id, 50, "Sawblade"));
+            player.controller.Knockback(.5f, collision.GetContact(0).normal * 10f);
         }
     }
 }

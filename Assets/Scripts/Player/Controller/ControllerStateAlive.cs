@@ -6,12 +6,13 @@ namespace PlayerControllerState
 {
     public class ControllerStateAlive : ControllerStateBase
     {
-
         public override void EnterState(PlayerController context)
         {
             context.speed = GameRules.current.PLAYER_ALIVE_SPEED;
             context.gameObject.layer = LayerMask.NameToLayer("Player"); // Collide with players and walls
             context.projectileCollider.enabled = true;
+
+            if (context.weapon) context.weapon.gameObject.SetActive(true);
         }
 
         public override void Update(PlayerController context)
@@ -46,6 +47,8 @@ namespace PlayerControllerState
 		public override void ExitState(PlayerController context)
         {
             context.projectileCollider.enabled = false;
+
+            if (context.weapon) context.weapon.gameObject.SetActive(false);
         }
     }
 }

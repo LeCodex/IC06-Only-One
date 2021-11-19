@@ -25,9 +25,12 @@ public class PlayerScript : MonoBehaviour
 
     List<Perk> perks = new List<Perk>();
     Transform HUD;
+    float invulnerabilityTime;
+    SpriteRenderer spriteRenderer;
 
     void Awake()
     {
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         controller = GetComponent<PlayerController>();
         id = transform.GetSiblingIndex() + 1;
     }
@@ -49,10 +52,22 @@ public class PlayerScript : MonoBehaviour
 
         // Update the HUD
         HUD.GetComponentInChildren<Slider>().value = (float)health / GameRules.current.PLAYER_MAX_HEALTH;
+
+        // Update invulnerability status
+        if (invulnerabilityTime > 0f)
+		{
+            invulnerabilityTime -= Time.deltaTime;
+		}
+
+        if (invulnerabilityTime < 0f)
+		{
+            ClearInvulnerability();
+        }
     }
 
     public void Damage(DamageInfo info)
     {
+        if (invulnerabilityTime > 0f) return;
         if (info.amount == 0) return;
 
         health -= info.amount;
@@ -70,12 +85,16 @@ public class PlayerScript : MonoBehaviour
     public void Heal(int amount, string cause)
     {
         if (amount == 0) return;
-        
+
         int newHealth = Math.Min(health + amount, GameRules.current.PLAYER_MAX_HEALTH);
         health = newHealth;
         healthChanges.Add(new HealthChange(newHealth - health, cause));
 
-        if (playerState != PlayerState.Alive && health == GameRules.current.PLAYER_MAX_HEALTH) ChangeState(PlayerState.Alive);
+        if (playerState != PlayerState.Alive && health == GameRules.current.PLAYER_MAX_HEALTH)
+        {
+            ChangeState(PlayerState.Alive);
+            MakeInvulnerable(2);
+        }
     }
 
     public void GainPerk(Perk perk)
@@ -90,6 +109,18 @@ public class PlayerScript : MonoBehaviour
         controller.ChangeState(newState);
 
         GameEventSystem.current.OnChangeState(id, newState);
+    }
+
+    public void MakeInvulnerable(float time)
+	{
+        invulnerabilityTime += time;
+        spriteRenderer.color = new Color(1, 1, 1, 0.5f);
+    }
+
+    public void ClearInvulnerability()
+	{
+        invulnerabilityTime = 0;
+        spriteRenderer.color = new Color(1, 1, 1, 1);
     }
 
     void OnDamage(DamageInfo info)
