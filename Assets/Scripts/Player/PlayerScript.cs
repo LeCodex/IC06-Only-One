@@ -96,7 +96,7 @@ public class PlayerScript : MonoBehaviour
     {
         if (playerState == PlayerState.Ghost && info.attacker == id)
         {
-            Heal(GameRules.current.GHOST_KILL_REGEN, "Kill");
+            Heal(GameRules.current.GHOST_KILL_REGEN_PERCENT * info.amount + GameRules.current.GHOST_KILL_REGEN_FLAT, "Kill");
         }
     }
 

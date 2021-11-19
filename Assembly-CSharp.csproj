@@ -56,6 +56,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Player\Controller\ControllerStateAlive.cs" />
     <Compile Include="Assets\Scripts\Player\HealthChange.cs" />
+    <Compile Include="Assets\Scripts\Weapons\ShieldWeapon.cs" />
     <Compile Include="Assets\Scripts\Weapons\Projectile\Arrow.cs" />
     <Compile Include="Assets\Scripts\Player\Controller\ControllerStateGhost.cs" />
     <Compile Include="Assets\Scripts\Weapons\Weapon.cs" />

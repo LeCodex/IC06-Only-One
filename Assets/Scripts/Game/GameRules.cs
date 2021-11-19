@@ -13,8 +13,8 @@ public class GameRules : MonoBehaviour
     public int PLAYER_ALIVE_SPEED = 500;
     public int PLAYER_GHOST_SPEED = 700;
 
-    public int GHOST_KILL_REGEN = 50;
-    public int GHOST_ROUND_REGEN = 0;
+    public int GHOST_KILL_REGEN_PERCENT = 0;
+    public int GHOST_KILL_REGEN_FLAT = 50;
 
     void Awake()
     {

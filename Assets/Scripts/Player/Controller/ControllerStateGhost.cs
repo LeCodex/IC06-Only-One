@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ArenaEnvironment;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -18,13 +19,40 @@ namespace PlayerControllerState
         {
             if (Input.GetButtonDown("Secondary" + context.player.id))
             {
-                context.PossessClosest();
+                PossessClosest(context);
             }
         }
 
         public override void ExitState(PlayerController context)
         {
 
+        }
+
+        public void PossessClosest(PlayerController context)
+        {
+            if (context.availableHazards.Count == 0) return;
+            
+            Hazard closestHazard = context.availableHazards[0];
+            foreach (Hazard hazard in context.availableHazards)
+            {
+                if (!hazard)
+                {
+                    context.availableHazards.Remove(hazard);
+                    break;
+                }
+
+                // Take the closest unpossessed hazard
+                if (Vector2.Distance(context.transform.position, hazard.transform.position) < Vector2.Distance(context.transform.position, closestHazard.transform.position) && !hazard.ghost)
+                {
+                    closestHazard = hazard;
+                }
+            }
+
+            // No unpossessed hazard available
+            if (!closestHazard) return;
+
+            context.possessedHazard = closestHazard;
+            context.ChangeState(PlayerState.Possession);
         }
     }
 }

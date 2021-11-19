@@ -14,18 +14,17 @@ public class PlayerController : MonoBehaviour
     public bool lookingRight = true;
     public bool lookingUp = false;
     public Collider2D projectileCollider;
+    public Hazard possessedHazard;
 
     public Rigidbody2D rb { private set; get; }
     public Weapon weapon { private set; get; }
     public PlayerScript player { private set; get; }
-    public Hazard possessedHazard { private set; get; }
     public bool paused { private set; get; } = false;
+    public List<Hazard> availableHazards { private set; get; } = new List<Hazard>();
 
     Animator animator;
     string currentAnimation = "";
-    List<Hazard> availableHazards = new List<Hazard>();
     List<Weapon> availableWeapons = new List<Weapon>();
-    Hazard closestHazard;
     ControllerStateBase controllerState;
     Dictionary<PlayerState, ControllerStateBase> controllerStates = new Dictionary<PlayerState, ControllerStateBase>()
 	{
@@ -51,29 +50,6 @@ public class PlayerController : MonoBehaviour
 	void Update()
     {
         controllerState.Update(this);
-
-        if (availableHazards.Count == 0)
-        {
-            closestHazard = null;
-        } 
-        else
-        {
-            closestHazard = availableHazards[0];
-            foreach (Hazard hazard in availableHazards)
-            {
-                if (!hazard)
-                {
-                    availableHazards.Remove(hazard);
-                    break;
-                }
-
-                // Take the closest unpossessed hazard
-                if (Vector2.Distance(transform.position, hazard.transform.position) < Vector2.Distance(transform.position, closestHazard.transform.position) && !hazard.ghost)
-                {
-                    closestHazard = hazard;
-                }
-            }
-        }
     }
 
     void FixedUpdate()
@@ -168,21 +144,6 @@ public class PlayerController : MonoBehaviour
     public void UnfindWeapon(Weapon wep)
     {
         if (availableWeapons.Contains(wep)) availableWeapons.Remove(wep);
-    }
-
-    public void PossessClosest()
-    {
-        if (!closestHazard) return;
-
-        possessedHazard = closestHazard;
-        ChangeState(PlayerState.Possession);
-    }
-
-    public void Unpossess()
-    {
-        transform.position = possessedHazard.transform.position;
-        
-        ChangeState(PlayerState.Ghost);
     }
 
     public void PlayAnimation(string animation)
