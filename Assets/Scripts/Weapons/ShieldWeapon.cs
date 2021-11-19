@@ -28,7 +28,7 @@ namespace WeaponSystem
 		{
 			if (!owner) return;
 
-			if (owner.controller.rb.velocity.magnitude > 0f && chargeRemaining == 0f) transform.rotation = Quaternion.Euler(0f, 0f, owner.controller.lookingRight ? 0f : 180f);
+			transform.localScale = new Vector3(owner.controller.lookingRight ? 1 : -1, 1, 1);
 		}
 
 		private void FixedUpdate()

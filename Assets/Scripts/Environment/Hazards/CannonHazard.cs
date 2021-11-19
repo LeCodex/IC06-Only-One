@@ -12,15 +12,25 @@ namespace ArenaEnvironment
         public GameObject ammo;
         public float cooldown;
         public float turnSpeed;
+        public GameObject aimingArrow;
 
         [SerializeField]
         [ReadOnlySerialize]
         float wait = 0f;
+        Animator animator;
 
-        public override void OnPossess(PlayerController possessor)
+		static string[] animationStates = { "Cannon_R", "Cannon_U", "Cannon_L", "Cannon_D" };
+
+		private void Awake()
+		{
+            animator = GetComponentInChildren<Animator>();
+		}
+
+		public override void OnPossess(PlayerController possessor)
         {
             base.OnPossess(possessor);
             wait = .5f; // Wait half a second before firing, mostly for animations
+            aimingArrow.SetActive(true);
         }
 
         void Update()
@@ -38,12 +48,14 @@ namespace ArenaEnvironment
 
         public override void Tick()
         {
-            transform.Rotate(-Vector3.forward * Input.GetAxisRaw("Horizontal" + ghost.player.id) * turnSpeed * Time.fixedDeltaTime);
+            aimingArrow.transform.Rotate(-Vector3.forward * Input.GetAxisRaw("Horizontal" + ghost.player.id) * turnSpeed * Time.fixedDeltaTime);
+            int index = (int)Math.Floor(((aimingArrow.transform.rotation.eulerAngles.z + 45f) % 360f) / 90f);
+            animator.Play(animationStates[index]);
         }
 
         void Fire()
         {
-            Projectile projectile = Instantiate(ammo, transform.position + transform.up * 2f, Quaternion.identity).GetComponent<Projectile>();
+            Projectile projectile = Instantiate(ammo, transform.position + aimingArrow.transform.right, Quaternion.identity).GetComponent<Projectile>();
             projectile.Claim(ghost.player);
 
             Collider2D selfCollider = GetComponent<Collider2D>();
@@ -52,7 +64,13 @@ namespace ArenaEnvironment
                 if (!col.isTrigger) Physics2D.IgnoreCollision(col, selfCollider);
             }
 
-            projectile.Throw(transform.up);
+            projectile.Throw(aimingArrow.transform.right);
         }
-    }
+
+		public override void OnUnpossess()
+		{
+			base.OnUnpossess();
+            aimingArrow.SetActive(false);
+        }
+	}
 }

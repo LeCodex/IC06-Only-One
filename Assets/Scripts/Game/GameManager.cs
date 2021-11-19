@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     public Transform intermissionHuds;
     public GameObject playHUD;
     public Transform playerHuds;
+    public GameObject aimingArrow;
 
     public int currentArenaScene { private set; get; } = 1;
     public AsyncOperation sceneLoading { private set; get; }
