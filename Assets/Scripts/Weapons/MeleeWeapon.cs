@@ -6,6 +6,7 @@ public class MeleeWeapon : Weapon
 {
     public float attackRange = .5f;
     public LayerMask enemyLayers;
+    public float chargeSlowdown;
     
     Animator animator;
 
@@ -23,6 +24,8 @@ public class MeleeWeapon : Weapon
 
 	public override void Attack(float charge)
     {
+        owner.controller.speed /= (1 - chargeSlowdown);
+        
         animator.SetTrigger("Attack");
 
         Collider2D[] hit = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
@@ -35,6 +38,6 @@ public class MeleeWeapon : Weapon
 
     public override void Charge(float charge)
     {
-        
+        owner.controller.speed *= (1 - chargeSlowdown);
     }
 }

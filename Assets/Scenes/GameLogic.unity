@@ -1192,7 +1192,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 6.25
+  orthographic size: 8
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1216,7 +1216,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 1e-45, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 4.2e-44, z: -15}
+  m_LocalPosition: {x: 0, y: 2.8e-44, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 795865735}
@@ -1814,7 +1814,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 985947217}
   m_LocalRotation: {x: 1e-45, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 4.2e-44, z: 0}
+  m_LocalPosition: {x: 0, y: 2.8e-44, z: 5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 467655663}
@@ -2519,7 +2519,7 @@ MonoBehaviour:
   intermissionHuds: {fileID: 378033006}
   playHUD: {fileID: 660678086}
   playerHuds: {fileID: 660678090}
-  currentState: 1
+  currentState: 0
 --- !u!114 &1917073769
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2532,6 +2532,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c89973bac7efccd4a91cfe64a9651b93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GAME_MAX_SCORE: 10
   PLAYER_MAX_HEALTH: 100
   PLAYER_ALIVE_SPEED: 500
   PLAYER_GHOST_SPEED: 700
@@ -2665,7 +2666,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3135723331540982815, guid: 8497459c9626da24baf651cc43e0ff01, type: 3}
       propertyPath: m_Value
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8497459c9626da24baf651cc43e0ff01, type: 3}

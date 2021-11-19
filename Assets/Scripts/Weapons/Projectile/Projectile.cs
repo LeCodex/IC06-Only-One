@@ -40,7 +40,7 @@ public abstract class Projectile : MonoBehaviour
     public void Throw(Vector2 dir)
     {
         direction = dir.normalized;
-        rb.velocity = direction * speed * Time.fixedDeltaTime;
+        rb.velocity = direction * speed;
     }
 
     void OnEndRound()

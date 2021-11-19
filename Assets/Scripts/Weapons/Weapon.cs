@@ -11,7 +11,7 @@ public abstract class Weapon : MonoBehaviour
 
 	void Start()
 	{
-        GameEventSystem.current.onEndRound += OnEndRound;
+        GameEventSystem.current.onEndRound += _OnEndRound;
 	}
 
 	public abstract void Attack(float charge);
@@ -42,8 +42,14 @@ public abstract class Weapon : MonoBehaviour
         player.controller.UnfindWeapon(this);
     }
 
-    public virtual void OnEndRound()
+    void _OnEndRound()
 	{
+        OnEndRound();
+	}
+
+    protected virtual void OnEndRound()
+	{
+        Debug.Log(owner);
         if (!owner) Destroy(gameObject);
 	}
 

@@ -27,6 +27,12 @@ namespace PlayerControllerState
 
         public override void FixedUpdate(PlayerController context)
         {
+            float horizontal = Input.GetAxisRaw("Horizontal" + context.player.id);
+            float vertical = Input.GetAxisRaw("Vertical" + context.player.id);
+
+            if (horizontal > 0f) context.lookingRight = true; else if (horizontal < 0f) context.lookingRight = false;
+            if (vertical > 0f) context.lookingUp = true; else context.lookingUp = false;
+
             context.possessedHazard.Tick();
         }
 

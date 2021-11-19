@@ -165,7 +165,7 @@ Transform:
   m_Children:
   - {fileID: 777040915}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &660097764
 GameObject:
@@ -5075,7 +5075,7 @@ Transform:
   - {fileID: 660097765}
   - {fileID: 1432915689}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2063487273
 GameObject:
@@ -5111,6 +5111,75 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &728243366966144837
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3544155817158455839, guid: 9c4ef7cf9b799234b886357e0e6ce46d, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3544155818338337058, guid: 9c4ef7cf9b799234b886357e0e6ce46d, type: 3}
+      propertyPath: m_Name
+      value: Dynamite Pack
+      objectReference: {fileID: 0}
+    - target: {fileID: 3544155818338337059, guid: 9c4ef7cf9b799234b886357e0e6ce46d, type: 3}
+      propertyPath: maxAmmo
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3544155818338337059, guid: 9c4ef7cf9b799234b886357e0e6ce46d, type: 3}
+      propertyPath: ammunition
+      value: 
+      objectReference: {fileID: 6960456132966326600, guid: 2b46fc2276d43584a8791b04edc36c73, type: 3}
+    - target: {fileID: 3544155818338337061, guid: 9c4ef7cf9b799234b886357e0e6ce46d, type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3544155818338337061, guid: 9c4ef7cf9b799234b886357e0e6ce46d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 4.38
+      objectReference: {fileID: 0}
+    - target: {fileID: 3544155818338337061, guid: 9c4ef7cf9b799234b886357e0e6ce46d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.78
+      objectReference: {fileID: 0}
+    - target: {fileID: 3544155818338337061, guid: 9c4ef7cf9b799234b886357e0e6ce46d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3544155818338337061, guid: 9c4ef7cf9b799234b886357e0e6ce46d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3544155818338337061, guid: 9c4ef7cf9b799234b886357e0e6ce46d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3544155818338337061, guid: 9c4ef7cf9b799234b886357e0e6ce46d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3544155818338337061, guid: 9c4ef7cf9b799234b886357e0e6ce46d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3544155818338337061, guid: 9c4ef7cf9b799234b886357e0e6ce46d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3544155818338337061, guid: 9c4ef7cf9b799234b886357e0e6ce46d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3544155818338337061, guid: 9c4ef7cf9b799234b886357e0e6ce46d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9c4ef7cf9b799234b886357e0e6ce46d, type: 3}
 --- !u!1001 &2368840631705710415
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5175,6 +5244,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4677375126394179568, guid: 899200f99c3c3a84e95af45683988a12, type: 3}
+      propertyPath: drag
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 4677375126394179568, guid: 899200f99c3c3a84e95af45683988a12, type: 3}
+      propertyPath: maxSpeed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4677375126394179568, guid: 899200f99c3c3a84e95af45683988a12, type: 3}
+      propertyPath: acceleration
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 4677375126394179568, guid: 899200f99c3c3a84e95af45683988a12, type: 3}
       propertyPath: path.Array.data[0]
       value: 

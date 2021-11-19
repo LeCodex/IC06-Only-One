@@ -8,6 +8,7 @@ public class ProjectileWeapon : Weapon
     public GameObject ammunition;
     public int maxAmmo;
     public int ammo;
+    public bool hideWhenOut;
 
     Animator animator;
     Projectile projectile;
@@ -22,16 +23,15 @@ public class ProjectileWeapon : Weapon
 	{
         if (!owner) return;
 
-        if (owner.controller.rb.velocity.magnitude > 0f) transform.rotation = Quaternion.Euler(owner.controller.lookingRight ? Vector2.right : Vector2.left);
+        if (owner.controller.rb.velocity.magnitude > 0f) transform.rotation = Quaternion.Euler(0f, 0f, owner.controller.lookingRight ? 0f : 180f);
     }
 
 	public override void Attack(float charge)
     {
-        if (ammo == 0) return;
-        UpdateAmmoCount(-1);
+        if (charge == 0) return;
 
         projectile.Throw(transform.right);
-        projectile.GetComponent<Transform>().parent = null;
+        projectile.GetComponent<Transform>().SetParent(null);
 
         owner.controller.Unpause();
         projectile = null;
@@ -40,6 +40,7 @@ public class ProjectileWeapon : Weapon
     public override void Charge(float charge)
     {
         if (ammo == 0) return;
+        UpdateAmmoCount(-1);
 
         if (!projectile) projectile = Instantiate(ammunition, attackPoint.position, transform.rotation, transform).GetComponent<Projectile>();
 
@@ -66,9 +67,11 @@ public class ProjectileWeapon : Weapon
     {
         ammo = Math.Max(Math.Min(ammo + amount, maxAmmo), 0);
         owner.ammoDisplay.value = (float)ammo / maxAmmo;
+
+        GetComponentInChildren<SpriteRenderer>().enabled = ammo > 0 || !hideWhenOut;
     }
 
-    public override void OnEndRound()
+    protected override void OnEndRound()
     {
         UpdateAmmoCount(maxAmmo);
         base.OnEndRound();

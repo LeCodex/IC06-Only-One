@@ -203,6 +203,8 @@ public class PlayerController : MonoBehaviour
 
 	private void OnDestroy()
 	{
+        if (!GameEventSystem.current) return;
+
         GameEventSystem.current.onStartRound -= OnStartRound;
     }
 }

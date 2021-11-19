@@ -8,54 +8,51 @@ namespace ArenaEnvironment
     // Moves along a path with user input
     public class SawbladeHazard : Hazard
     {
-        public float speed;
+        public float maxSpeed;
+        public float acceleration;
+        public float drag;
         public Transform[] path;
         public bool looped;
 
-        [SerializeField]
-        [ReadOnlySerialize]
-        int currentNode;
         Vector2 pathDirection;
         Rigidbody2D rb;
+        int oldNode = 0;
+
+        [SerializeField]
+        [ReadOnlySerialize]
+        float progress = 0f;
+        float speed = 0f;
 
         void Awake()
         {
             rb = GetComponent<Rigidbody2D>();
-            currentNode = 0;
             pathDirection = path[1].position - path[0].position;
-            transform.position = (Vector2)path[0].position + 0.5f * pathDirection;
+            transform.position = (Vector2)path[0].position;
         }
 
         void FixedUpdate()
         {
-            rb.velocity = Vector2.Dot(pathDirection.normalized, rb.velocity) * pathDirection.normalized;
-            transform.position = (Vector2)path[currentNode].position + GetProgress() * pathDirection;
+            progress += speed / pathDirection.magnitude;
+            speed *= (1 - drag);
 
-            if (GetProgress() > 1f)
-            {
-                if (currentNode < path.Length - 2 || looped)
-                {
-                    ChangeNode(1);
-                }
-                else
-                {
-                    rb.MovePosition(path[path.Length - 1].position);
-                    rb.velocity = Vector2.zero;
-                }
-            }
+            if (looped)
+			{
+                progress = (progress + path.Length) % path.Length;
+			} 
+            else
+			{
+                progress = Math.Min(Math.Max(0f, progress), path.Length);
+			}
 
-            if (GetProgress() < 0f)
+            int currentNode = (int)Math.Floor(progress);
+            float localProgress = progress - currentNode;
+            if (oldNode != currentNode)
             {
-                if (currentNode > 0 || looped)
-                {
-                    ChangeNode(-1);
-                }
-                else
-                {
-                    rb.MovePosition(path[0].position);
-                    rb.velocity = Vector2.zero;
-                }
+                pathDirection = path[(currentNode + 1) % path.Length].position - path[currentNode].position;
             }
+            rb.MovePosition((Vector2)path[currentNode].position + localProgress * pathDirection);
+
+            oldNode = currentNode;
         }
         
         public override void Tick()
@@ -66,31 +63,12 @@ namespace ArenaEnvironment
         void MoveAlongPath(Vector2 direction)
         {
             float force = Vector2.Dot(direction, pathDirection.normalized);
-            rb.AddForce(pathDirection * force * Time.fixedDeltaTime, ForceMode2D.Force);
-        }
-
-        void ChangeNode(int delta)
-        {
-            float oldProgress = GetProgress();
-            Vector2 oldDirection = pathDirection;
-
-            currentNode = (currentNode + delta + path.Length) % path.Length;
-            pathDirection = path[(currentNode + 1) % path.Length].position - path[currentNode].position;
-
-            // Delta should only be 1 or -1
-            float newProgress = delta * oldProgress - delta;
-            rb.MovePosition((Vector2)path[currentNode].position + pathDirection * newProgress + rb.velocity * Time.deltaTime);
-        }
-
-        float GetProgress()
-        {
-            Vector2 diff = (transform.position - path[currentNode].position);
-            return Vector2.Dot(pathDirection.normalized, diff) / pathDirection.magnitude;
+            speed = Math.Min(maxSpeed, speed + acceleration * force * Time.fixedDeltaTime);
         }
 
         public override void OnUnpossess()
         {
-            rb.velocity /= 2;
+            speed /= 2;
         }
 
         private void OnCollisionEnter2D(Collision2D collision)

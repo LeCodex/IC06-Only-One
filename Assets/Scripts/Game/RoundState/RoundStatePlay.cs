@@ -44,8 +44,6 @@ namespace GameRoundState
 				}
 			}
 
-			alive = 2;
-
 			if (alive <= 1 && !roundEnded)
 			{
 				if (lastOne) lastOne.score++;
