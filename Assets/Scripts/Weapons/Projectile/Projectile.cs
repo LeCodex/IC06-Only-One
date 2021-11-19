@@ -3,56 +3,59 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Projectile : MonoBehaviour
+namespace WeaponSystem
 {
-    public float speed;
-    public int attackDamage;
-    public Rigidbody2D rb;
-
-    public Vector2 direction { private set; get; }
-    public PlayerScript owner { private set; get; }
-    public ProjectileWeapon weapon { private set; get; }
-
-
-	private void Awake()
+	public abstract class Projectile : MonoBehaviour
 	{
-        GameEventSystem.current.onEndRound += OnEndRound;
-	}
+		public float speed;
+		public int attackDamage;
+		public Rigidbody2D rb;
 
-	public void Claim(PlayerScript player)
-	{
-        owner = player;
-        if (player.controller.weapon is ProjectileWeapon) weapon = (ProjectileWeapon)player.controller.weapon;
+		public Vector2 direction { private set; get; }
+		public PlayerScript owner { private set; get; }
+		public ProjectileWeapon weapon { private set; get; }
 
-        foreach(Collider2D col in GetComponents<Collider2D>())
+
+		private void Awake()
 		{
-            if (!col.isTrigger) Physics2D.IgnoreCollision(col, owner.controller.projectileCollider);
-        }
-    }
+			GameEventSystem.current.onEndRound += OnEndRound;
+		}
 
-	void FixedUpdate()
-    {
-        Tick();
-    }
+		public void Claim(PlayerScript player)
+		{
+			owner = player;
+			if (player.controller.weapon is ProjectileWeapon) weapon = (ProjectileWeapon)player.controller.weapon;
 
-    public virtual void Tick() { }
+			foreach (Collider2D col in GetComponents<Collider2D>())
+			{
+				if (!col.isTrigger) Physics2D.IgnoreCollision(col, owner.controller.projectileCollider);
+			}
+		}
 
-    public void Throw(Vector2 dir)
-    {
-        direction = dir.normalized;
-        rb.velocity = direction * speed;
-    }
+		void FixedUpdate()
+		{
+			Tick();
+		}
 
-    void OnEndRound()
-	{
-        // Remove projectiles once round ends
-        Destroy(gameObject);
+		public virtual void Tick() { }
+
+		public void Throw(Vector2 dir)
+		{
+			direction = dir.normalized;
+			rb.velocity = direction * speed;
+		}
+
+		void OnEndRound()
+		{
+			// Remove projectiles once round ends
+			Destroy(gameObject);
+		}
+
+		void OnDestroy()
+		{
+			if (!GameEventSystem.current) return;
+
+			GameEventSystem.current.onEndRound -= OnEndRound;
+		}
 	}
-
-    void OnDestroy()
-    {
-        if (!GameEventSystem.current) return;
-
-        GameEventSystem.current.onEndRound -= OnEndRound;
-    }
 }

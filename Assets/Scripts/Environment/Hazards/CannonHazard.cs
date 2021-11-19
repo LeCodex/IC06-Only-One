@@ -2,11 +2,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using WeaponSystem;
 
 namespace ArenaEnvironment
 {
-    // Although called a Cannon, this could be reused for other hazards like flamethrowers (anything that just throws projectiles when you press attack)
-    public class CannonHazard : Hazard
+	// Although called a Cannon, this could be reused for other hazards like flamethrowers (anything that just throws projectiles when you press attack)
+	public class CannonHazard : Hazard
     {
         public GameObject ammo;
         public float cooldown;
@@ -44,6 +45,13 @@ namespace ArenaEnvironment
         {
             Projectile projectile = Instantiate(ammo, transform.position + transform.up * 2f, Quaternion.identity).GetComponent<Projectile>();
             projectile.Claim(ghost.player);
+
+            Collider2D selfCollider = GetComponent<Collider2D>();
+            foreach (Collider2D col in projectile.GetComponents<Collider2D>())
+            {
+                if (!col.isTrigger) Physics2D.IgnoreCollision(col, selfCollider);
+            }
+
             projectile.Throw(transform.up);
         }
     }

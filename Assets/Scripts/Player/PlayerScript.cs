@@ -1,3 +1,4 @@
+using PerkSystem;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -20,9 +21,9 @@ public class PlayerScript : MonoBehaviour
     public PlayerState playerState;
 
     public PlayerController controller { private set; get; }
+    public List<HealthChange> healthChanges { private set; get; } = new List<HealthChange>(); // Storing what changed your health for intermission puproses
 
     List<Perk> perks = new List<Perk>();
-    List<HealthChange> healthChanges = new List<HealthChange>(); // Storing what changed your health for intermission puproses
     Transform HUD;
 
     void Awake()

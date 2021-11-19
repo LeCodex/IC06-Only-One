@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using PlayerControllerState;
 using ArenaEnvironment;
+using WeaponSystem;
 
 public class PlayerController : MonoBehaviour
 {
@@ -66,7 +67,8 @@ public class PlayerController : MonoBehaviour
                     break;
                 }
 
-                if (Vector2.Distance(transform.position, hazard.transform.position) < Vector2.Distance(transform.position, closestHazard.transform.position))
+                // Take the closest unpossessed hazard
+                if (Vector2.Distance(transform.position, hazard.transform.position) < Vector2.Distance(transform.position, closestHazard.transform.position) && !hazard.ghost)
                 {
                     closestHazard = hazard;
                 }

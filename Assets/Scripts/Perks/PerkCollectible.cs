@@ -2,22 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PerkCollectible : MonoBehaviour
+namespace PerkSystem
 {
-	public Perk perk;
-
-	void Awake()
+	public class PerkCollectible : MonoBehaviour
 	{
-		SpriteRenderer sprite = GetComponent<SpriteRenderer>();
-		sprite.sprite = perk.sprite;
-	}
+		public Perk perk;
 
-	// Collectibles should only collide with alive players (same layer as walls/hazards?)
-	private void OnTriggerEnter2D(Collider2D collider)
-	{
-		PlayerScript player = collider.GetComponent<PlayerScript>();
+		void Awake()
+		{
+			SpriteRenderer sprite = GetComponent<SpriteRenderer>();
+			sprite.sprite = perk.sprite;
+		}
 
-		player.GainPerk(perk);
-		Destroy(gameObject);
+		// Collectibles should only collide with alive players (same layer as walls/hazards?)
+		private void OnTriggerEnter2D(Collider2D collider)
+		{
+			PlayerScript player = collider.GetComponent<PlayerScript>();
+
+			player.GainPerk(perk);
+			Destroy(gameObject);
+		}
 	}
 }

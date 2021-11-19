@@ -3,17 +3,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Cannonball : Projectile
+namespace WeaponSystem
 {
-	Explosion explosion;
-
-	private void Awake()
+	public class Cannonball : Projectile
 	{
-		explosion = GetComponent<Explosion>();
-	}
+		Explosion explosion;
 
-	void OnCollisionEnter2D(Collision2D collision)
-	{
-		explosion.Explode(owner);
+		private void Awake()
+		{
+			explosion = GetComponent<Explosion>();
+		}
+
+		void OnCollisionEnter2D(Collision2D collision)
+		{
+			explosion.Explode(owner);
+		}
 	}
 }

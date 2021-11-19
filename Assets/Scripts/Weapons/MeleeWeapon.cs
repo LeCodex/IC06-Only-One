@@ -2,42 +2,45 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MeleeWeapon : Weapon
+namespace WeaponSystem
 {
-    public float attackRange = .5f;
-    public LayerMask enemyLayers;
-    public float chargeSlowdown;
-    
-    Animator animator;
-
-    void Start()
-    {
-        animator = GetComponentInChildren<Animator>();
-    }
-
-	private void Update()
+	public class MeleeWeapon : Weapon
 	{
-        if (!owner) return;
+		public float attackRange = .5f;
+		public LayerMask enemyLayers;
+		public float chargeSlowdown;
 
-        transform.localScale = new Vector3(owner.controller.lookingRight ? 1 : -1, 1, 1);
-    }
+		Animator animator;
 
-	public override void Attack(float charge)
-    {
-        owner.controller.speed /= (1 - chargeSlowdown);
-        
-        animator.SetTrigger("Attack");
+		void Start()
+		{
+			animator = GetComponentInChildren<Animator>();
+		}
 
-        Collider2D[] hit = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
-        foreach (Collider2D col in hit)
-        {
-            PlayerScript enemy = col.GetComponent<PlayerScript>();
-            enemy.Damage(new DamageInfo(owner.id, enemy.id, attackDamage, "Melee"));
-        }
-    }
+		private void Update()
+		{
+			if (!owner) return;
 
-    public override void Charge(float charge)
-    {
-        owner.controller.speed *= (1 - chargeSlowdown);
-    }
+			transform.localScale = new Vector3(owner.controller.lookingRight ? 1 : -1, 1, 1);
+		}
+
+		public override void Attack(float charge)
+		{
+			owner.controller.speed /= 1 - chargeSlowdown;
+
+			animator.SetTrigger("Attack");
+
+			Collider2D[] hit = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
+			foreach (Collider2D col in hit)
+			{
+				PlayerScript enemy = col.GetComponent<PlayerScript>();
+				enemy.Damage(new DamageInfo(owner.id, enemy.id, attackDamage, "Melee"));
+			}
+		}
+
+		public override void Charge(float charge)
+		{
+			owner.controller.speed *= 1 - chargeSlowdown;
+		}
+	}
 }

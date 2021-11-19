@@ -3,24 +3,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Explosion : MonoBehaviour
+namespace WeaponSystem
 {
-	public float radius;
-	public int damage;
-	public LayerMask enemyLayers;
-	public GameObject system;
-
-	public void Explode(PlayerScript player)
+	public class Explosion : MonoBehaviour
 	{
-		if (system) Instantiate(system, transform.position, Quaternion.identity);
+		public float radius;
+		public int damage;
+		public LayerMask enemyLayers;
+		public GameObject system;
 
-		Collider2D[] hit = Physics2D.OverlapCircleAll(transform.position, radius, enemyLayers);
-		foreach (Collider2D col in hit)
+		public void Explode(PlayerScript player)
 		{
-			PlayerScript enemy = col.GetComponent<PlayerScript>();
-			enemy.Damage(new DamageInfo(player.id, enemy.id, damage, "Explosion"));
+			if (system) Instantiate(system, transform.position, Quaternion.identity);
+
+			Collider2D[] hit = Physics2D.OverlapCircleAll(transform.position, radius, enemyLayers);
+			foreach (Collider2D col in hit)
+			{
+				PlayerScript enemy = col.GetComponent<PlayerScript>();
+				enemy.Damage(new DamageInfo(player.id, enemy.id, damage, "Explosion"));
+			}
+
+			Destroy(gameObject);
 		}
-		
-		Destroy(gameObject);
 	}
 }

@@ -2,8 +2,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using WeaponSystem;
 
-namespace ArenaEnvironment 
+namespace ArenaEnvironment
 {
 	// An armor dead players can get control of
 	public class ArmorHazard : Hazard

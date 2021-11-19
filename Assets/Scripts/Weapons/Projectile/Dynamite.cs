@@ -3,42 +3,45 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Dynamite : Projectile
+namespace WeaponSystem
 {
-	public float fuse = 3f;
-
-	Explosion explosion;
-	bool firstLine = true;
-
-	private void Awake()
+	public class Dynamite : Projectile
 	{
-		explosion = GetComponent<Explosion>();
-	}
+		public float fuse = 3f;
 
-	private void Update()
-	{
-		rb.angularVelocity = rb.velocity.magnitude * 100f;
+		Explosion explosion;
+		bool firstLine = true;
 
-		fuse -= Time.deltaTime;
+		private void Awake()
+		{
+			explosion = GetComponent<Explosion>();
+		}
 
-		if (fuse <= 0f) Explode();
-	}
+		private void Update()
+		{
+			rb.angularVelocity = rb.velocity.magnitude * 100f;
 
-	void OnCollisionEnter2D(Collision2D collision)
-	{
-		speed = rb.velocity.magnitude / 2f;
-		Throw(Vector2.Reflect(direction, collision.GetContact(0).normal));
+			fuse -= Time.deltaTime;
 
-		if (!firstLine) return;
-		firstLine = false;
+			if (fuse <= 0f) Explode();
+		}
 
-		PlayerScript player = collision.gameObject.GetComponent<PlayerScript>();
-		if (player) player.Damage(new DamageInfo(owner.id, player.id, attackDamage, "Dynamite Stick"));
-	}
+		void OnCollisionEnter2D(Collision2D collision)
+		{
+			speed = rb.velocity.magnitude / 2f;
+			Throw(Vector2.Reflect(direction, collision.GetContact(0).normal));
 
-	void Explode()
-	{
-		explosion.Explode(owner);
-		Destroy(gameObject);
+			if (!firstLine) return;
+			firstLine = false;
+
+			PlayerScript player = collision.gameObject.GetComponent<PlayerScript>();
+			if (player) player.Damage(new DamageInfo(owner.id, player.id, attackDamage, "Dynamite Stick"));
+		}
+
+		void Explode()
+		{
+			explosion.Explode(owner);
+			Destroy(gameObject);
+		}
 	}
 }

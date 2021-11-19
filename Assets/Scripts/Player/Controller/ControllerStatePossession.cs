@@ -23,6 +23,9 @@ namespace PlayerControllerState
             {
                 context.Unpossess();
             }
+
+            // Move the ghost to make the camera work correctly
+            context.transform.position = context.possessedHazard.transform.position;
         }
 
         public override void FixedUpdate(PlayerController context)
