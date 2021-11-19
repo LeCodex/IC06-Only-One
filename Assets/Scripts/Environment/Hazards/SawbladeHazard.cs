@@ -29,32 +29,39 @@ namespace ArenaEnvironment
             pathDirection = path[1].position - path[0].position;
             transform.position = (Vector2)path[0].position;
         }
-        
-        public override void Tick()
+
+		private void FixedUpdate()
+		{
+			if (ghost)
+			{
+                Debug.Log(speed);
+                progress += speed / pathDirection.magnitude * Time.fixedDeltaTime;
+                speed *= (1 - drag);
+
+                if (looped)
+                {
+                    progress = (progress + path.Length) % path.Length;
+                }
+                else
+                {
+                    progress = Math.Min(Math.Max(0f, progress), path.Length);
+                }
+
+                int currentNode = (int)Math.Floor(progress);
+                float localProgress = progress - currentNode;
+                if (oldNode != currentNode)
+                {
+                    pathDirection = path[(currentNode + 1) % path.Length].position - path[currentNode].position;
+                }
+                rb.MovePosition((Vector2)path[currentNode].position + localProgress * pathDirection);
+
+                oldNode = currentNode;
+            }
+		}
+
+		public override void Tick()
         {
             MoveAlongPath(Vector2.right * Input.GetAxisRaw("Horizontal" + ghost.player.id) + Vector2.up * Input.GetAxisRaw("Vertical" + ghost.player.id));
-
-            progress += speed / pathDirection.magnitude * Time.fixedDeltaTime;
-            speed *= (1 - drag);
-
-            if (looped)
-            {
-                progress = (progress + path.Length) % path.Length;
-            }
-            else
-            {
-                progress = Math.Min(Math.Max(0f, progress), path.Length);
-            }
-
-            int currentNode = (int)Math.Floor(progress);
-            float localProgress = progress - currentNode;
-            if (oldNode != currentNode)
-            {
-                pathDirection = path[(currentNode + 1) % path.Length].position - path[currentNode].position;
-            }
-            rb.MovePosition((Vector2)path[currentNode].position + localProgress * pathDirection);
-
-            oldNode = currentNode;
         }
 
         void MoveAlongPath(Vector2 direction)
@@ -70,7 +77,7 @@ namespace ArenaEnvironment
             if (player.playerState != PlayerState.Alive) return;
 
             player.Damage(new DamageInfo(ghost ? ghost.player.id : -1, player.id, 50, "Sawblade"));
-            player.controller.Knockback(.5f, collision.GetContact(0).normal * 10f);
+            player.controller.Knockback(.5f, -collision.GetContact(0).normal * 10f);
         }
     }
 }

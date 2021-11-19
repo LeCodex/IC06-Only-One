@@ -365,8 +365,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hintSprite: {fileID: -6373955360715321419, guid: a6784e48b69d18a46813cdc35f990108, type: 3}
-  maxSpeed: 1
-  acceleration: 0.1
+  maxSpeed: 10
+  acceleration: 30
   drag: 0.01
   path:
   - {fileID: 0}

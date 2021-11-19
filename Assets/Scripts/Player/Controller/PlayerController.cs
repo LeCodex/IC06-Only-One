@@ -62,6 +62,7 @@ public class PlayerController : MonoBehaviour
 		{
             stun = 0f;
             rb.velocity = Vector2.zero;
+            rb.drag = 0;
 		}
     }
 
@@ -84,7 +85,8 @@ public class PlayerController : MonoBehaviour
 	{
         stun = duration;
         rb.velocity = force;
-	}
+        rb.drag = 10;
+    }
 
 	public void ChangeState(PlayerState newState)
     {

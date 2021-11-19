@@ -34,7 +34,6 @@ namespace WeaponSystem
 			UpdateAmmoCount(-1);
 
 			projectile.Throw(transform.right);
-			projectile.GetComponent<Transform>().SetParent(null);
 
 			owner.controller.Unpause();
 			projectile = null;
@@ -44,12 +43,14 @@ namespace WeaponSystem
 		{
 			if (ammo == 0) return;
 
-			if (!projectile) projectile = Instantiate(ammunition, attackPoint.position, transform.rotation, transform).GetComponent<Projectile>();
+			GetComponentInChildren<SpriteRenderer>().enabled = ammo > 1 || !hideWhenOut;
+
+			if (!projectile) projectile = Instantiate(ammunition, attackPoint.position, transform.rotation).GetComponent<Projectile>();
 
 			projectile.Claim(owner);
 			owner.controller.Pause();
 			Vector2 input = Input.GetAxisRaw("Horizontal" + owner.id) * Vector2.right + Input.GetAxisRaw("Vertical" + owner.id) * Vector2.up;
-			if (input.sqrMagnitude > 0f) transform.rotation = Quaternion.Euler(0f, 0f, Vector2.SignedAngle(owner.transform.right, input));
+			if (input.sqrMagnitude > 0f) projectile.transform.rotation = Quaternion.Euler(0f, 0f, Vector2.SignedAngle(owner.transform.right, input));
 		}
 
 		public override void SetOwner(PlayerScript player)
@@ -70,7 +71,7 @@ namespace WeaponSystem
 			ammo = Math.Max(Math.Min(ammo + amount, maxAmmo), 0);
 			owner.ammoDisplay.value = (float)ammo / maxAmmo;
 
-			GetComponentInChildren<SpriteRenderer>().enabled = ammo > 0 || !hideWhenOut;
+			GetComponentInChildren<SpriteRenderer>().enabled = amount > 0;
 		}
 
 		protected override void OnEndRound()
