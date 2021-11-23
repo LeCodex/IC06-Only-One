@@ -27,14 +27,10 @@ namespace ArenaEnvironment
         void Awake()
         {
             rb = GetComponent<Rigidbody2D>();
+            path = pathParent.GetComponentsInChildren<Transform>();
             pathDirection = path[1].position - path[0].position;
             transform.position = (Vector2)path[0].position;
         }
-
-		private void Start()
-		{
-            path = pathParent.GetComponentsInChildren<Transform>();
-		}
 
 		private void FixedUpdate()
 		{
