@@ -21,6 +21,9 @@ namespace WeaponSystem
 			{
 				PlayerScript enemy = col.GetComponent<PlayerScript>();
 				enemy.Damage(new DamageInfo(player.id, enemy.id, damage, "Explosion"));
+
+				Vector2 knockbackDirection = enemy.transform.position - transform.position;
+				enemy.controller.Knockback(.5f, knockbackDirection * radius / knockbackDirection.magnitude * 30f);
 			}
 
 			Destroy(gameObject);
