@@ -9,9 +9,11 @@ namespace WeaponSystem
 	{
 		public float attackRange = .5f;
 		public LayerMask enemyLayers;
+		public float chargeSlowdown;
 		public float chargeDuration;
 		public float chargeSpeed;
 		public int chargeAmount = 3;
+		public bool hitPeopleDuringCharge;
 
 		Animator animator;
 		float chargeRemaining;
@@ -38,22 +40,25 @@ namespace WeaponSystem
 				chargeRemaining -= Time.fixedDeltaTime;
 				owner.controller.rb.velocity = chargeSpeed * chargeDirection;
 
-				TryAndHitPeople();
+				if (hitPeopleDuringCharge) TryAndHitPeople();
 			}
 
 			if (chargeRemaining <= 0f && owner.controller.paused)
 			{
 				chargeRemaining = 0;
 				owner.controller.Unpause();
+				TryAndHitPeople();
 			}
 		}
 
 		public override void Attack(float charge)
 		{
 			animator.SetTrigger("Attack");
+			owner.controller.speed += chargeSlowdown;
 
 			if (chargeAmount > 0)
 			{
+				owner.controller.Pause();
 				chargeRemaining = chargeDuration;
 				chargeDirection = Vector2.right * Input.GetAxisRaw("Horizontal" + owner.id) + Vector2.up * Input.GetAxis("Vertical" + owner.id);
 				chargeAmount--;
@@ -68,8 +73,7 @@ namespace WeaponSystem
 		{
 			if (chargeRemaining > 0f) return;
 
-			owner.controller.Pause();
-
+			owner.controller.speed -= chargeSlowdown;
 			Vector2 input = Input.GetAxisRaw("Horizontal" + owner.id) * Vector2.right + Input.GetAxisRaw("Vertical" + owner.id) * Vector2.up;
 			if (input.sqrMagnitude > 0f) transform.rotation = Quaternion.Euler(0f, 0f, Vector2.SignedAngle(owner.transform.right, input));
 		}
