@@ -12,7 +12,7 @@ namespace WeaponSystem
 
 		protected PlayerScript owner;
 
-		void Start()
+		protected virtual void Start()
 		{
 			GameEventSystem.current.onEndRound += _OnEndRound;
 		}
@@ -61,7 +61,7 @@ namespace WeaponSystem
 		{
 			if (!GameEventSystem.current) return;
 
-			GameEventSystem.current.onEndRound -= OnEndRound;
+			GameEventSystem.current.onEndRound -= _OnEndRound;
 		}
 	}
 }

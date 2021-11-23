@@ -16,8 +16,9 @@ namespace WeaponSystem
 		Projectile projectile;
 		GameObject aimingArrow;
 
-		void Start()
+		protected override void Start()
 		{
+			base.Start();
 			ammo = maxAmmo;
 			animator = GetComponent<Animator>();
 		}

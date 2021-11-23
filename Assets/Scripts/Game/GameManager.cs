@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,6 +16,8 @@ public class GameManager : MonoBehaviour
     public GameObject playHUD;
     public Transform playerHuds;
     public GameObject aimingArrow;
+    public int minLevelIndex;
+    public int maxLevelIndex;
 
     public int currentArenaScene { private set; get; } = 1;
     public AsyncOperation sceneLoading { private set; get; }
@@ -28,6 +31,8 @@ public class GameManager : MonoBehaviour
         { RoundState.Play, new RoundStatePlay() },
         { RoundState.Intermission, new RoundStateIntermission() }
     };
+    float timeRatio;
+    float timeSlowdownTime;
 
     void Awake()
     {
@@ -49,6 +54,18 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         state.Update();
+
+        if (timeSlowdownTime > 0f)
+		{
+            Time.timeScale = 1f - timeRatio * Math.Min(1f, timeSlowdownTime);
+            timeSlowdownTime -= Time.deltaTime;
+        }
+
+        if (timeSlowdownTime < 0f)
+		{
+            timeSlowdownTime = 0f;
+            Time.timeScale = 1f;
+		}
     }
 
     public void ChangeState(RoundState newState, float delay = 0f)
@@ -85,8 +102,14 @@ public class GameManager : MonoBehaviour
 
         if (currentArenaScene > 0) SceneManager.UnloadSceneAsync(currentArenaScene);
 
-        int nextLevelIndex = 1;
+        int nextLevelIndex = UnityEngine.Random.Range(minLevelIndex, maxLevelIndex);
         currentArenaScene = nextLevelIndex;
         sceneLoading = SceneManager.LoadSceneAsync(nextLevelIndex, LoadSceneMode.Additive);
     }
+
+    public void SlowDownTime(float ratio, float duration)
+	{
+        timeRatio = ratio;
+        timeSlowdownTime = duration;
+	}
 }

@@ -20,8 +20,9 @@ namespace WeaponSystem
 		int amountRemaining;
 		Vector2 chargeDirection;
 
-		void Start()
+		protected override void Start()
 		{
+			base.Start();
 			animator = GetComponentInChildren<Animator>();
 			amountRemaining = chargeAmount;
 		}
@@ -87,16 +88,14 @@ namespace WeaponSystem
 			if (owner)
 			{
 				owner.ammoDisplay.gameObject.SetActive(true);
-				UpdateAmmoCount(0);
+				UpdateChargesRemaining(0);
 			}
 		}
 
-		public void UpdateAmmoCount(int amount)
+		public void UpdateChargesRemaining(int amount)
 		{
 			amountRemaining = Math.Max(Math.Min(amountRemaining + amount, chargeAmount), 0);
 			owner.ammoDisplay.value = (float)amountRemaining / chargeAmount;
-
-			GetComponentInChildren<SpriteRenderer>().enabled = amountRemaining > 0;
 		}
 
 		void TryAndHitPeople()
@@ -113,7 +112,7 @@ namespace WeaponSystem
 
 		protected override void OnEndRound()
 		{
-			UpdateAmmoCount(chargeAmount);
+			UpdateChargesRemaining(chargeAmount);
 			base.OnEndRound();
 		}
 	}

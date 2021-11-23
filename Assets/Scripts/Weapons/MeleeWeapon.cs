@@ -15,8 +15,9 @@ namespace WeaponSystem
 		Animator animator;
 		float lungeTime;
 
-		void Start()
+		protected override void Start()
 		{
+			base.Start();
 			animator = GetComponentInChildren<Animator>();
 		}
 

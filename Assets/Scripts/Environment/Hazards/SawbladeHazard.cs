@@ -11,7 +11,7 @@ namespace ArenaEnvironment
         public float maxSpeed;
         public float acceleration;
         public float drag;
-        public Transform[] path;
+        public Transform pathParent;
         public bool looped;
 
         Vector2 pathDirection;
@@ -22,6 +22,7 @@ namespace ArenaEnvironment
         [ReadOnlySerialize]
         float progress = 0f;
         float speed = 0f;
+        Transform[] path;
 
         void Awake()
         {
@@ -29,6 +30,11 @@ namespace ArenaEnvironment
             pathDirection = path[1].position - path[0].position;
             transform.position = (Vector2)path[0].position;
         }
+
+		private void Start()
+		{
+            path = pathParent.GetComponentsInChildren<Transform>();
+		}
 
 		private void FixedUpdate()
 		{
