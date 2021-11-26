@@ -9,6 +9,8 @@ namespace WeaponSystem
 	{
 		public float attackRange = .5f;
 		public float attackSize = .5f;
+		public float attackCooldown = .5f;
+		public float attackKnockback = 50f;
 		public LayerMask enemyLayers;
 		public float chargeSlowdown;
 		public float chargeDuration;
@@ -23,6 +25,7 @@ namespace WeaponSystem
 		bool startCharge = true;
 		GameObject aimingArrow;
 		Vector3 oldPosition;
+		float recharge;
 
 		protected override void Start()
 		{
@@ -33,6 +36,8 @@ namespace WeaponSystem
 
 		private void Update()
 		{
+			recharge = Math.Max(0f, recharge - Time.deltaTime);
+
 			if (!owner) return;
 
 			transform.localScale = new Vector3(owner.controller.lookingRight ? 1 : -1, 1, 1);
@@ -64,7 +69,7 @@ namespace WeaponSystem
 
 		public override void Attack(float charge)
 		{
-			if (chargeRemaining > 0f) return;
+			if (recharge > 0f || chargeRemaining > 0f) return;
 
 			startCharge = true;
 
@@ -81,12 +86,14 @@ namespace WeaponSystem
 				TryAndHitPeople();
 			}
 
+			recharge = attackCooldown;
+
 			Destroy(aimingArrow);
 		}
 
 		public override void Charge(float charge)
 		{
-			if (chargeRemaining > 0f || amountRemaining == 0) return;
+			if (recharge > 0f || chargeRemaining > 0f || amountRemaining == 0) return;
 			if (startCharge) owner.controller.speed -= chargeSlowdown;
 
 			if (!aimingArrow) aimingArrow = Instantiate(GameManager.current.aimingArrow, owner.transform.position, transform.rotation);
@@ -138,7 +145,8 @@ namespace WeaponSystem
 				PlayerScript enemy = col.GetComponent<PlayerScript>();
 				if (enemy == owner) continue;
 
-				enemy.Damage(new DamageInfo(owner.id, enemy.id, attackDamage, "Shiled Bash"));
+				enemy.Damage(new DamageInfo(owner.id, enemy.id, attackDamage, "Shield Bash"));
+				enemy.controller.Knockback(1f, (enemy.transform.position - transform.position).normalized * attackKnockback);
 			}
 		}
 

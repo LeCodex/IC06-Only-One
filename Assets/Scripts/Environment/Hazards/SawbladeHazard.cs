@@ -12,6 +12,7 @@ namespace ArenaEnvironment
         public float maxSpeed;
         public float acceleration;
         public float drag;
+        public int damage;
         public Transform pathParent;
         public bool looped;
 
@@ -85,7 +86,7 @@ namespace ArenaEnvironment
             if (!player) return;
             if (player.playerState != PlayerState.Alive) return;
 
-            player.Damage(new DamageInfo(ghost ? ghost.player.id : -1, player.id, 50, "Sawblade"));
+            player.Damage(new DamageInfo(ghost ? ghost.player.id : -1, player.id, damage, "Sawblade"));
             player.controller.Knockback(.5f, -collision.GetContact(0).normal * 10f);
         }
     }

@@ -79,7 +79,7 @@ public class PlayerScript : MonoBehaviour
             health = 0;
             ChangeState(PlayerState.Dead);
             GameEventSystem.current.OnKill(info);
-            GameManager.current.SlowDownTime(.5f, 2f);
+            GameManager.current.SlowDownTime(.5f, 1f);
         }
         else
 		{

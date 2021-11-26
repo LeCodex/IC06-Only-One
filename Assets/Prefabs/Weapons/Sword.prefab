@@ -49,6 +49,7 @@ MonoBehaviour:
   hintSprite: {fileID: -3333449033900058284, guid: a6784e48b69d18a46813cdc35f990108, type: 3}
   attackRange: 0.5
   attackSize: 0.5
+  attackCooldown: 0.5
   enemyLayers:
     serializedVersion: 2
     m_Bits: 8

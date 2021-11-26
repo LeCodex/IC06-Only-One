@@ -368,11 +368,8 @@ MonoBehaviour:
   maxSpeed: 10
   acceleration: 30
   drag: 0.01
-  path:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  damage: 30
+  pathParent: {fileID: 0}
   looped: 1
   progress: 0
 --- !u!114 &7638560190800164564
