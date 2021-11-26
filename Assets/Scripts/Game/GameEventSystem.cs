@@ -24,7 +24,7 @@ class GameEventSystem : MonoBehaviour
         onDamage?.Invoke(damageInfo);
     }
 
-    public Action<DamageInfo> onKill;
+	public Action<DamageInfo> onKill;
     public void OnKill(DamageInfo damageInfo)
     {
         onKill?.Invoke(damageInfo);

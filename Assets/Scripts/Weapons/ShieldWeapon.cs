@@ -19,6 +19,9 @@ namespace WeaponSystem
 		float chargeRemaining;
 		int amountRemaining;
 		Vector2 chargeDirection;
+		bool startCharge = true;
+		GameObject aimingArrow;
+		Vector3 oldPosition;
 
 		protected override void Start()
 		{
@@ -44,39 +47,54 @@ namespace WeaponSystem
 				owner.controller.rb.velocity = chargeSpeed * chargeDirection * Time.fixedDeltaTime;
 
 				if (hitPeopleDuringCharge) TryAndHitPeople();
+
+				if ((oldPosition - owner.transform.position).magnitude <= 0.01f) chargeRemaining = -1f;
 			}
 
-			if (chargeRemaining <= 0f && owner.controller.paused)
+			if (chargeRemaining < 0f)
 			{
+				owner.controller.Unstun();
 				chargeRemaining = 0;
 				TryAndHitPeople();
 			}
+
+			oldPosition = owner.transform.position;
 		}
 
 		public override void Attack(float charge)
 		{
-			owner.controller.speed += chargeSlowdown;
+			if (chargeRemaining > 0f) return;
 
-			if (chargeAmount > 0)
+			startCharge = true;
+
+			if (amountRemaining > 0)
 			{
+				owner.controller.speed += chargeSlowdown;
 				owner.controller.Knockback(chargeDuration, Vector2.zero);
 				chargeRemaining = chargeDuration;
-				chargeDirection = Vector2.right * Input.GetAxisRaw("Horizontal" + owner.id) + Vector2.up * Input.GetAxis("Vertical" + owner.id);
-				chargeAmount--;
+				chargeDirection = aimingArrow.transform.right;
+				UpdateChargesRemaining(-1);
 			} 
 			else
 			{
 				TryAndHitPeople();
 			}
+
+			Destroy(aimingArrow);
 		}
 
 		public override void Charge(float charge)
 		{
-			if (chargeRemaining > 0f) return;
-			owner.controller.speed -= chargeSlowdown;
+			if (chargeRemaining > 0f || amountRemaining == 0) return;
+			if (startCharge) owner.controller.speed -= chargeSlowdown;
+
+			if (!aimingArrow) aimingArrow = Instantiate(GameManager.current.aimingArrow, owner.transform.position, transform.rotation);
 
 			Vector2 input = Input.GetAxisRaw("Horizontal" + owner.id) * Vector2.right + Input.GetAxisRaw("Vertical" + owner.id) * Vector2.up;
-			if (input.sqrMagnitude > 0f) transform.rotation = Quaternion.Euler(0f, 0f, Vector2.SignedAngle(owner.transform.right, input));
+			if (input.sqrMagnitude > 0f) aimingArrow.transform.rotation = Quaternion.Euler(0f, 0f, Vector2.SignedAngle(owner.transform.right, input));
+			aimingArrow.transform.position = owner.transform.position;
+
+			startCharge = false;
 		}
 
 		public override void SetOwner(PlayerScript player)

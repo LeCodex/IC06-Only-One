@@ -88,6 +88,11 @@ public class PlayerController : MonoBehaviour
         rb.drag = 10;
     }
 
+    public void Unstun()
+	{
+        stun = -1f;
+	}
+
 	public void ChangeState(PlayerState newState)
     {
         if (controllerState != null) controllerState.ExitState(this);

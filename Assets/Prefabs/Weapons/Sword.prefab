@@ -53,7 +53,9 @@ MonoBehaviour:
   enemyLayers:
     serializedVersion: 2
     m_Bits: 8
-  chargeSlowdown: 0
+  chargeSlowdown: 200
+  lungeSpeed: 100
+  lungeDuration: 0.2
 --- !u!58 &4774201688614000881
 CircleCollider2D:
   m_ObjectHideFlags: 0

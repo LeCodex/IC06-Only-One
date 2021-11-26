@@ -81,6 +81,10 @@ public class PlayerScript : MonoBehaviour
             GameEventSystem.current.OnKill(info);
             GameManager.current.SlowDownTime(.5f, 2f);
         }
+        else
+		{
+            MakeInvulnerable(1f);
+        }
     }
 
     public void Heal(int amount, string cause)
@@ -94,7 +98,7 @@ public class PlayerScript : MonoBehaviour
         if (playerState != PlayerState.Alive && health == GameRules.current.PLAYER_MAX_HEALTH)
         {
             ChangeState(PlayerState.Alive);
-            MakeInvulnerable(2);
+            MakeInvulnerable(2f);
         }
     }
 
