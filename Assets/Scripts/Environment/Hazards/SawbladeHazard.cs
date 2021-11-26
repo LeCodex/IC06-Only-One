@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -27,7 +28,7 @@ namespace ArenaEnvironment
         void Awake()
         {
             rb = GetComponent<Rigidbody2D>();
-            path = pathParent.GetComponentsInChildren<Transform>();
+            path = pathParent.GetComponentsInChildren<Transform>().Where(x => x.gameObject.transform.parent != transform.parent).ToArray();
             pathDirection = path[1].position - path[0].position;
             transform.position = (Vector2)path[0].position;
         }
@@ -72,7 +73,13 @@ namespace ArenaEnvironment
             speed = Math.Min(maxSpeed, speed + acceleration * force * Time.fixedDeltaTime);
         }
 
-        private void OnCollisionEnter2D(Collision2D collision)
+		public override void OnUnpossess()
+		{
+			base.OnUnpossess();
+            speed = 0f;
+		}
+
+		private void OnCollisionEnter2D(Collision2D collision)
         {
             PlayerScript player = collision.gameObject.GetComponent<PlayerScript>();
             if (!player) return;

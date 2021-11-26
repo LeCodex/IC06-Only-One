@@ -7,6 +7,7 @@ namespace WeaponSystem
 {
 	public class ProjectileWeapon : Weapon
 	{
+		public Transform attackPoint;
 		public GameObject ammunition;
 		public int maxAmmo;
 		public int ammo;
@@ -75,7 +76,7 @@ namespace WeaponSystem
 		public void UpdateAmmoCount(int amount)
 		{
 			ammo = Math.Max(Math.Min(ammo + amount, maxAmmo), 0);
-			owner.ammoDisplay.value = (float)ammo / maxAmmo;
+			if (owner) owner.ammoDisplay.value = (float)ammo / maxAmmo;
 
 			GetComponentInChildren<SpriteRenderer>().enabled = ammo > 0 || !hideWhenOut;
 		}

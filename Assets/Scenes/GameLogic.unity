@@ -971,7 +971,7 @@ MonoBehaviour:
   m_CenterOnActivate: 1
   m_GroupFramingMode: 2
   m_AdjustmentMode: 0
-  m_GroupFramingSize: 0.8
+  m_GroupFramingSize: 0.6
   m_MaxDollyIn: 5000
   m_MaxDollyOut: 5000
   m_MinimumDistance: 1
@@ -1192,7 +1192,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 6.25
+  orthographic size: 8.333333
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -2520,6 +2520,8 @@ MonoBehaviour:
   playHUD: {fileID: 660678086}
   playerHuds: {fileID: 660678090}
   aimingArrow: {fileID: 6250380564685193847, guid: 2f543e52f6505c24795b2e2aec602391, type: 3}
+  minLevelIndex: 2
+  maxLevelIndex: 5
   currentState: 0
 --- !u!114 &1917073769
 MonoBehaviour:

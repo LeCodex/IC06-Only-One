@@ -6,7 +6,6 @@ namespace WeaponSystem
 {
 	public abstract class Weapon : MonoBehaviour
 	{
-		public Transform attackPoint;
 		public int attackDamage = 30;
 		public Sprite hintSprite;
 
@@ -53,7 +52,7 @@ namespace WeaponSystem
 
 		protected virtual void OnEndRound()
 		{
-			Debug.Log(owner);
+			// Debug.Log(owner);
 			if (!owner) Destroy(gameObject);
 		}
 

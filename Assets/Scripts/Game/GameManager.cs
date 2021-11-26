@@ -33,9 +33,11 @@ public class GameManager : MonoBehaviour
     };
     float timeRatio;
     float timeSlowdownTime;
+    float originalFixedDT;
 
     void Awake()
     {
+        originalFixedDT = Time.fixedDeltaTime;
         current = this;
         state = roundStates[currentState];
         players = new List<PlayerScript>(playersGroup.GetComponentsInChildren<PlayerScript>());
@@ -66,6 +68,8 @@ public class GameManager : MonoBehaviour
             timeSlowdownTime = 0f;
             Time.timeScale = 1f;
 		}
+
+        Time.fixedDeltaTime = originalFixedDT * Time.timeScale;
     }
 
     public void ChangeState(RoundState newState, float delay = 0f)

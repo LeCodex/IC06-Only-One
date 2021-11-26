@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace GameRoundState
@@ -9,7 +10,8 @@ namespace GameRoundState
 
 		public override void EnterState()
 		{
-			List<Transform> spawns = new List<Transform>(GameObject.FindWithTag("Spawnpoints").GetComponentsInChildren<Transform>());
+			Transform spawnPoints = GameObject.FindWithTag("Spawnpoints").transform;
+			List<Transform> spawns = new List<Transform>(spawnPoints.GetComponentsInChildren<Transform>().Where(x => x.gameObject.transform.parent != spawnPoints.parent).ToArray());
 
 			// Unready players for next intermission, reactivate inputs, and move them to spawnpoints
 			foreach (PlayerScript player in GameManager.current.players)

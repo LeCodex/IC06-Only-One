@@ -8,6 +8,7 @@ namespace WeaponSystem
 	public class ShieldWeapon : Weapon
 	{
 		public float attackRange = .5f;
+		public float attackSize = .5f;
 		public LayerMask enemyLayers;
 		public float chargeSlowdown;
 		public float chargeDuration;
@@ -43,12 +44,12 @@ namespace WeaponSystem
 
 			if (chargeRemaining > 0f)
 			{
-				chargeRemaining -= Time.fixedDeltaTime;
 				owner.controller.rb.velocity = chargeSpeed * chargeDirection * Time.fixedDeltaTime;
 
 				if (hitPeopleDuringCharge) TryAndHitPeople();
 
-				if ((oldPosition - owner.transform.position).magnitude <= 0.01f) chargeRemaining = -1f;
+				if ((oldPosition - owner.transform.position).magnitude <= 0.01f && chargeRemaining < chargeDuration) chargeRemaining = -1f;
+				chargeRemaining -= Time.fixedDeltaTime;
 			}
 
 			if (chargeRemaining < 0f)
@@ -113,19 +114,31 @@ namespace WeaponSystem
 		public void UpdateChargesRemaining(int amount)
 		{
 			amountRemaining = Math.Max(Math.Min(amountRemaining + amount, chargeAmount), 0);
-			owner.ammoDisplay.value = (float)amountRemaining / chargeAmount;
+			if (owner) owner.ammoDisplay.value = (float)amountRemaining / chargeAmount;
 		}
 
 		void TryAndHitPeople()
 		{
 			animator.SetTrigger("Attack");
-			Collider2D[] hit = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
+
+			Vector3 input;
+			if (chargeRemaining > 0f)
+			{
+				input = chargeDirection;
+			}
+			else
+			{
+				input = Input.GetAxisRaw("Horizontal" + owner.id) * Vector2.right + Input.GetAxisRaw("Vertical" + owner.id) * Vector2.up;
+			}
+			if (input.magnitude == 0f) input = owner.controller.lookingRight ? Vector2.right : Vector2.left;
+
+			Collider2D[] hit = Physics2D.OverlapCircleAll(owner.transform.position + input * attackRange, attackSize, enemyLayers);
 			foreach (Collider2D col in hit)
 			{
 				PlayerScript enemy = col.GetComponent<PlayerScript>();
 				if (enemy == owner) continue;
 
-				enemy.Damage(new DamageInfo(owner.id, enemy.id, attackDamage, "Melee"));
+				enemy.Damage(new DamageInfo(owner.id, enemy.id, attackDamage, "Shiled Bash"));
 			}
 		}
 
