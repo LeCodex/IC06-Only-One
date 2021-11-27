@@ -26,6 +26,7 @@ namespace PlayerControllerState
             if (timer <= 0f)
 			{
                 context.player.ChangeState(PlayerState.Ghost);
+                context.player.resurrectSound.Play();
 			}
         }
 

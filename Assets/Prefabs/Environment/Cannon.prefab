@@ -147,7 +147,7 @@ MonoBehaviour:
   hintSprite: {fileID: -6373955360715321419, guid: a6784e48b69d18a46813cdc35f990108, type: 3}
   ammo: {fileID: 6641492033930493423, guid: 1824f35f2b35075468181e68c3f81a2f, type: 3}
   cooldown: 1
-  turnSpeed: 100
+  turnSpeed: 200
   aimingArrow: {fileID: 7003254580966025169}
   wait: 0
 --- !u!114 &7091604145278085693

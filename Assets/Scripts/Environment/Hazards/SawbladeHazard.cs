@@ -9,6 +9,7 @@ namespace ArenaEnvironment
     // Moves along a path with user input
     public class SawbladeHazard : Hazard
     {
+        public float defaultSpeed; 
         public float maxSpeed;
         public float acceleration;
         public float drag;
@@ -36,31 +37,28 @@ namespace ArenaEnvironment
 
 		private void FixedUpdate()
 		{
-			if (ghost)
-			{
-                Debug.Log(speed);
-                progress += speed / pathDirection.magnitude * Time.fixedDeltaTime;
-                speed *= (1 - drag);
+            progress += (ghost ? speed : defaultSpeed) / pathDirection.magnitude * Time.fixedDeltaTime;
+            speed *= (1 - drag);
 
-                if (looped)
-                {
-                    progress = (progress + path.Length) % path.Length;
-                }
-                else
-                {
-                    progress = Math.Min(Math.Max(0f, progress), path.Length);
-                }
-
-                int currentNode = (int)Math.Floor(progress);
-                float localProgress = progress - currentNode;
-                if (oldNode != currentNode)
-                {
-                    pathDirection = path[(currentNode + 1) % path.Length].position - path[currentNode].position;
-                }
-                rb.MovePosition((Vector2)path[currentNode].position + localProgress * pathDirection);
-
-                oldNode = currentNode;
+            if (looped)
+            {
+                progress = (progress + path.Length) % path.Length;
             }
+            else
+            {
+                progress = Math.Min(Math.Max(0f, progress), path.Length);
+                defaultSpeed *= -1f;
+            }
+
+            int currentNode = (int)Math.Floor(progress);
+            float localProgress = progress - currentNode;
+            if (oldNode != currentNode)
+            {
+                pathDirection = path[(currentNode + 1) % path.Length].position - path[currentNode].position;
+            }
+            rb.MovePosition((Vector2)path[currentNode].position + localProgress * pathDirection);
+
+            oldNode = currentNode;
 		}
 
 		public override void Tick()

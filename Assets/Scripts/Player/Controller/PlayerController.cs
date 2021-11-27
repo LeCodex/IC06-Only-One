@@ -47,6 +47,9 @@ public class PlayerController : MonoBehaviour
 	private void Start()
 	{
         GameEventSystem.current.onStartRound += OnStartRound;
+
+        Weapon w = GetComponentInChildren<Weapon>();
+        if (w) TakeWeapon(w);
     }
 
 	void Update()
@@ -168,15 +171,17 @@ public class PlayerController : MonoBehaviour
         {
             TakeWeapon(wep);
         }
-        else
+		else
 		{
             GetComponent<ButtonHint>().ShowHint("Take", pickUpSpriteHint);
-		}
+        }
 	}
 
     public void UnfindWeapon(Weapon wep)
     {
         if (availableWeapons.Contains(wep)) availableWeapons.Remove(wep);
+
+        if (availableHazards.Count == 0) GetComponent<ButtonHint>().HideHint();
     }
 
     public void PlayAnimation(string animation)

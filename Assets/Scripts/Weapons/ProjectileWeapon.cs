@@ -12,6 +12,7 @@ namespace WeaponSystem
 		public int maxAmmo;
 		public int ammo;
 		public bool hideWhenOut;
+		public AudioSource shootSound;
 
 		Animator animator;
 		Projectile projectile;
@@ -39,6 +40,7 @@ namespace WeaponSystem
 			projectile.transform.rotation = aimingArrow.transform.rotation;
 			projectile.Throw(aimingArrow.transform.right);
 			Destroy(aimingArrow);
+			shootSound.Play();
 
 			owner.controller.Unpause();
 			projectile = null;

@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 991169007482329966}
   - component: {fileID: 991169007482329967}
   - component: {fileID: 2625554864857027487}
-  - component: {fileID: -4554748329173716615}
   - component: {fileID: 6667177424180183512}
+  - component: {fileID: 1165267144015121754}
   - component: {fileID: -864427651914198003}
   m_Layer: 10
   m_Name: Arrow
@@ -101,34 +101,8 @@ MonoBehaviour:
   speed: 40
   attackDamage: 50
   rb: {fileID: 6667177424180183512}
-  solidCollider: {fileID: -4554748329173716615}
+  solidCollider: {fileID: 1165267144015121754}
   pickupCollider: {fileID: -864427651914198003}
---- !u!61 &-4554748329173716615
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 991169007482329965}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
 --- !u!50 &6667177424180183512
 Rigidbody2D:
   serializedVersion: 4
@@ -150,6 +124,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
+--- !u!58 &1165267144015121754
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 991169007482329965}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!58 &-864427651914198003
 CircleCollider2D:
   m_ObjectHideFlags: 0

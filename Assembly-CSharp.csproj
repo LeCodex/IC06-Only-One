@@ -8,8 +8,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <RootNamespace>
-    </RootNamespace>
+    <RootNamespace></RootNamespace>
     <ProjectGuid>{5AC2D14E-7E80-DEF0-6FCF-44C71E77D6AC}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -93,6 +92,7 @@
     <Compile Include="Assets\Scripts\Weapons\Projectile\Dynamite.cs" />
     <Compile Include="Assets\Scripts\UI\ButtonHint.cs" />
     <Compile Include="Assets\Scripts\Player\Controller\ControllerStateOOG.cs" />
+    <Compile Include="Assets\Scripts\Weapons\SwordWeapon.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Fonts\Typo Round\Read_Me.txt" />

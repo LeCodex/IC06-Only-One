@@ -63,13 +63,6 @@ namespace GameRoundState
 			// Hide intermission screen
 			GameManager.current.intermissionTransition.Play("Hide");
 			GameManager.current.playHUD.SetActive(true);
-
-			// Revert controller to correct state
-			foreach (PlayerScript player in GameManager.current.players)
-			{
-				player.ChangeState(PlayerState.Alive);
-				player.health = GameRules.current.PLAYER_MAX_HEALTH;
-			}
 		}
 	}
 }

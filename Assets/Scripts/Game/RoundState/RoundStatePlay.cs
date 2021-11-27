@@ -7,6 +7,7 @@ namespace GameRoundState
 	public class RoundStatePlay : RoundStateBase
 	{
 		bool roundEnded = false;
+		float waitForReset;
 
 		public override void EnterState()
 		{
@@ -26,6 +27,7 @@ namespace GameRoundState
 			}
 
 			roundEnded = false;
+			waitForReset = 1f;
 
 			// Call the event
 			GameEventSystem.current.OnStartRound();
@@ -33,6 +35,26 @@ namespace GameRoundState
 
 		public override void Update()
 		{
+			if (waitForReset > 0f)
+			{
+				waitForReset -= Time.deltaTime;
+
+				if (waitForReset <= 0f)
+				{
+					waitForReset = 0f;
+
+					// Revert controllers to correct state
+					foreach (PlayerScript player in GameManager.current.players)
+					{
+						player.ChangeState(PlayerState.Alive);
+						player.health = GameRules.current.PLAYER_MAX_HEALTH;
+					}
+				} else
+				{
+					return;
+				}
+			}
+
 			int alive = 0;
 			PlayerScript lastOne = null;
 			

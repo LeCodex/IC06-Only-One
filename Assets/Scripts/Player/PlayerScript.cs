@@ -12,6 +12,8 @@ public class PlayerScript : MonoBehaviour
     public bool ready;
     public Transform weaponAttachment;
     public Slider ammoDisplay;
+    public AudioSource hurtSound;
+    public AudioSource resurrectSound;
 
     [ReadOnlySerialize]
     public Transform playerHud;
@@ -85,6 +87,8 @@ public class PlayerScript : MonoBehaviour
 		{
             MakeInvulnerable(1f);
         }
+
+        hurtSound.Play();
     }
 
     public void Heal(int amount, string cause)
