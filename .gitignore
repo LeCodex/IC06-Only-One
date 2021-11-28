@@ -1,6 +1,6 @@
-Library\*
-Logs\*
-obj\*
-Temp\*
-UserSettings\*
-.vs\*
+Library/
+Logs/
+obj/
+Temp/
+UserSettings/
+.vs/
