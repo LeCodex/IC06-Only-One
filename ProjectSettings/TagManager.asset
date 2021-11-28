@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Spawnpoints
+  - ReadyIcon
   layers:
   - Default
   - TransparentFX
@@ -19,7 +20,7 @@ TagManager:
   - Projectile
   - Hazard
   - Projectile Hitbox
-  - 
+  - Perk
   - 
   - 
   - 

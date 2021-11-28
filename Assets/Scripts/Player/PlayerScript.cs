@@ -24,8 +24,8 @@ public class PlayerScript : MonoBehaviour
 
     public PlayerController controller { private set; get; }
     public List<HealthChange> healthChanges { private set; get; } = new List<HealthChange>(); // Storing what changed your health for intermission puproses
+    public List<Perk> perks { private set; get; } = new List<Perk>();
 
-    List<Perk> perks = new List<Perk>();
     Transform HUD;
     float invulnerabilityTime;
     SpriteRenderer spriteRenderer;
@@ -69,8 +69,11 @@ public class PlayerScript : MonoBehaviour
 
     public void Damage(DamageInfo info)
     {
-        if (invulnerabilityTime > 0f) return;
         if (info.amount == 0) return;
+
+        hurtSound.Play();
+
+        if (invulnerabilityTime > 0f) return;
 
         health -= info.amount;
         healthChanges.Add(new HealthChange(info.amount, info.cause));
@@ -87,8 +90,6 @@ public class PlayerScript : MonoBehaviour
 		{
             MakeInvulnerable(1f);
         }
-
-        hurtSound.Play();
     }
 
     public void Heal(int amount, string cause)
@@ -110,6 +111,8 @@ public class PlayerScript : MonoBehaviour
     {
         perk.Claim(this);
         perks.Add(perk);
+
+        if (perks.Count > GameRules.current.PLAYER_MAX_PERKS) perks.RemoveAt(0);
     }
 
     public void ChangeState(PlayerState newState)

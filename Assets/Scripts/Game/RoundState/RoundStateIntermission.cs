@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PerkSystem;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -24,6 +25,23 @@ namespace GameRoundState
 			{
 				player.controller.ChangeState(PlayerState.OutOfGame);
 				player.intermissionHud.Find("Ready Icon").gameObject.SetActive(false);
+
+				// Regenerate the perks
+				RectTransform perkList = (RectTransform)player.intermissionHud.Find("Perk List");
+				foreach (Transform child in perkList)
+				{
+					GameObject.Destroy(child);
+				}
+
+				int i = 0;
+				foreach (Perk perk in player.perks)
+				{
+					Vector3 pos = perkList.position + i / GameRules.current.PLAYER_MAX_PERKS * perkList.rect.width * Vector3.right;
+					GameObject o = GameObject.Instantiate(GameManager.current.perkHudObject, pos, Quaternion.identity, perkList);
+					o.GetComponent<Image>().sprite = perk.sprite;
+					i++;
+				}
+
 				player.intermissionHud.GetComponentInChildren<Slider>().value = (float)player.score / GameRules.current.GAME_MAX_SCORE;
 			}
 		}
@@ -63,6 +81,11 @@ namespace GameRoundState
 			// Hide intermission screen
 			GameManager.current.intermissionTransition.Play("Hide");
 			GameManager.current.playHUD.SetActive(true);
+
+			foreach (PlayerScript player in GameManager.current.players)
+			{
+				player.health = GameRules.current.PLAYER_MAX_HEALTH;
+			}
 		}
 	}
 }

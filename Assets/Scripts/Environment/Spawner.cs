@@ -28,14 +28,14 @@ public class Spawner : MonoBehaviour
 		
 		if (spawnDelay >= spawnTime)
 		{
-			SpawnObject();
 			spawnDelay -= spawnTime;
+			SpawnObject();
 		}
 	}
 
 	public void SpawnObject()
 	{
-		List<Vector2> availableSpawnpoints = spawnpoints;
+		List<Vector2> availableSpawnpoints = new List<Vector2>(spawnpoints);
 		Vector2 point;
 
 		// Find spawnpoint with nothing on top of it
@@ -50,6 +50,6 @@ public class Spawner : MonoBehaviour
 
 		GameObject obj = objects[Random.Range(0, objects.Length)];
 
-		Instantiate(obj, point, Quaternion.identity);
+		Instantiate(obj, point, Quaternion.identity, transform);
 	}
 }

@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
     public GameObject aimingArrow;
     public int minLevelIndex;
     public int maxLevelIndex;
+    public GameObject perkHudObject;
 
     public int currentArenaScene { private set; get; } = 1;
     public AsyncOperation sceneLoading { private set; get; }

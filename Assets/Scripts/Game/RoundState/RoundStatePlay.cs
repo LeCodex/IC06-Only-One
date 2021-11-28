@@ -47,7 +47,6 @@ namespace GameRoundState
 					foreach (PlayerScript player in GameManager.current.players)
 					{
 						player.ChangeState(PlayerState.Alive);
-						player.health = GameRules.current.PLAYER_MAX_HEALTH;
 					}
 				} else
 				{
