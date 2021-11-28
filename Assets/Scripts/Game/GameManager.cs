@@ -19,9 +19,9 @@ public class GameManager : MonoBehaviour
     public int minLevelIndex;
     public int maxLevelIndex;
     public GameObject perkHudObject;
+    public AsyncOperation sceneLoading;
 
     public int currentArenaScene { private set; get; } = 1;
-    public AsyncOperation sceneLoading { private set; get; }
 
     [SerializeField]
     RoundState currentState;

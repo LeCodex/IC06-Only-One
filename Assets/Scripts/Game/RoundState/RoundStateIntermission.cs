@@ -82,6 +82,8 @@ namespace GameRoundState
 			GameManager.current.intermissionTransition.Play("Hide");
 			GameManager.current.playHUD.SetActive(true);
 
+			GameManager.current.sceneLoading = null;
+
 			foreach (PlayerScript player in GameManager.current.players)
 			{
 				player.health = GameRules.current.PLAYER_MAX_HEALTH;

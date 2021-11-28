@@ -9,6 +9,7 @@ namespace WeaponSystem
 	{
 		public float lungeSpeed;
 		public float lungeDuration;
+		public AudioSource dashSound;
 
 		float lungeTime;
 
@@ -41,6 +42,8 @@ namespace WeaponSystem
 		public override void Attack(float charge)
 		{
 			if (recharge > 0f) return;
+
+			if (charge > .2f) dashSound.Play();
 
 			float newLungeTime = lungeDuration * charge;
 			if (lungeTime == 0f) owner.controller.Knockback(newLungeTime, lungeSpeed * (float)Math.Pow(charge, 1.3f) * owner.controller.rb.velocity.normalized);

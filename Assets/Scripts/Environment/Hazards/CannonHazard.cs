@@ -13,6 +13,7 @@ namespace ArenaEnvironment
         public float cooldown;
         public float turnSpeed;
         public GameObject aimingArrow;
+        public AudioSource firingSound;
 
         [SerializeField]
         [ReadOnlySerialize]
@@ -39,7 +40,7 @@ namespace ArenaEnvironment
 
             if (!ghost) return;
 
-            if (Input.GetButtonDown("Attack" + ghost.player.id) && wait == 0f)
+            if (Input.GetButton("Attack" + ghost.player.id) && wait == 0f)
             {
                 Fire();
                 wait = cooldown;
@@ -55,6 +56,8 @@ namespace ArenaEnvironment
 
         void Fire()
         {
+            firingSound.Play();
+
             Projectile projectile = Instantiate(ammo, transform.position + aimingArrow.transform.right, Quaternion.identity).GetComponent<Projectile>();
             projectile.Claim(ghost.player);
 
