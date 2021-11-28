@@ -2589,7 +2589,7 @@ MonoBehaviour:
   aimingArrow: {fileID: 6250380564685193847, guid: 2f543e52f6505c24795b2e2aec602391, type: 3}
   minLevelIndex: 2
   maxLevelIndex: 5
-  perkHudObject: {fileID: 0}
+  perkHudObject: {fileID: 3399088149736705455, guid: dfc920ef4b2aa0f499569671da6cf7af, type: 3}
   currentState: 1
 --- !u!114 &1917073769
 MonoBehaviour:
@@ -2607,7 +2607,7 @@ MonoBehaviour:
   PLAYER_MAX_HEALTH: 100
   PLAYER_ALIVE_SPEED: 500
   PLAYER_GHOST_SPEED: 700
-  PLAYER_MAX_PERKS: 7
+  PLAYER_MAX_PERKS: 3
   GHOST_KILL_REGEN_PERCENT: 0
   GHOST_KILL_REGEN_FLAT: 50
 --- !u!4 &1917073770

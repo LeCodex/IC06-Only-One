@@ -19,12 +19,5 @@ namespace PerkSystem
 
 		public abstract void InitializeEvents(); // Use this function to initialize the GameEventSystem's Actions. This prevents the Perk from doing anything until claimed.
 		public abstract void RemoveEvents(); // Use this function to remove the GameEventSystem's Actions.
-
-		~Perk()
-		{
-			if (!GameEventSystem.current) return;
-
-			RemoveEvents();
-		}
 	}
 }

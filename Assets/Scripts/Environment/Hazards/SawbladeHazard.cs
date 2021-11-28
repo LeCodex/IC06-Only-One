@@ -23,7 +23,7 @@ namespace ArenaEnvironment
 
         [SerializeField]
         [ReadOnlySerialize]
-        float progress = 0f;
+        float progress;
         float speed = 0f;
         Transform[] path;
 
@@ -33,6 +33,7 @@ namespace ArenaEnvironment
             path = pathParent.GetComponentsInChildren<Transform>().Where(x => x.gameObject.transform.parent != transform.parent).ToArray();
             pathDirection = path[1].position - path[0].position;
             transform.position = (Vector2)path[0].position;
+            progress = UnityEngine.Random.Range(0f, path.Length);
         }
 
 		private void FixedUpdate()
@@ -85,7 +86,7 @@ namespace ArenaEnvironment
             if (player.playerState != PlayerState.Alive) return;
 
             player.Damage(new DamageInfo(ghost ? ghost.player.id : -1, player.id, damage, "Sawblade"));
-            player.controller.Knockback(.5f, -collision.GetContact(0).normal * 10f);
+            player.controller.Knockback(.5f, -collision.GetContact(0).normal * 40f);
         }
     }
 }

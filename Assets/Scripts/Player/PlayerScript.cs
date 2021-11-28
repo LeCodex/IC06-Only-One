@@ -112,7 +112,12 @@ public class PlayerScript : MonoBehaviour
         perk.Claim(this);
         perks.Add(perk);
 
-        if (perks.Count > GameRules.current.PLAYER_MAX_PERKS) perks.RemoveAt(0);
+        if (perks.Count > GameRules.current.PLAYER_MAX_PERKS)
+        {
+            Perk p = perks[0];
+            p.RemoveEvents();
+            perks.Remove(p);
+        }
     }
 
     public void ChangeState(PlayerState newState)

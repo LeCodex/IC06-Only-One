@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     public bool lookingRight = true;
     public bool lookingUp = false;
     public Collider2D projectileCollider;
+    public Collider2D solidCollider;
     public Hazard possessedHazard;
     public Sprite pickUpSpriteHint;
 

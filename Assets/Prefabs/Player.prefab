@@ -608,6 +608,7 @@ MonoBehaviour:
   lookingRight: 1
   lookingUp: 0
   projectileCollider: {fileID: 4365756344907254839}
+  solidCollider: {fileID: 2066159708438674036}
   possessedHazard: {fileID: 0}
   pickUpSpriteHint: {fileID: -6373955360715321419, guid: a6784e48b69d18a46813cdc35f990108, type: 3}
 --- !u!114 &2066159708438674037

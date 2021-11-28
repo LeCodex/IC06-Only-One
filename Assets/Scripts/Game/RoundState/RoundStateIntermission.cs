@@ -27,16 +27,16 @@ namespace GameRoundState
 				player.intermissionHud.Find("Ready Icon").gameObject.SetActive(false);
 
 				// Regenerate the perks
-				RectTransform perkList = (RectTransform)player.intermissionHud.Find("Perk List");
+				RectTransform perkList = (RectTransform)player.intermissionHud.Find("Panel").Find("Perk List");
 				foreach (Transform child in perkList)
 				{
-					GameObject.Destroy(child);
+					GameObject.Destroy(child.gameObject);
 				}
 
-				int i = 0;
+				float i = 0;
 				foreach (Perk perk in player.perks)
 				{
-					Vector3 pos = perkList.position + i / GameRules.current.PLAYER_MAX_PERKS * perkList.rect.width * Vector3.right;
+					Vector3 pos = perkList.position + (i / (GameRules.current.PLAYER_MAX_PERKS - 1) - .5f) * perkList.rect.width * Vector3.right;
 					GameObject o = GameObject.Instantiate(GameManager.current.perkHudObject, pos, Quaternion.identity, perkList);
 					o.GetComponent<Image>().sprite = perk.sprite;
 					i++;

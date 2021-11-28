@@ -13,6 +13,10 @@ namespace PlayerControllerState
 
             // Safety
             context.player.ready = false;
+
+            // Save players
+            context.projectileCollider.enabled = false;
+            context.solidCollider.enabled = false;
         }
 
         public override void Update(PlayerController context)
@@ -31,7 +35,7 @@ namespace PlayerControllerState
 
         public override void ExitState(PlayerController context)
         {
-            
+            context.solidCollider.enabled = true;
         }
     }
 }

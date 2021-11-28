@@ -19,15 +19,15 @@ namespace PerkSystem
 
 		void OnChangeState(int id, PlayerState state)
 		{
-			if (id == player.id && state == PlayerState.Alive)
-			{
-				player.controller.speed += GameRules.current.PLAYER_ALIVE_SPEED * speedGain;
-			}
+			if (id == player.id && state == PlayerState.Alive) player.controller.speed += GameRules.current.PLAYER_ALIVE_SPEED * speedGain;
 		}
 
 		public override void RemoveEvents()
 		{
+			Debug.Log("Removed speed perk");
 			if (player.playerState == PlayerState.Alive) player.controller.speed -= GameRules.current.PLAYER_ALIVE_SPEED * speedGain;
+
+			if (!GameEventSystem.current) return;
 			GameEventSystem.current.onChangeState -= OnChangeState;
 		}
 	}
