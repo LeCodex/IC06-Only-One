@@ -435,7 +435,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hintSprite: {fileID: -6373955360715321419, guid: a6784e48b69d18a46813cdc35f990108, type: 3}
-  speed: 200
+  speed: 300
 --- !u!50 &8492712841959605382
 Rigidbody2D:
   serializedVersion: 4

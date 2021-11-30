@@ -33,9 +33,7 @@ namespace WeaponSystem
 			{
 				lungeTime = 0f;
 
-				Vector3 input = Input.GetAxisRaw("Horizontal" + owner.id) * Vector2.right + Input.GetAxisRaw("Vertical" + owner.id) * Vector2.up;
-				if (input.magnitude == 0f) input = owner.controller.lookingRight ? Vector2.right : Vector2.left;
-				TryAndHitPeople(input);
+				HitPeople();
 			}
 		}
 
@@ -49,12 +47,21 @@ namespace WeaponSystem
 			if (lungeTime == 0f) owner.controller.Knockback(newLungeTime, lungeSpeed * (float)Math.Pow(charge, 1.3f) * owner.controller.rb.velocity.normalized);
 			lungeTime = newLungeTime;
 
+			if (lungeTime == 0f) HitPeople();
+
 			base.Attack(charge);
 		}
 
 		public override void Charge(float charge)
 		{
 			base.Charge(charge);
+		}
+
+		void HitPeople()
+		{
+			Vector3 input = Input.GetAxisRaw("Horizontal" + owner.id) * Vector2.right + Input.GetAxisRaw("Vertical" + owner.id) * Vector2.up;
+			if (input.magnitude == 0f) input = owner.controller.lookingRight ? Vector2.right : Vector2.left;
+			TryAndHitPeople(input);
 		}
 	}
 }

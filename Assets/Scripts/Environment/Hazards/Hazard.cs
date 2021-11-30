@@ -42,7 +42,7 @@ namespace ArenaEnvironment
             if (controller.player.playerState != PlayerState.Ghost) return;
 
             controller.FindHazard(this);
-            if (!ghost) hint.ShowHint("Possess", hintSprite);
+            if (!ghost && !controller.possessedHazard) hint.ShowHint("Possess", hintSprite);
             playersInRange++;
         }
 

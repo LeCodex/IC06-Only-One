@@ -11,12 +11,12 @@ namespace ArenaEnvironment
 	{
 		public float speed;
 
-		MeleeWeapon weapon;
+		SwordWeapon weapon;
 		Rigidbody2D rb;
 
 		private void Awake()
 		{
-			weapon = GetComponentInChildren<MeleeWeapon>();
+			weapon = GetComponentInChildren<SwordWeapon>();
 			rb = GetComponent<Rigidbody2D>();
 		}
 

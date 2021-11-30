@@ -19,13 +19,13 @@ namespace PlayerControllerState
 
         public override void Update(PlayerController context)
         {
+            // Move the ghost to make the camera work correctly
+            context.transform.position = context.possessedHazard.transform.position;
+
             if (Input.GetButtonDown("Secondary" + context.player.id))
             {
                 Unpossess(context);
             }
-
-            // Move the ghost to make the camera work correctly
-            context.transform.position = context.possessedHazard.transform.position;
         }
 
         public override void FixedUpdate(PlayerController context)
@@ -42,6 +42,7 @@ namespace PlayerControllerState
         public override void ExitState(PlayerController context)
         {
             context.possessedHazard.OnUnpossess(); // Play unpossession animation for the hazard
+            context.possessedHazard = null;
         }
 
         public void Unpossess(PlayerController context)

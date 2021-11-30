@@ -70,7 +70,7 @@ namespace ArenaEnvironment
         void MoveAlongPath(Vector2 direction)
         {
             float force = Vector2.Dot(direction, pathDirection.normalized);
-            speed = Math.Min(maxSpeed, speed + acceleration * force * Time.fixedDeltaTime);
+            speed = Math.Max(-maxSpeed, Math.Min(maxSpeed, speed + acceleration * force * Time.fixedDeltaTime));
         }
 
 		public override void OnUnpossess()
