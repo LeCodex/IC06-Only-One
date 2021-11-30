@@ -14,6 +14,7 @@ public class PlayerScript : MonoBehaviour
     public Slider ammoDisplay;
     public AudioSource hurtSound;
     public AudioSource resurrectSound;
+    public SpriteRenderer render;
 
     [ReadOnlySerialize]
     public Transform playerHud;
@@ -42,7 +43,7 @@ public class PlayerScript : MonoBehaviour
         health = GameRules.current.PLAYER_MAX_HEALTH;
         HUD = GameManager.current.playerHuds.GetChild(id - 1);
 
-        ChangeState(playerState);
+        controller.ChangeState(PlayerState.OutOfGame);
 
         GameEventSystem.current.onDamage += OnDamage;
         GameEventSystem.current.onEndRound += OnEndRound;

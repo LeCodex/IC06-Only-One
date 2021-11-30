@@ -94,6 +94,7 @@
     <Compile Include="Assets\Scripts\UI\ButtonHint.cs" />
     <Compile Include="Assets\Scripts\Player\Controller\ControllerStateOOG.cs" />
     <Compile Include="Assets\Scripts\UI\SelectionHUD.cs" />
+    <Compile Include="Assets\Scripts\UI\PlayerSelection.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Fonts\Typo Round\Read_Me.txt" />
