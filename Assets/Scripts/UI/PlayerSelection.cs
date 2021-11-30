@@ -24,7 +24,7 @@ public class PlayerSelection : MonoBehaviour
     {
         CheckToStartGame();
 
-        for (int i = 0; i < 6; i++)
+        for (int i = 0; i < selectionHUDs.Length; i++)
 		{
             if (Input.GetButtonDown("Attack" + i))
 			{
@@ -63,16 +63,40 @@ public class PlayerSelection : MonoBehaviour
 
         if (waitTime <= 0f)
         {
-            foreach (PlayerScript player in GameManager.current.players)
+            StartGame();
+        }
+    }
+
+    void StartGame()
+	{
+        foreach (PlayerScript player in GameManager.current.players)
+        {
+            if (!player.ready)
+            {
+                player.gameObject.SetActive(false);
+                player.playerHud.gameObject.SetActive(false);
+                player.intermissionHud.gameObject.SetActive(false);
+            }
+        }
+
+        GameManager.current.ChangeState(RoundState.Play);
+        gameObject.SetActive(false);
+    }
+
+    public void MoveHudsBack()
+	{
+        for (int i = 0; i < selectionHUDs.Length - 1; i++)
+        {
+            SelectionHUD hud = selectionHUDs[i];
+            SelectionHUD nextHud = selectionHUDs[i + 1];
+            if (!hud.joinedHud.activeSelf && nextHud.joinedHud.activeSelf)
 			{
-                if (!player.ready)
-                {
-                    player.gameObject.SetActive(false);
-                    player.playerHud.gameObject.SetActive(false);
-                    player.intermissionHud.gameObject.SetActive(false);
-                }
+                hud.player.ready = nextHud.player.ready;
+                hud.player.render.sprite = nextHud.player.render.sprite;
+                hud.Join(nextHud.player.id);
+
+                nextHud.Leave(true);
 			}
-            // Start the game
         }
     }
 }

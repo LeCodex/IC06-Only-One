@@ -9,6 +9,7 @@ public class SelectionHUD : MonoBehaviour
     public GameObject notJoinedHud;
     public Image readySprite;
     public PlayerScript player;
+    public PlayerSelection parent;
     
     Image image;
 
@@ -16,6 +17,7 @@ public class SelectionHUD : MonoBehaviour
 	{
         player = GameManager.current.players[transform.GetSiblingIndex() - 1];
         image = joinedHud.GetComponentInChildren<Image>();
+        parent = GetComponentInParent<PlayerSelection>();
 	}
 
 	// Start is called before the first frame update
@@ -36,13 +38,27 @@ public class SelectionHUD : MonoBehaviour
                 player.ready = !player.ready;
                 readySprite.enabled = player.ready;
             }
-		}
+
+            if (Input.GetButtonDown("Secondary" + player.id))
+            {
+                Leave();
+            }
+        }
     }
 
 	public void Join(int playerID)
 	{
         player.id = playerID;
+        readySprite.enabled = player.ready;
         joinedHud.SetActive(true);
         notJoinedHud.SetActive(false);
 	}
+
+    public void Leave(bool dontCallParent = false)
+	{
+        player.ready = false;
+        joinedHud.SetActive(false);
+        notJoinedHud.SetActive(true);
+        if (!dontCallParent) parent.MoveHudsBack();
+    }
 }
