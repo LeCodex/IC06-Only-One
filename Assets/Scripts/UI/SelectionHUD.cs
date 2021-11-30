@@ -8,13 +8,13 @@ public class SelectionHUD : MonoBehaviour
     public GameObject joinedHud;
     public GameObject notJoinedHud;
     public Image readySprite;
-
-    public int id { private set; get; }
+    public PlayerScript player;
     
     Image image;
 
 	private void Awake()
 	{
+        player = GameManager.current.players[transform.GetSiblingIndex() - 1];
         image = joinedHud.GetComponentInChildren<Image>();
 	}
 
@@ -27,12 +27,11 @@ public class SelectionHUD : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        PlayerScript player = GameManager.current.players[id - 1];
         player.render.sprite = image.sprite;
 
         if (joinedHud)
 		{
-            if (Input.GetButtonDown("Attack" + id))
+            if (Input.GetButtonDown("Attack" + player.id))
 			{
                 player.ready = !player.ready;
                 readySprite.enabled = player.ready;
@@ -42,7 +41,7 @@ public class SelectionHUD : MonoBehaviour
 
 	public void Join(int playerID)
 	{
-        id = playerID;
+        player.id = playerID;
         joinedHud.SetActive(true);
         notJoinedHud.SetActive(false);
 	}

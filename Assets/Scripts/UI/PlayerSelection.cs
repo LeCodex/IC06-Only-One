@@ -7,7 +7,6 @@ public class PlayerSelection : MonoBehaviour
     SelectionHUD[] selectionHUDs;
 
     float waitTime = 3f;
-    int joined = 0;
 
 	private void Awake()
 	{
@@ -25,26 +24,42 @@ public class PlayerSelection : MonoBehaviour
     {
         CheckToStartGame();
 
-        foreach (PlayerScript player in GameManager.current.players)
+        for (int i = 0; i < 6; i++)
 		{
-            if (Input.GetButtonDown("Attack" + player.id))
+            if (Input.GetButtonDown("Attack" + i))
 			{
-                selectionHUDs[joined].Join(player.id);
-                joined++;
+                foreach (SelectionHUD hud in selectionHUDs)
+                {
+                    if (!hud.joinedHud.activeSelf)
+                    {
+                        hud.Join(i);
+                        break;
+                    }
+                }
 			}
 		}
     }
 
     void CheckToStartGame()
 	{
+        int joined = 0;
         bool canContinue = true;
 
         foreach (SelectionHUD hud in selectionHUDs)
         {
-            if (!GameManager.current.players[hud.id - 1].ready) canContinue = false;
+            if (hud.joinedHud.activeSelf) joined++;
+            if (!hud.player.ready) canContinue = false;
         }
 
-        if (joined >= 2 && canContinue) waitTime -= Time.deltaTime; else waitTime = 3f;
+        if (joined >= 2 && canContinue)
+        {
+            waitTime -= Time.deltaTime;
+            // Display it on screen
+        }
+        else
+        {
+            waitTime = 3f;
+        }
 
         if (waitTime <= 0f)
         {
