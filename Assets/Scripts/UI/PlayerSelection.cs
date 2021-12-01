@@ -1,3 +1,4 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,7 +17,7 @@ public class PlayerSelection : MonoBehaviour
 	// Start is called before the first frame update
 	void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -24,10 +25,22 @@ public class PlayerSelection : MonoBehaviour
     {
         CheckToStartGame();
 
-        for (int i = 0; i < selectionHUDs.Length; i++)
+        for (int i = 1; i <= selectionHUDs.Length; i++)
 		{
             if (Input.GetButtonDown("Attack" + i))
 			{
+                bool alreadyExists = false;
+                foreach (SelectionHUD hud in selectionHUDs)
+				{
+                    if (hud.player.id == i && hud.joinedHud.activeSelf)
+					{
+                        alreadyExists = true;
+                        break;
+					}
+				}
+
+                if (alreadyExists) continue;
+
                 foreach (SelectionHUD hud in selectionHUDs)
                 {
                     if (!hud.joinedHud.activeSelf)
@@ -47,13 +60,17 @@ public class PlayerSelection : MonoBehaviour
 
         foreach (SelectionHUD hud in selectionHUDs)
         {
-            if (hud.joinedHud.activeSelf) joined++;
-            if (!hud.player.ready) canContinue = false;
+            if (hud.joinedHud.activeSelf)
+            {
+                joined++;
+                if (!hud.ready) canContinue = false;
+            }
         }
 
         if (joined >= 2 && canContinue)
         {
             waitTime -= Time.deltaTime;
+            Debug.Log(waitTime);
             // Display it on screen
         }
         else
@@ -69,17 +86,20 @@ public class PlayerSelection : MonoBehaviour
 
     void StartGame()
 	{
-        foreach (PlayerScript player in GameManager.current.players)
+        foreach (SelectionHUD hud in selectionHUDs)
         {
-            if (!player.ready)
+            if (!hud.ready)
             {
-                player.gameObject.SetActive(false);
-                player.playerHud.gameObject.SetActive(false);
-                player.intermissionHud.gameObject.SetActive(false);
+                hud.player.gameObject.SetActive(false);
+                hud.player.playerHud.gameObject.SetActive(false);
+                hud.player.intermissionHud.gameObject.SetActive(false);
+                hud.player.ready = true;
+                GameManager.current.players.Remove(hud.player);
             }
         }
 
-        GameManager.current.ChangeState(RoundState.Play);
+        GameManager.current.UpdateTargetGroup();
+        GameManager.current.ChangeState(RoundState.Intermission);
         gameObject.SetActive(false);
     }
 

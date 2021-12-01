@@ -631,6 +631,7 @@ MonoBehaviour:
   ammoDisplay: {fileID: 5186445874550923388}
   hurtSound: {fileID: 6874727360777018811}
   resurrectSound: {fileID: 1085562547976876199}
+  render: {fileID: 2066159708677970967}
   playerHud: {fileID: 0}
   intermissionHud: {fileID: 0}
   playerState: 0

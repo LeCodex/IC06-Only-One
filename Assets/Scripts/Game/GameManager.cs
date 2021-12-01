@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
     public GameObject perkHudObject;
     public AsyncOperation sceneLoading;
 
-    public int currentArenaScene { private set; get; } = 1;
+    public int currentArenaScene { private set; get; } = 0;
 
     [SerializeField]
     RoundState currentState;
@@ -45,7 +45,6 @@ public class GameManager : MonoBehaviour
 
         foreach (PlayerScript player in players)
         {
-            FindObjectOfType<CinemachineTargetGroup>().AddMember(player.GetComponent<Transform>(), 1, 5);
             player.intermissionHud = intermissionHuds.GetChild(player.id);
             player.intermissionHud.gameObject.SetActive(true);
 
@@ -72,6 +71,15 @@ public class GameManager : MonoBehaviour
 
         Time.fixedDeltaTime = originalFixedDT * Time.timeScale;
     }
+
+    public void UpdateTargetGroup()
+	{
+        CinemachineTargetGroup targetGroup = FindObjectOfType<CinemachineTargetGroup>();
+        foreach (PlayerScript player in players)
+        {
+            targetGroup.AddMember(player.transform, 1, 5);
+        }
+	}
 
     public void ChangeState(RoundState newState, float delay = 0f)
 	{

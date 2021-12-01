@@ -59,10 +59,12 @@
     <Compile Include="Assets\Scripts\Weapons\Projectile\Arrow.cs" />
     <Compile Include="Assets\Scripts\Player\Controller\ControllerStateGhost.cs" />
     <Compile Include="Assets\Scripts\Weapons\Weapon.cs" />
+    <Compile Include="Assets\Scripts\UI\PlayerSelection.cs" />
     <Compile Include="Assets\Scripts\Game\GameEventSystem.cs" />
     <Compile Include="Assets\Scripts\Environment\Hazards\ArmorHazard.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerScript.cs" />
     <Compile Include="Assets\Scripts\Perks\Perk.cs" />
+    <Compile Include="Assets\Scripts\UI\SelectionHUD.cs" />
     <Compile Include="Assets\Scripts\Weapons\MeleeWeapon.cs" />
     <Compile Include="Assets\Scripts\Game\RoundState\RoundStatePlay.cs" />
     <Compile Include="Assets\Scripts\Game\RoundState\RoundStateSelection.cs" />
@@ -93,8 +95,8 @@
     <Compile Include="Assets\Scripts\Weapons\Projectile\Dynamite.cs" />
     <Compile Include="Assets\Scripts\UI\ButtonHint.cs" />
     <Compile Include="Assets\Scripts\Player\Controller\ControllerStateOOG.cs" />
-    <Compile Include="Assets\Scripts\UI\SelectionHUD.cs" />
-    <Compile Include="Assets\Scripts\UI\PlayerSelection.cs" />
+    <Compile Include="Assets\Scripts\UI\MenuManager.cs" />
+    <Compile Include="Assets\Scripts\UI\Fade.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Fonts\Typo Round\Read_Me.txt" />

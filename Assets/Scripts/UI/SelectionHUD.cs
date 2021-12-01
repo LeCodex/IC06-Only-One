@@ -10,12 +10,13 @@ public class SelectionHUD : MonoBehaviour
     public Image readySprite;
     public PlayerScript player;
     public PlayerSelection parent;
-    
+
+    public bool ready { private set; get; } = false;
+
     Image image;
 
 	private void Awake()
 	{
-        player = GameManager.current.players[transform.GetSiblingIndex() - 1];
         image = joinedHud.GetComponentInChildren<Image>();
         parent = GetComponentInParent<PlayerSelection>();
 	}
@@ -23,7 +24,7 @@ public class SelectionHUD : MonoBehaviour
 	// Start is called before the first frame update
 	void Start()
     {
-        
+        player = GameManager.current.players[transform.GetSiblingIndex() - 1];
     }
 
     // Update is called once per frame
@@ -35,8 +36,8 @@ public class SelectionHUD : MonoBehaviour
 		{
             if (Input.GetButtonDown("Attack" + player.id))
 			{
-                player.ready = !player.ready;
-                readySprite.enabled = player.ready;
+                ready = !ready;
+                readySprite.enabled = ready;
             }
 
             if (Input.GetButtonDown("Secondary" + player.id))
@@ -49,7 +50,8 @@ public class SelectionHUD : MonoBehaviour
 	public void Join(int playerID)
 	{
         player.id = playerID;
-        readySprite.enabled = player.ready;
+        ready = false;
+        readySprite.enabled = ready;
         joinedHud.SetActive(true);
         notJoinedHud.SetActive(false);
 	}
@@ -59,6 +61,6 @@ public class SelectionHUD : MonoBehaviour
         player.ready = false;
         joinedHud.SetActive(false);
         notJoinedHud.SetActive(true);
-        if (!dontCallParent) parent.MoveHudsBack();
+        // if (!dontCallParent) parent.MoveHudsBack();
     }
 }
