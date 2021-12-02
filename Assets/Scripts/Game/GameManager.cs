@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     public Transform playersGroup;
     public List<PlayerScript> players; // The Game manager takes care of all the players (creation, access)
     public Animator intermissionTransition;
+    public Animator winningTransition;
     public Transform intermissionHuds;
     public GameObject playHUD;
     public Transform playerHuds;
@@ -30,7 +31,8 @@ public class GameManager : MonoBehaviour
     {
         { RoundState.Selection, new RoundStateSelection() },
         { RoundState.Play, new RoundStatePlay() },
-        { RoundState.Intermission, new RoundStateIntermission() }
+        { RoundState.Intermission, new RoundStateIntermission() },
+        { RoundState.Win, new RoundStateWin() }
     };
     float timeRatio;
     float timeSlowdownTime;
@@ -51,6 +53,8 @@ public class GameManager : MonoBehaviour
             player.playerHud = playerHuds.GetChild(player.id - 1);
             player.playerHud.gameObject.SetActive(true);
         }
+
+        winningTransition.Play("Hide");
     }
 
     void Update()

@@ -2,5 +2,6 @@
 {
     Selection,
     Play,
-    Intermission
+    Intermission,
+    Win
 }

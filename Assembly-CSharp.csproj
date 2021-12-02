@@ -68,6 +68,7 @@
     <Compile Include="Assets\Scripts\Weapons\MeleeWeapon.cs" />
     <Compile Include="Assets\Scripts\Game\RoundState\RoundStatePlay.cs" />
     <Compile Include="Assets\Scripts\Game\RoundState\RoundStateSelection.cs" />
+    <Compile Include="Assets\Scripts\UI\Fade.cs" />
     <Compile Include="Assets\Scripts\Perks\VampirismPerk.cs" />
     <Compile Include="Assets\Scripts\Environment\Hazards\CannonHazard.cs" />
     <Compile Include="Assets\Scripts\ReadOnlySerializeAttribute.cs" />
@@ -78,6 +79,7 @@
     <Compile Include="Assets\Scripts\Weapons\Projectile\Cannonball.cs" />
     <Compile Include="Assets\Scripts\Weapons\SwordWeapon.cs" />
     <Compile Include="Assets\Scripts\Environment\Spawner.cs" />
+    <Compile Include="Assets\Scripts\UI\MenuManager.cs" />
     <Compile Include="Assets\Scripts\Player\Controller\ControllerStatePossession.cs" />
     <Compile Include="Assets\Scripts\Game\RoundState\RoundStateIntermission.cs" />
     <Compile Include="Assets\Scripts\Player\Controller\ControllerStateDead.cs" />
@@ -95,8 +97,7 @@
     <Compile Include="Assets\Scripts\Weapons\Projectile\Dynamite.cs" />
     <Compile Include="Assets\Scripts\UI\ButtonHint.cs" />
     <Compile Include="Assets\Scripts\Player\Controller\ControllerStateOOG.cs" />
-    <Compile Include="Assets\Scripts\UI\MenuManager.cs" />
-    <Compile Include="Assets\Scripts\UI\Fade.cs" />
+    <Compile Include="Assets\Scripts\Game\RoundState\RoundStateWin.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Fonts\Typo Round\Read_Me.txt" />

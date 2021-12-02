@@ -10,6 +10,7 @@ namespace WeaponSystem
 		public float speed;
 		public int attackDamage;
 		public Rigidbody2D rb;
+		public Collider2D solidCollider;
 
 		public Vector2 direction { private set; get; }
 		public PlayerScript owner { private set; get; }
@@ -30,6 +31,8 @@ namespace WeaponSystem
 			{
 				if (!col.isTrigger) Physics2D.IgnoreCollision(col, owner.controller.projectileCollider);
 			}
+
+			if (solidCollider) solidCollider.enabled = true;
 		}
 
 		void FixedUpdate()

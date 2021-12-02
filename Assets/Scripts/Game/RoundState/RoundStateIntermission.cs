@@ -18,7 +18,6 @@ namespace GameRoundState
 
 			// Show intermission screen over gameplay screen
 			GameManager.current.intermissionTransition.Play("Show");
-			GameManager.current.playHUD.SetActive(false);
 
 			// Put controller in OOG state
 			foreach(PlayerScript player in GameManager.current.players)

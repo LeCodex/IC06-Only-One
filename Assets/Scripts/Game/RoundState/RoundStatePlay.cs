@@ -48,7 +48,8 @@ namespace GameRoundState
 					{
 						player.ChangeState(PlayerState.Alive);
 					}
-				} else
+				}
+				else
 				{
 					return;
 				}

@@ -7,7 +7,6 @@ namespace WeaponSystem
 {
 	public class Arrow : Projectile
 	{
-		public Collider2D solidCollider;
 		public Collider2D pickupCollider;
 
 		void OnCollisionEnter2D(Collision2D collision)
