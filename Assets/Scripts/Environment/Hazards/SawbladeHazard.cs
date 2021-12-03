@@ -22,7 +22,6 @@ namespace ArenaEnvironment
         int oldNode = 0;
 
         [SerializeField]
-        [ReadOnlySerialize]
         float progress;
         float speed = 0f;
         Transform[] path;

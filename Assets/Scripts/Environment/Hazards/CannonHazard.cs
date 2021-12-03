@@ -16,7 +16,6 @@ namespace ArenaEnvironment
         public AudioSource firingSound;
 
         [SerializeField]
-        [ReadOnlySerialize]
         float wait = 0f;
         Animator animator;
 

@@ -11,6 +11,8 @@ namespace GameRoundState
 
 		public override void EnterState()
 		{
+			GameManager.current.intermissionTransition.Play("Hide");
+
 			Transform spawnPoints = GameObject.FindWithTag("Spawnpoints").transform;
 			List<Transform> spawns = new List<Transform>(spawnPoints.GetComponentsInChildren<Transform>().Where(x => x.gameObject.transform.parent != spawnPoints.parent).ToArray());
 

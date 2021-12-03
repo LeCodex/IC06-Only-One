@@ -17,8 +17,13 @@ public class PlayerSelection : MonoBehaviour
         selectionHUDs = GetComponentsInChildren<SelectionHUD>();
 	}
 
-    // Update is called once per frame
-    void Update()
+	private void Start()
+	{
+        GameManager.current.LoadNextLevel();
+    }
+
+	// Update is called once per frame
+	void Update()
     {
         CheckToStartGame();
 
@@ -105,7 +110,7 @@ public class PlayerSelection : MonoBehaviour
             }
         }
 
-        GameManager.current.ChangeState(RoundState.Intermission);
+        GameManager.current.ChangeState(RoundState.Play);
         gameObject.SetActive(false);
     }
 

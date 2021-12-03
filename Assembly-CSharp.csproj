@@ -72,7 +72,6 @@
     <Compile Include="Assets\Scripts\UI\Fade.cs" />
     <Compile Include="Assets\Scripts\Perks\VampirismPerk.cs" />
     <Compile Include="Assets\Scripts\Environment\Hazards\CannonHazard.cs" />
-    <Compile Include="Assets\Scripts\ReadOnlySerializeAttribute.cs" />
     <Compile Include="Assets\Scripts\Perks\SpeedPerk.cs" />
     <Compile Include="Assets\Scripts\Game\GameManager.cs" />
     <Compile Include="Assets\Scripts\Game\RoundState\RoundState.cs" />

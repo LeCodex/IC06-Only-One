@@ -17,9 +17,7 @@ public class PlayerScript : MonoBehaviour
     public SpriteRenderer render;
     public float resistance = 0f;
 
-    [ReadOnlySerialize]
     public Transform playerHud;
-    [ReadOnlySerialize]
     public Transform intermissionHud;
 
     public PlayerState playerState;
