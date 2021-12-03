@@ -1,12 +1,15 @@
 using Cinemachine;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerSelection : MonoBehaviour
 {
-    SelectionHUD[] selectionHUDs;
+    public Text title;
 
+    SelectionHUD[] selectionHUDs;
     float waitTime = 3f;
 
 	private void Awake()
@@ -70,12 +73,14 @@ public class PlayerSelection : MonoBehaviour
         if (joined >= 2 && canContinue)
         {
             waitTime -= Time.deltaTime;
+            title.text = "DEBUT DANS " + (Math.Floor(waitTime * 10f) / 10f).ToString().PadRight(2, '0');
             Debug.Log(waitTime);
             // Display it on screen
         }
         else
         {
             waitTime = 3f;
+            title.text = "REJOIGNEZ LA PARTIE";
         }
 
         if (waitTime <= 0f)
@@ -86,6 +91,7 @@ public class PlayerSelection : MonoBehaviour
 
     void StartGame()
 	{
+        CinemachineTargetGroup targetGroup = FindObjectOfType<CinemachineTargetGroup>();
         foreach (SelectionHUD hud in selectionHUDs)
         {
             if (!hud.ready)
@@ -96,9 +102,15 @@ public class PlayerSelection : MonoBehaviour
                 hud.player.ready = true;
                 GameManager.current.players.Remove(hud.player);
             }
+            else
+			{
+                hud.player.gameObject.SetActive(true);
+                hud.player.playerHud.gameObject.SetActive(true);
+                hud.player.intermissionHud.gameObject.SetActive(true);
+                targetGroup.AddMember(hud.player.transform, 1, 5);
+            }
         }
 
-        GameManager.current.UpdateTargetGroup();
         GameManager.current.ChangeState(RoundState.Intermission);
         gameObject.SetActive(false);
     }

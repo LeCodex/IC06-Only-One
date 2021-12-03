@@ -66,6 +66,9 @@ public class PlayerScript : MonoBehaviour
 		{
             ClearInvulnerability();
         }
+
+        // Update perks
+        foreach (Perk perk in perks) perk.Tick();
     }
 
     public void Damage(DamageInfo info)

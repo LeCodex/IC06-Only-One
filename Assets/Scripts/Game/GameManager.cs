@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using GameRoundState;
 using Cinemachine;
@@ -13,6 +14,7 @@ public class GameManager : MonoBehaviour
     public List<PlayerScript> players; // The Game manager takes care of all the players (creation, access)
     public Animator intermissionTransition;
     public Animator winningTransition;
+    public Image winningImage;
     public Transform intermissionHuds;
     public GameObject playHUD;
     public Transform playerHuds;
@@ -21,11 +23,12 @@ public class GameManager : MonoBehaviour
     public int maxLevelIndex;
     public GameObject perkHudObject;
     public AsyncOperation sceneLoading;
+    public PlayerScript winner;
 
     public int currentArenaScene { private set; get; } = 0;
+    public RoundState currentState { private set; get; }
 
     [SerializeField]
-    RoundState currentState;
     RoundStateBase state;
     Dictionary<RoundState, RoundStateBase> roundStates = new Dictionary<RoundState, RoundStateBase>()
     {
@@ -75,15 +78,6 @@ public class GameManager : MonoBehaviour
 
         Time.fixedDeltaTime = originalFixedDT * Time.timeScale;
     }
-
-    public void UpdateTargetGroup()
-	{
-        CinemachineTargetGroup targetGroup = FindObjectOfType<CinemachineTargetGroup>();
-        foreach (PlayerScript player in players)
-        {
-            targetGroup.AddMember(player.transform, 1, 5);
-        }
-	}
 
     public void ChangeState(RoundState newState, float delay = 0f)
 	{

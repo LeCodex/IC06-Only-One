@@ -70,10 +70,12 @@ namespace GameRoundState
 
 			if (alive <= 1 && !roundEnded)
 			{
+				GameManager.current.winner = lastOne;
 				if (lastOne) lastOne.score++;
 
 				roundEnded = true;
-				GameManager.current.ChangeState(RoundState.Intermission, 3f);
+				
+				GameManager.current.ChangeState(lastOne.score < GameRules.current.GAME_MAX_SCORE ? RoundState.Intermission : RoundState.Win, 3f);
 			}
 		}
 

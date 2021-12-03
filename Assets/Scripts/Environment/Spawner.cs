@@ -6,6 +6,7 @@ public class Spawner : MonoBehaviour
 {
 	public GameObject[] objects;
 	public float spawnTime = 10f;
+	public int spawnOnStart = 0;
 
 	public static Spawner current;
 
@@ -14,17 +15,22 @@ public class Spawner : MonoBehaviour
 
 	private void Awake()
 	{
-		current = this;
-
 		foreach(Transform child in transform)
 		{
 			spawnpoints.Add(child.position);
+		}
+
+		for (int i = 0; i < spawnOnStart; i++)
+		{
+			SpawnObject();
 		}
 	}
 
 	void Update()
 	{
-		spawnDelay += Time.deltaTime;
+		if (spawnTime == -1f) return;
+
+		if (GameManager.current.currentState == RoundState.Play) spawnDelay += Time.deltaTime;
 		
 		if (spawnDelay >= spawnTime)
 		{

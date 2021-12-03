@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 namespace GameRoundState
@@ -22,6 +23,8 @@ namespace GameRoundState
 			}
 
 			timeToReload = 5f;
+			GameManager.current.winningImage.sprite = GameManager.current.winner.render.sprite;
+			GameManager.current.winningImage.GetComponentInChildren<Text>().text = "Victoire du joueur " + (GameManager.current.winner.transform.GetSiblingIndex() + 1) + "!";
 		}
 
 		public override void Update()

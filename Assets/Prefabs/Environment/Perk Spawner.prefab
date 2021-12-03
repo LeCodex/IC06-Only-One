@@ -50,7 +50,10 @@ MonoBehaviour:
   objects:
   - {fileID: 6389691176805820046, guid: 91a3762f82feca442af2d7ad86d17e39, type: 3}
   - {fileID: 978446701158684536, guid: 16c33c21d4a2e1a468ebd091a2c7e4af, type: 3}
-  spawnTime: 3
+  - {fileID: 6438105983749639659, guid: 47cde3a31f8534f46b3714e851682881, type: 3}
+  - {fileID: 2244738782052930774, guid: 84941fae31e2eb840bf9ce24251eb031, type: 3}
+  - {fileID: 4068040333222052282, guid: f717831acf357694fb44a2e1bae6455c, type: 3}
+  spawnTime: 10
 --- !u!1 &219722839449351914
 GameObject:
   m_ObjectHideFlags: 0

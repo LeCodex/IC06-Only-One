@@ -17,6 +17,7 @@ namespace PerkSystem
 			InitializeEvents();
 		}
 
+		public virtual void Tick() { }
 		public abstract void InitializeEvents(); // Use this function to initialize the GameEventSystem's Actions. This prevents the Perk from doing anything until claimed.
 		public abstract void RemoveEvents(); // Use this function to remove the GameEventSystem's Actions.
 	}

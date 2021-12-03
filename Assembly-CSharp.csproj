@@ -55,6 +55,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Weapons\ShieldWeapon.cs" />
     <Compile Include="Assets\Scripts\Player\Controller\ControllerStateAlive.cs" />
+    <Compile Include="Assets\Scripts\Perks\RegenPerk.cs" />
     <Compile Include="Assets\Scripts\Player\HealthChange.cs" />
     <Compile Include="Assets\Scripts\Weapons\Projectile\Arrow.cs" />
     <Compile Include="Assets\Scripts\Player\Controller\ControllerStateGhost.cs" />
@@ -82,6 +83,7 @@
     <Compile Include="Assets\Scripts\UI\MenuManager.cs" />
     <Compile Include="Assets\Scripts\Player\Controller\ControllerStatePossession.cs" />
     <Compile Include="Assets\Scripts\Game\RoundState\RoundStateIntermission.cs" />
+    <Compile Include="Assets\Scripts\Game\RoundState\RoundStateWin.cs" />
     <Compile Include="Assets\Scripts\Player\Controller\ControllerStateDead.cs" />
     <Compile Include="Assets\Scripts\Game\RoundState\RoundStateBase.cs" />
     <Compile Include="Assets\Scripts\Environment\Hazards\SawbladeHazard.cs" />
@@ -97,7 +99,8 @@
     <Compile Include="Assets\Scripts\Weapons\Projectile\Dynamite.cs" />
     <Compile Include="Assets\Scripts\UI\ButtonHint.cs" />
     <Compile Include="Assets\Scripts\Player\Controller\ControllerStateOOG.cs" />
-    <Compile Include="Assets\Scripts\Game\RoundState\RoundStateWin.cs" />
+    <Compile Include="Assets\Scripts\Perks\DefensePerk.cs" />
+    <Compile Include="Assets\Scripts\Perks\DamagePerk.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Fonts\Typo Round\Read_Me.txt" />
