@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace PerkSystem
 {
-	[CreateAssetMenu(fileName = "Dégats", menuName = "Perks/Damage", order = 1)]
+	[CreateAssetMenu(fileName = "Damage", menuName = "Perks/Damage", order = 1)]
 	class DamagePerk : Perk
 	{
 		public string title = "Damage";
@@ -18,11 +18,11 @@ namespace PerkSystem
 
 		void OnDamage(DamageInfo info)
 		{
-			if (info.attacker == player.id && info.cause != "Additionel")
+			if (info.attacker == player.id && info.cause != "Extra")
 			{
 				PlayerScript victim = GameManager.current.players[info.victim - 1];
 				victim.ClearInvulnerability();
-				victim.Damage(new DamageInfo(player.id, info.victim, (int)Math.Round(info.amount * percent), "Additionel"));
+				victim.Damage(new DamageInfo(player.id, info.victim, (int)Math.Round(info.amount * percent), "Extra"));
 			}
 		}
 

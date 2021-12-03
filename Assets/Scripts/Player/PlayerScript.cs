@@ -15,6 +15,7 @@ public class PlayerScript : MonoBehaviour
     public AudioSource hurtSound;
     public AudioSource resurrectSound;
     public SpriteRenderer render;
+    public float resistance = 0f;
 
     [ReadOnlySerialize]
     public Transform playerHud;
@@ -74,6 +75,8 @@ public class PlayerScript : MonoBehaviour
     public void Damage(DamageInfo info)
     {
         if (info.amount == 0) return;
+
+        info.amount = (int)Math.Round(info.amount * (1f - resistance));
 
         hurtSound.Play();
 

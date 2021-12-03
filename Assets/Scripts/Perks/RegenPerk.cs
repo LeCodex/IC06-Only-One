@@ -5,10 +5,10 @@ using UnityEngine;
 
 namespace PerkSystem
 {
-	[CreateAssetMenu(fileName = "Régénération", menuName = "Perks/Regen", order = 1)]
+	[CreateAssetMenu(fileName = "Regeneration", menuName = "Perks/Regen", order = 1)]
 	class RegenPerk : Perk
 	{
-		public string title = "Régénération";
+		public string title = "Regeneration";
 		public int amount = 10;
 		public float delay = 2f;
 
@@ -25,7 +25,7 @@ namespace PerkSystem
 
 			if (time <= 0f)
 			{
-				player.Heal(amount, "Régénération");
+				player.Heal(amount, "Regeneration");
 				time = delay;
 			}
 		}
