@@ -8,7 +8,6 @@ namespace PerkSystem
 	[CreateAssetMenu(fileName = "Regeneration", menuName = "Perks/Regen", order = 1)]
 	class RegenPerk : Perk
 	{
-		public string title = "Regeneration";
 		public int amount = 10;
 		public float delay = 2f;
 

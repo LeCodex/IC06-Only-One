@@ -8,7 +8,6 @@ namespace PerkSystem
 	[CreateAssetMenu(fileName = "Speed", menuName = "Perks/Speed", order = 1)]
 	class SpeedPerk : Perk
 	{
-		public string title = "Speed";
 		public float speedGain = 0.2f;
 
 		public override void InitializeEvents()

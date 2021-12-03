@@ -125,6 +125,8 @@ public class PlayerScript : MonoBehaviour
             p.RemoveEvents();
             perks.Remove(p);
         }
+
+        GetComponent<ButtonHint>().ShowHint(perk.title, perk.sprite);
     }
 
     public void ChangeState(PlayerState newState)

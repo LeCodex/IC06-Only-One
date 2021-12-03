@@ -8,7 +8,6 @@ namespace PerkSystem
 	[CreateAssetMenu(fileName = "Damage", menuName = "Perks/Damage", order = 1)]
 	class DamagePerk : Perk
 	{
-		public string title = "Damage";
 		public float percent = .2f;
 
 		public override void InitializeEvents()

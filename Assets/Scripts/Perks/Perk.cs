@@ -8,7 +8,7 @@ namespace PerkSystem
 	public abstract class Perk : ScriptableObject
 	{
 		public Sprite sprite;
-
+		public string title;
 		protected PlayerScript player;
 
 		public void Claim(PlayerScript claimer)

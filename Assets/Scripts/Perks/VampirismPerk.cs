@@ -8,7 +8,6 @@ namespace PerkSystem
 	[CreateAssetMenu(fileName = "Vampirism", menuName = "Perks/Vampirism", order = 1)]
 	class VampirismPerk : Perk
 	{
-		public string title = "Vampirism";
 		public int healthGain = 20;
 
 		public override void InitializeEvents()
