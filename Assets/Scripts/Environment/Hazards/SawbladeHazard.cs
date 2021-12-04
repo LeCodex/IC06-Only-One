@@ -46,9 +46,9 @@ namespace ArenaEnvironment
             }
             else
             {
-                if (progress < 0f || progress > path.Length)
+                if (progress < 0f || progress >= path.Length)
                 {
-                    progress = Math.Min(Math.Max(0f, progress), path.Length);
+                    progress = Math.Min(Math.Max(0f, progress), path.Length - float.Epsilon);
                     defaultSpeed *= -1f;
                 }
             }
