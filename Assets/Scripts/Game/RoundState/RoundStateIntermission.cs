@@ -11,6 +11,7 @@ namespace GameRoundState
 		public override void EnterState()
 		{
 			// Unload previous map, load next map
+			GameManager.current.sceneLoading = null;
 			GameManager.current.LoadNextLevel();
 
 			// Call the event

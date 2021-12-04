@@ -22,7 +22,7 @@ namespace WeaponSystem
 		{
 			base.Start();
 			ammo = maxAmmo;
-			animator = GetComponent<Animator>();
+			animator = GetComponentInChildren<Animator>();
 		}
 
 		private void Update()
@@ -36,6 +36,7 @@ namespace WeaponSystem
 		{
 			if (ammo == 0) return;
 			UpdateAmmoCount(-1);
+			animator.Play("Attack");
 
 			projectile.transform.rotation = aimingArrow.transform.rotation;
 			projectile.Throw(aimingArrow.transform.right);
@@ -50,6 +51,7 @@ namespace WeaponSystem
 		public override void Charge(float charge)
 		{
 			if (ammo == 0) return;
+			animator.Play("Charge");
 
 			GetComponentInChildren<SpriteRenderer>().enabled = ammo > 1 || !hideWhenOut;
 

@@ -114,7 +114,7 @@ public class PlayerSelection : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    public void MoveHudsBack()
+    /*public void MoveHudsBack()
 	{
         for (int i = 0; i < selectionHUDs.Length - 1; i++)
         {
@@ -129,5 +129,5 @@ public class PlayerSelection : MonoBehaviour
                 nextHud.Leave(true);
 			}
         }
-    }
+    }*/
 }
