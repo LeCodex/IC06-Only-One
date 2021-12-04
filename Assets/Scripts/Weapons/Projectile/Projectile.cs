@@ -11,6 +11,7 @@ namespace WeaponSystem
 		public int attackDamage;
 		public Rigidbody2D rb;
 		public Collider2D solidCollider;
+		public Collider2D wallCollider;
 
 		public Vector2 direction { private set; get; }
 		public PlayerScript owner { private set; get; }
@@ -33,6 +34,7 @@ namespace WeaponSystem
 			}
 
 			if (solidCollider) solidCollider.enabled = true;
+			if (wallCollider) wallCollider.enabled = true;
 		}
 
 		void FixedUpdate()

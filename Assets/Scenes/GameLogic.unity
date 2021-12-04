@@ -3660,7 +3660,7 @@ MonoBehaviour:
   playerHuds: {fileID: 660678090}
   aimingArrow: {fileID: 6250380564685193847, guid: 2f543e52f6505c24795b2e2aec602391, type: 3}
   minLevelIndex: 3
-  maxLevelIndex: 6
+  maxLevelIndex: 8
   perkHudObject: {fileID: 3399088149736705455, guid: dfc920ef4b2aa0f499569671da6cf7af, type: 3}
   winner: {fileID: 0}
 --- !u!114 &1917073769
