@@ -12,7 +12,11 @@ namespace PlayerControllerState
             context.speed = GameRules.current.PLAYER_GHOST_SPEED;
             context.gameObject.layer = LayerMask.NameToLayer("Ghost"); // Only collide with arena borders
 
+            context.ghostAnimator.gameObject.SetActive(true);
+            context.aliveAnimator.gameObject.SetActive(false);
+
             // Play "ghosting" animation
+            // Particles
         }
 
         public override void Update(PlayerController context)
@@ -23,7 +27,17 @@ namespace PlayerControllerState
             }
         }
 
-        public override void ExitState(PlayerController context)
+		public override void FixedUpdate(PlayerController context)
+		{
+			base.FixedUpdate(context);
+
+            if (context.rb.velocity.magnitude > 0f)
+                context.PlayAnimation(context.ghostAnimator, "Idle" + context.GetAnimationStateDirection());
+            else
+                context.PlayAnimation(context.ghostAnimator, "IdleD" + context.GetAnimationFlipHorizontal());
+        }
+
+		public override void ExitState(PlayerController context)
         {
 
         }

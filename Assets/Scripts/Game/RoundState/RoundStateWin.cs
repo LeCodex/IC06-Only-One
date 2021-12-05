@@ -23,7 +23,7 @@ namespace GameRoundState
 			}
 
 			timeToReload = 5f;
-			GameManager.current.winningImage.sprite = GameManager.current.winner.render.sprite;
+			GameManager.current.winningImage.sprite = GameManager.current.winner.controller.aliveAnimator.GetComponent<CharacterAnimator>().spriteSheet.GetSprite("dr0");
 			GameManager.current.winningImage.GetComponentInChildren<Text>().text = "Victoire du joueur " + (GameManager.current.winner.transform.GetSiblingIndex() + 1) + "!";
 		}
 

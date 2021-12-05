@@ -75,6 +75,7 @@
     <Compile Include="Assets\Scripts\Perks\SpeedPerk.cs" />
     <Compile Include="Assets\Scripts\Game\GameManager.cs" />
     <Compile Include="Assets\Scripts\Game\RoundState\RoundState.cs" />
+    <Compile Include="Assets\Scripts\Animation\CharacterAnimator.cs" />
     <Compile Include="Assets\Scripts\Player\Controller\PlayerController.cs" />
     <Compile Include="Assets\Scripts\Weapons\Projectile\Cannonball.cs" />
     <Compile Include="Assets\Scripts\Weapons\SwordWeapon.cs" />
@@ -100,7 +101,7 @@
     <Compile Include="Assets\Scripts\Player\Controller\ControllerStateOOG.cs" />
     <Compile Include="Assets\Scripts\Perks\DefensePerk.cs" />
     <Compile Include="Assets\Scripts\Perks\DamagePerk.cs" />
-    <Compile Include="Assets\Scripts\Animation\CharacterAnimator.cs" />
+    <Compile Include="Assets\Scripts\UI\PlayerHUD.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Fonts\Typo Round\Read_Me.txt" />

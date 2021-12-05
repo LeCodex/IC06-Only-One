@@ -50,6 +50,7 @@ namespace ArenaEnvironment
                 {
                     progress = Math.Min(Math.Max(0f, progress), path.Length - float.Epsilon);
                     defaultSpeed *= -1f;
+                    speed *= -.8f; // Bounce
                 }
             }
 

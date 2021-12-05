@@ -50,10 +50,10 @@ public class GameManager : MonoBehaviour
 
         foreach (PlayerScript player in players)
         {
-            player.intermissionHud = intermissionHuds.GetChild(player.id);
+            player.intermissionHud = intermissionHuds.GetChild(player.id).GetComponent<PlayerHUD>();
             player.intermissionHud.gameObject.SetActive(true);
 
-            player.playerHud = playerHuds.GetChild(player.id - 1);
+            player.playerHud = playerHuds.GetChild(player.id - 1).GetComponent<PlayerHUD>();
             player.playerHud.gameObject.SetActive(true);
         }
 

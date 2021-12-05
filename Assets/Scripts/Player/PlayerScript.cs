@@ -17,8 +17,8 @@ public class PlayerScript : MonoBehaviour
     public SpriteRenderer render;
     public float resistance = 0f;
 
-    public Transform playerHud;
-    public Transform intermissionHud;
+    public PlayerHUD playerHud;
+    public PlayerHUD intermissionHud;
 
     public PlayerState playerState;
 

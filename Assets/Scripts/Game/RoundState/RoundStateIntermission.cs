@@ -24,10 +24,10 @@ namespace GameRoundState
 			foreach(PlayerScript player in GameManager.current.players)
 			{
 				player.controller.ChangeState(PlayerState.OutOfGame);
-				player.intermissionHud.Find("Ready Icon").gameObject.SetActive(false);
+				player.intermissionHud.transform.Find("Ready Icon").gameObject.SetActive(false);
 
 				// Regenerate the perks
-				RectTransform perkList = (RectTransform)player.intermissionHud.Find("Panel").Find("Perk List");
+				RectTransform perkList = (RectTransform)player.intermissionHud.transform.Find("Panel").Find("Perk List");
 				foreach (Transform child in perkList)
 				{
 					GameObject.Destroy(child.gameObject);

@@ -1,0 +1,91 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Cyan
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 0
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 0
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 2800000, guid: b9ce9f233336cc445aeeba3e61f85bfd, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: -4363710491722382529, guid: b9ce9f233336cc445aeeba3e61f85bfd, type: 3}
+  - {fileID: -2101443119885502409, guid: b9ce9f233336cc445aeeba3e61f85bfd, type: 3}
+  - {fileID: -1624804285613244046, guid: b9ce9f233336cc445aeeba3e61f85bfd, type: 3}
+  - {fileID: 7510872513312944368, guid: b9ce9f233336cc445aeeba3e61f85bfd, type: 3}
+  - {fileID: -5491676035967191226, guid: b9ce9f233336cc445aeeba3e61f85bfd, type: 3}
+  - {fileID: -3348612872819962760, guid: b9ce9f233336cc445aeeba3e61f85bfd, type: 3}
+  - {fileID: 6702965669302738640, guid: b9ce9f233336cc445aeeba3e61f85bfd, type: 3}
+  - {fileID: -8208098057393078272, guid: b9ce9f233336cc445aeeba3e61f85bfd, type: 3}
+  - {fileID: -7533683557647103168, guid: b9ce9f233336cc445aeeba3e61f85bfd, type: 3}
+  - {fileID: 8631811182005226550, guid: b9ce9f233336cc445aeeba3e61f85bfd, type: 3}
+  - {fileID: -8297503228256139558, guid: b9ce9f233336cc445aeeba3e61f85bfd, type: 3}
+  - {fileID: 6138304225276817814, guid: b9ce9f233336cc445aeeba3e61f85bfd, type: 3}
+  - {fileID: -3347197541448275907, guid: b9ce9f233336cc445aeeba3e61f85bfd, type: 3}
+  - {fileID: 17639267559588732, guid: b9ce9f233336cc445aeeba3e61f85bfd, type: 3}
+  - {fileID: 3137976735913584230, guid: b9ce9f233336cc445aeeba3e61f85bfd, type: 3}
+  - {fileID: 2955260085558962859, guid: b9ce9f233336cc445aeeba3e61f85bfd, type: 3}
+  - {fileID: -1884254725947771277, guid: b9ce9f233336cc445aeeba3e61f85bfd, type: 3}
+  - {fileID: -4811126437782665924, guid: b9ce9f233336cc445aeeba3e61f85bfd, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - dr3
+  - dr2
+  - dr1
+  - dr0
+  - dr4
+  - ul0
+  - ul1
+  - ul2
+  - ul3
+  - dl4
+  - dl1
+  - dl0
+  - dl3
+  - dl2
+  - ur2
+  - ur3
+  - ur0
+  - ur1
+  m_RenderDataMap: {}
+  m_Tag: Cyan
+  m_IsVariant: 0

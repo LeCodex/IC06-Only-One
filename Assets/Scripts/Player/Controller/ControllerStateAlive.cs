@@ -13,6 +13,10 @@ namespace PlayerControllerState
             context.projectileCollider.enabled = true;
 
             if (context.weapon) context.weapon.gameObject.SetActive(true);
+
+            context.aliveAnimator.gameObject.SetActive(true);
+            context.ghostAnimator.gameObject.SetActive(false);
+            context.player.ammoDisplay.transform.parent.gameObject.SetActive(true);
         }
 
         public override void Update(PlayerController context)
@@ -41,7 +45,10 @@ namespace PlayerControllerState
 		{
 			base.FixedUpdate(context);
 
-            if (context.rb.velocity.magnitude > 0f) context.PlayAnimation("Walk" + context.GetAnimationStateDirection()); else context.PlayAnimation("Idle" + context.GetAnimationFlipHorizontal());
+            if (context.rb.velocity.magnitude > 0f) 
+                context.PlayAnimation(context.aliveAnimator, "Walk" + context.GetAnimationStateDirection()); 
+            else 
+                context.PlayAnimation(context.aliveAnimator, "Idle" + context.GetAnimationFlipHorizontal());
 		}
 
 		public override void ExitState(PlayerController context)
@@ -49,6 +56,7 @@ namespace PlayerControllerState
             context.projectileCollider.enabled = false;
 
             if (context.weapon) context.weapon.gameObject.SetActive(false);
+            context.player.ammoDisplay.transform.parent.gameObject.SetActive(false);
         }
     }
 }

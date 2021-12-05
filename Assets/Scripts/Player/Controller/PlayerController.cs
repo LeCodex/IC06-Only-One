@@ -17,6 +17,8 @@ public class PlayerController : MonoBehaviour
     public Collider2D solidCollider;
     public Hazard possessedHazard;
     public Sprite pickUpSpriteHint;
+    public Animator aliveAnimator;
+    public Animator ghostAnimator;
 
     public Rigidbody2D rb { private set; get; }
     public Weapon weapon { private set; get; }
@@ -25,7 +27,6 @@ public class PlayerController : MonoBehaviour
     public List<Hazard> availableHazards { private set; get; } = new List<Hazard>();
     public float stun { private set; get; }
 
-    Animator animator;
     string currentAnimation = "";
     List<Weapon> availableWeapons = new List<Weapon>();
     ControllerStateBase controllerState;
@@ -42,7 +43,6 @@ public class PlayerController : MonoBehaviour
     {
         player = GetComponent<PlayerScript>();
         rb = GetComponent<Rigidbody2D>();
-        animator = GetComponentInChildren<Animator>();
     }
 
 	private void Start()
@@ -185,7 +185,7 @@ public class PlayerController : MonoBehaviour
         if (availableHazards.Count == 0) GetComponent<ButtonHint>().HideHint();
     }
 
-    public void PlayAnimation(string animation)
+    public void PlayAnimation(Animator animator, string animation)
 	{
         if (animation == currentAnimation) return;
 

@@ -1,0 +1,91 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Purple
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 0
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 0
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 2800000, guid: f4137d7b03879ad41ba119645d225540, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 7629104117493503747, guid: f4137d7b03879ad41ba119645d225540, type: 3}
+  - {fileID: 5107090656493808307, guid: f4137d7b03879ad41ba119645d225540, type: 3}
+  - {fileID: -4962117912180283591, guid: f4137d7b03879ad41ba119645d225540, type: 3}
+  - {fileID: 971100779691010657, guid: f4137d7b03879ad41ba119645d225540, type: 3}
+  - {fileID: 3877477438693195307, guid: f4137d7b03879ad41ba119645d225540, type: 3}
+  - {fileID: -569336004317658908, guid: f4137d7b03879ad41ba119645d225540, type: 3}
+  - {fileID: 8558318616357224403, guid: f4137d7b03879ad41ba119645d225540, type: 3}
+  - {fileID: 1373848034870041371, guid: f4137d7b03879ad41ba119645d225540, type: 3}
+  - {fileID: -9070780050964617352, guid: f4137d7b03879ad41ba119645d225540, type: 3}
+  - {fileID: -2574069884293368963, guid: f4137d7b03879ad41ba119645d225540, type: 3}
+  - {fileID: 4677569630261717409, guid: f4137d7b03879ad41ba119645d225540, type: 3}
+  - {fileID: -8578311384045877872, guid: f4137d7b03879ad41ba119645d225540, type: 3}
+  - {fileID: 1488159953486685425, guid: f4137d7b03879ad41ba119645d225540, type: 3}
+  - {fileID: -4747760339582410009, guid: f4137d7b03879ad41ba119645d225540, type: 3}
+  - {fileID: -4703789415892798848, guid: f4137d7b03879ad41ba119645d225540, type: 3}
+  - {fileID: 7197823540959639406, guid: f4137d7b03879ad41ba119645d225540, type: 3}
+  - {fileID: -2176409617668577315, guid: f4137d7b03879ad41ba119645d225540, type: 3}
+  - {fileID: 2641393631806229255, guid: f4137d7b03879ad41ba119645d225540, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - dr3
+  - dr2
+  - dr1
+  - dr0
+  - dr4
+  - ul0
+  - ul1
+  - ul2
+  - ul3
+  - dl4
+  - dl1
+  - dl0
+  - dl3
+  - dl2
+  - ur2
+  - ur3
+  - ur0
+  - ur1
+  m_RenderDataMap: {}
+  m_Tag: Purple
+  m_IsVariant: 0

@@ -16,6 +16,9 @@ namespace PlayerControllerState
             context.speed = 0;
             context.gameObject.layer = LayerMask.NameToLayer("Dead"); // Collide with walls, not players
 
+            context.aliveAnimator.transform.rotation = Quaternion.Euler(0f, 0f, 90f);
+            context.aliveAnimator.Play("IdleR");
+
             // Play death animation
         }
 
@@ -32,7 +35,7 @@ namespace PlayerControllerState
 
         public override void ExitState(PlayerController context)
         {
-
+            context.aliveAnimator.transform.rotation = Quaternion.identity;
         }
     }
 }

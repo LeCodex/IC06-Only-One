@@ -157,7 +157,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3544155818338337061}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &3544155817158455824
 SpriteRenderer:
@@ -220,7 +220,7 @@ Animator:
   m_GameObject: {fileID: 3544155817158455837}
   m_Enabled: 0
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: bcfe8027e6abf1f4f857018f77f387ec, type: 2}
+  m_Controller: {fileID: 9100000, guid: 1e1764a507e425d4f9bfaa4189c8b9c5, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -257,7 +257,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3544155818338337061}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3544155818338337058
 GameObject:
@@ -288,8 +288,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 3544155817743322774}
   - {fileID: 3544155817158455838}
+  - {fileID: 3544155817743322774}
   - {fileID: 5581018251598480827}
   m_Father: {fileID: 0}
   m_RootOrder: 0

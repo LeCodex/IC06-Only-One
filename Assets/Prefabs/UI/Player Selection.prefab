@@ -220,6 +220,20 @@ MonoBehaviour:
   readySprite: {fileID: 7497255661905862620}
   player: {fileID: 0}
   parent: {fileID: 0}
+  skins:
+  - {fileID: 4343727234628468602, guid: 8d60336b7ffda344ea9dd5a37bfd3df2, type: 2}
+  - {fileID: 4343727234628468602, guid: 45035efd0e2925b469f0fa477e896e00, type: 2}
+  - {fileID: 4343727234628468602, guid: 70a669d94e2594041acbaf2c1227733a, type: 2}
+  - {fileID: 4343727234628468602, guid: c7acf3d16f51c3b4a95132f0f23576d1, type: 2}
+  - {fileID: 4343727234628468602, guid: 1ae10781e0ba1a24992fcfffb7d9cb7a, type: 2}
+  - {fileID: 4343727234628468602, guid: e17e5b52bb4277c4ab545d88da92bd27, type: 2}
+  skinNames:
+  - Rouge
+  - Bleu
+  - Vert
+  - Jaune
+  - Violet
+  - Cyan
 --- !u!1 &7497255660668816729
 GameObject:
   m_ObjectHideFlags: 0
