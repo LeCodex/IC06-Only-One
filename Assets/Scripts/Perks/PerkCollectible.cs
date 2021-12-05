@@ -8,9 +8,15 @@ namespace PerkSystem
 	{
 		public Perk perk;
 
+		AudioSource pickupSound;
+		SpriteRenderer sprite;
+		Collider2D coll;
+
 		void Awake()
 		{
-			SpriteRenderer sprite = GetComponent<SpriteRenderer>();
+			pickupSound = GetComponentInChildren<AudioSource>();
+			coll = GetComponentInChildren<Collider2D>();
+			sprite = GetComponent<SpriteRenderer>();
 			sprite.sprite = perk.sprite;
 		}
 
@@ -19,7 +25,18 @@ namespace PerkSystem
 		{
 			PlayerScript player = collider.GetComponent<PlayerScript>();
 
+			pickupSound.Play();
+
 			player.GainPerk(perk);
+			sprite.enabled = false;
+			coll.enabled = false;
+			StartCoroutine(DestroyIn(2f));
+		}
+
+		IEnumerator DestroyIn(float time)
+		{
+			yield return new WaitForSeconds(time);
+
 			Destroy(gameObject);
 		}
 	}

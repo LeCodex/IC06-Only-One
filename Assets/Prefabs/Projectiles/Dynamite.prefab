@@ -182,7 +182,7 @@ MonoBehaviour:
   rb: {fileID: 3593667475628784637}
   solidCollider: {fileID: 0}
   wallCollider: {fileID: 7319003503666354103}
-  fuse: 3
+  fuse: 2
 --- !u!114 &3131685273503820155
 MonoBehaviour:
   m_ObjectHideFlags: 0
