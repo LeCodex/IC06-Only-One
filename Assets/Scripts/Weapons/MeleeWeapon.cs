@@ -54,18 +54,20 @@ namespace WeaponSystem
 		protected bool TryAndHitPeople(Vector3 input)
 		{
 			swingSound.Play();
-			
+
+			bool didHit = false;
 			Collider2D[] hit = Physics2D.OverlapCircleAll(owner.transform.position + input * attackRange, attackSize, enemyLayers);
 			foreach (Collider2D col in hit)
 			{
 				PlayerScript enemy = col.GetComponent<PlayerScript>();
 				if (enemy == owner) continue;
 
+				didHit = true;
 				enemy.Damage(new DamageInfo(owner.id, enemy.id, attackDamage, "Melee"));
 				enemy.controller.Knockback(1f, (enemy.transform.position - transform.position).normalized * attackKnockback);
 			}
 
-			return (hit.Length > 0);
+			return didHit;
 		}
 	}
 }

@@ -9,7 +9,14 @@ namespace WeaponSystem
 		public int attackDamage = 30;
 		public Sprite hintSprite;
 
+		public SpriteRenderer render { private set; get; }
+
 		protected PlayerScript owner;
+
+		private void Awake()
+		{
+			render = GetComponentInChildren<SpriteRenderer>();
+		}
 
 		protected virtual void Start()
 		{

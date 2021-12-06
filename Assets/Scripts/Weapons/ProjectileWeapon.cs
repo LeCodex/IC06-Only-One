@@ -55,11 +55,15 @@ namespace WeaponSystem
 
 			GetComponentInChildren<SpriteRenderer>().enabled = ammo > 1 || !hideWhenOut;
 
-			if (!projectile) projectile = Instantiate(ammunition, attackPoint.position, Quaternion.identity).GetComponent<Projectile>();
+			if (!projectile)
+			{
+				projectile = Instantiate(ammunition, attackPoint.position, Quaternion.identity).GetComponent<Projectile>();
+				projectile.Claim(owner);
+			}
 			if (!aimingArrow) aimingArrow = Instantiate(GameManager.current.aimingArrow, owner.transform.position, transform.rotation);
-
-			projectile.Claim(owner);
+			
 			owner.controller.Pause();
+			projectile.transform.rotation = Quaternion.Euler(0f, 0f, owner.controller.lookingRight ? 0f : 180f);
 			Vector2 input = Input.GetAxisRaw("Horizontal" + owner.id) * Vector2.right + Input.GetAxisRaw("Vertical" + owner.id) * Vector2.up;
 			if (input.sqrMagnitude > 0f) aimingArrow.transform.rotation = Quaternion.Euler(0f, 0f, Vector2.SignedAngle(owner.transform.right, input));
 		}

@@ -39,6 +39,8 @@ namespace PlayerControllerState
             {
                 context.TakeClosestWeapon();
             }
+
+            context.weapon.render.sortingOrder = context.lookingUp ? -1 : 0;
         }
 
 		public override void FixedUpdate(PlayerController context)
