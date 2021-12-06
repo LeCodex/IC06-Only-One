@@ -24,9 +24,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Arenas/Four Rooms.unity
     guid: 4f220f3931b79244faa4b235afe45b42
   - enabled: 1
-    path: Assets/Scenes/Arenas/Two Rooms.unity
-    guid: 2ef83ef6b46b7f644bd004d6999f11e9
-  - enabled: 1
     path: Assets/Scenes/Arenas/Three Rooms.unity
     guid: 8e0101fd1b9536c49a32e6542aca0f3c
+  - enabled: 1
+    path: Assets/Scenes/Arenas/Two Rooms.unity
+    guid: 2ef83ef6b46b7f644bd004d6999f11e9
   m_configObjects: {}

@@ -26,7 +26,6 @@ public class PlayerScript : MonoBehaviour
     public List<HealthChange> healthChanges { private set; get; } = new List<HealthChange>(); // Storing what changed your health for intermission puproses
     public List<Perk> perks { private set; get; } = new List<Perk>();
 
-    Transform HUD;
     float invulnerabilityTime;
     SpriteRenderer spriteRenderer;
 
@@ -40,7 +39,6 @@ public class PlayerScript : MonoBehaviour
     void Start()
     {
         health = GameRules.current.PLAYER_MAX_HEALTH;
-        HUD = GameManager.current.playerHuds.GetChild(id - 1);
 
         controller.ChangeState(PlayerState.OutOfGame);
 
@@ -53,7 +51,7 @@ public class PlayerScript : MonoBehaviour
         // Maybe move the controller update into here
 
         // Update the HUD
-        HUD.GetComponentInChildren<Slider>().value = (float)health / GameRules.current.PLAYER_MAX_HEALTH;
+        playerHud.GetComponentInChildren<Slider>().value = (float)health / GameRules.current.PLAYER_MAX_HEALTH;
 
         // Update invulnerability status
         if (invulnerabilityTime > 0f)

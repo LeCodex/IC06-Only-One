@@ -93,20 +93,18 @@ public class PlayerSelection : MonoBehaviour
         CinemachineTargetGroup targetGroup = FindObjectOfType<CinemachineTargetGroup>();
         foreach (SelectionHUD hud in selectionHUDs)
         {
-            if (!hud.ready)
+            if (hud.ready)
+            {
+                hud.player.playerHud.gameObject.SetActive(true);
+                hud.player.intermissionHud.gameObject.SetActive(true);
+                targetGroup.AddMember(hud.player.transform, 1, 5);
+            }
+            else
             {
                 hud.player.gameObject.SetActive(false);
                 hud.player.playerHud.gameObject.SetActive(false);
                 hud.player.intermissionHud.gameObject.SetActive(false);
-                hud.player.ready = true;
                 GameManager.current.players.Remove(hud.player);
-            }
-            else
-			{
-                hud.player.gameObject.SetActive(true);
-                hud.player.playerHud.gameObject.SetActive(true);
-                hud.player.intermissionHud.gameObject.SetActive(true);
-                targetGroup.AddMember(hud.player.transform, 1, 5);
             }
         }
 
