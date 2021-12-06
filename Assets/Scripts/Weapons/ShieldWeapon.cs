@@ -35,19 +35,22 @@ namespace WeaponSystem
 
 			if (chargeRemaining > 0f)
 			{
+				swingSound.mute = true;
+				animator.Play("Charge");
 				owner.controller.rb.velocity = chargeSpeed * chargeDirection * Time.fixedDeltaTime;
 
 				if (hitPeopleDuringCharge) HitPeople();
 
 				if ((oldPosition - owner.transform.position).magnitude <= 0.01f && chargeRemaining < chargeDuration) chargeRemaining = -1f;
 				chargeRemaining -= Time.fixedDeltaTime;
-			}
-
-			if (chargeRemaining < 0f)
+			} 
+			else if (chargeRemaining < 0f)
 			{
+				swingSound.mute = false;
 				owner.ClearInvulnerability();
 				owner.controller.Unstun();
 				chargeRemaining = 0;
+				animator.Play("Attack");
 				HitPeople();
 			}
 
@@ -68,6 +71,7 @@ namespace WeaponSystem
 			} 
 			else
 			{
+				animator.Play("Attack");
 				HitPeople();
 			}
 

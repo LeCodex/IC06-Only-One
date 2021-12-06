@@ -59,6 +59,7 @@ namespace WeaponSystem
 
 		void HitPeople()
 		{
+			animator.SetTrigger("Attack");
 			Vector3 input = Input.GetAxisRaw("Horizontal" + owner.id) * Vector2.right + Input.GetAxisRaw("Vertical" + owner.id) * Vector2.up;
 			if (input.magnitude == 0f) input = owner.controller.lookingRight ? Vector2.right : Vector2.left;
 			TryAndHitPeople(input);

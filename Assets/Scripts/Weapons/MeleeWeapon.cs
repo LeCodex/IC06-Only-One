@@ -54,7 +54,6 @@ namespace WeaponSystem
 		protected void TryAndHitPeople(Vector3 input)
 		{
 			swingSound.Play();
-			animator.SetTrigger("Attack");
 			
 			Collider2D[] hit = Physics2D.OverlapCircleAll(owner.transform.position + input * attackRange, attackSize, enemyLayers);
 			foreach (Collider2D col in hit)
