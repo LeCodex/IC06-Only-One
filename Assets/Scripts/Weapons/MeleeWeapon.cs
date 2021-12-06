@@ -51,7 +51,7 @@ namespace WeaponSystem
 			startCharge = false;
 		}
 
-		protected void TryAndHitPeople(Vector3 input)
+		protected bool TryAndHitPeople(Vector3 input)
 		{
 			swingSound.Play();
 			
@@ -64,6 +64,8 @@ namespace WeaponSystem
 				enemy.Damage(new DamageInfo(owner.id, enemy.id, attackDamage, "Melee"));
 				enemy.controller.Knockback(1f, (enemy.transform.position - transform.position).normalized * attackKnockback);
 			}
+
+			return (hit.Length > 0);
 		}
 	}
 }

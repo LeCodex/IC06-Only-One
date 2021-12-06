@@ -124,7 +124,12 @@ namespace WeaponSystem
 			}
 			if (input.magnitude == 0f) input = owner.controller.lookingRight ? Vector2.right : Vector2.left;
 
-			TryAndHitPeople(input);
+			bool hit = TryAndHitPeople(input);
+
+			if (hit)
+			{
+				chargeRemaining = -1f;
+			}
 		}
 
 		protected override void OnEndRound()
