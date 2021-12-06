@@ -7,6 +7,7 @@ public class Spawner : MonoBehaviour
 	public GameObject[] objects;
 	public float spawnTime = 10f;
 	public int spawnOnStart = 0;
+	public LayerMask detectionLayer;
 
 	public static Spawner current;
 
@@ -15,11 +16,14 @@ public class Spawner : MonoBehaviour
 
 	private void Awake()
 	{
-		foreach(Transform child in transform)
+		foreach (Transform child in transform)
 		{
 			spawnpoints.Add(child.position);
 		}
+	}
 
+	private void Start()
+	{
 		for (int i = 0; i < spawnOnStart; i++)
 		{
 			SpawnObject();
@@ -49,7 +53,7 @@ public class Spawner : MonoBehaviour
 		{
 			point = availableSpawnpoints[Random.Range(0, availableSpawnpoints.Count)];
 			availableSpawnpoints.Remove(point);
-		} while (Physics2D.OverlapCircleAll(point, .1f).Length > 0 && availableSpawnpoints.Count > 0);
+		} while (Physics2D.OverlapCircleAll(point, .1f, detectionLayer).Length > 0 && availableSpawnpoints.Count > 0);
 
 		// No valid spawnpoint
 		if (availableSpawnpoints.Count == 0) return;

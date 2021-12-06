@@ -55,6 +55,9 @@ MonoBehaviour:
   - {fileID: 5304351360985479273, guid: 6c8580f0d610bb144bf40ed15fc4205e, type: 3}
   spawnTime: 10
   spawnOnStart: 0
+  detectionLayer:
+    serializedVersion: 2
+    m_Bits: 8192
 --- !u!1 &219722839449351914
 GameObject:
   m_ObjectHideFlags: 0
