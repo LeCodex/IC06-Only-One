@@ -18,13 +18,15 @@ namespace ArenaEnvironment
         [SerializeField]
         float wait = 0f;
         Animator animator;
+        Collider2D selfCollider;
 
-		static string[] animationStates = { "Cannon_R", "Cannon_U", "Cannon_L", "Cannon_D" };
+        static string[] animationStates = { "Cannon_R", "Cannon_U", "Cannon_L", "Cannon_D" };
 
 		private void Awake()
 		{
             animator = GetComponentInChildren<Animator>();
-		}
+            selfCollider = GetComponent<Collider2D>();
+        }
 
 		public override void OnPossess(PlayerController possessor)
         {
@@ -59,8 +61,7 @@ namespace ArenaEnvironment
 
             Projectile projectile = Instantiate(ammo, transform.position + aimingArrow.transform.right, Quaternion.identity).GetComponent<Projectile>();
             projectile.Claim(ghost.player);
-
-            Collider2D selfCollider = GetComponent<Collider2D>();
+            
             foreach (Collider2D col in projectile.GetComponents<Collider2D>())
             {
                 if (!col.isTrigger) Physics2D.IgnoreCollision(col, selfCollider);

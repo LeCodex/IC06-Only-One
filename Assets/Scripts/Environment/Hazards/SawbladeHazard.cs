@@ -58,8 +58,7 @@ namespace ArenaEnvironment
             float localProgress = progress - currentNode;
             if (oldNode != currentNode)
             {
-                pathDirection = path[(currentNode + 1) % path.Length].position 
-                    - path[currentNode].position;
+                pathDirection = path[(currentNode + 1) % path.Length].position - path[currentNode].position;
             }
             rb.MovePosition((Vector2)path[currentNode].position + localProgress * pathDirection);
 
