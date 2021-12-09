@@ -130,6 +130,7 @@ namespace WeaponSystem
 
 		protected override void OnEndRound()
 		{
+			chargeRemaining = 0f;
 			UpdateChargesRemaining(chargeAmount);
 			base.OnEndRound();
 		}

@@ -196,7 +196,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   radius: 4
-  damage: 50
+  damage: 35
   enemyLayers:
     serializedVersion: 2
     m_Bits: 8

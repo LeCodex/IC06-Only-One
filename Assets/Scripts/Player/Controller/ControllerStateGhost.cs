@@ -7,6 +7,8 @@ namespace PlayerControllerState
 {
     public class ControllerStateGhost : ControllerStateBase
     {
+        float dontUpdateAnimation;
+
         public override void EnterState(PlayerController context)
         {
             context.speed = GameRules.current.PLAYER_GHOST_SPEED;
@@ -16,7 +18,8 @@ namespace PlayerControllerState
             context.aliveAnimator.gameObject.SetActive(false);
 
             // Play "ghosting" animation
-            // Particles
+            context.ghostAnimator.Play("Unpossess");
+            dontUpdateAnimation = .35f; // Ugly fix but I don't got time
         }
 
         public override void Update(PlayerController context)
@@ -31,10 +34,14 @@ namespace PlayerControllerState
 		{
 			base.FixedUpdate(context);
 
-            if (context.rb.velocity.magnitude > 0f)
-                context.PlayAnimation(context.ghostAnimator, "Idle" + context.GetAnimationStateDirection());
-            else
-                context.PlayAnimation(context.ghostAnimator, "IdleD" + context.GetAnimationFlipHorizontal());
+            dontUpdateAnimation -= Time.fixedDeltaTime;
+            if (dontUpdateAnimation <= 0f)
+			{
+                if (context.rb.velocity.magnitude > 0f)
+                    context.PlayAnimation(context.ghostAnimator, "Idle" + context.GetAnimationStateDirection());
+                else
+                    context.PlayAnimation(context.ghostAnimator, "IdleD" + context.GetAnimationFlipHorizontal());
+            }
         }
 
 		public override void ExitState(PlayerController context)

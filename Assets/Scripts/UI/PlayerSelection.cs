@@ -4,10 +4,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerSelection : MonoBehaviour
 {
     public Text title;
+    public Fade fadeToBlack;
 
     SelectionHUD[] selectionHUDs;
     float waitTime = 3f;
@@ -52,6 +54,11 @@ public class PlayerSelection : MonoBehaviour
                     }
                 }
 			}
+		}
+
+        if (Input.GetButtonDown("Menu"))
+		{
+            StartCoroutine(LoadMenuScene());
 		}
     }
 
@@ -128,4 +135,13 @@ public class PlayerSelection : MonoBehaviour
 			}
         }
     }*/
+
+    IEnumerator LoadMenuScene()
+    {
+        fadeToBlack.goalFade = 1f;
+
+        yield return new WaitForSeconds(.6f);
+
+        SceneManager.LoadSceneAsync(0);
+    }
 }

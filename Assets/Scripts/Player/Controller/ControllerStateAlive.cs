@@ -6,6 +6,8 @@ namespace PlayerControllerState
 {
     public class ControllerStateAlive : ControllerStateBase
     {
+        bool presingDownAttack = false;
+
         public override void EnterState(PlayerController context)
         {
             context.speed = GameRules.current.PLAYER_ALIVE_SPEED;
@@ -17,6 +19,8 @@ namespace PlayerControllerState
             context.aliveAnimator.gameObject.SetActive(true);
             context.ghostAnimator.gameObject.SetActive(false);
             context.player.ammoDisplay.transform.parent.gameObject.SetActive(true);
+
+            presingDownAttack = false;
         }
 
         public override void Update(PlayerController context)
@@ -27,11 +31,13 @@ namespace PlayerControllerState
                 {
                     context.charge = Math.Min(context.charge + Time.deltaTime, 1f);
                     context.weapon.Charge(context.charge);
+                    presingDownAttack = true;
                 }
-                else if (Input.GetButtonUp("Attack" + context.player.id))
+                else if (!Input.GetButtonUp("Attack" + context.player.id) && presingDownAttack)
                 {
                     context.weapon.Attack(context.charge);
                     context.charge = 0f;
+                    presingDownAttack = false;
 			    }
 			}
 

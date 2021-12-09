@@ -62,7 +62,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffa075e2834bb32449c171f4dca1abcc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackDamage: 30
+  attackDamage: 35
   hintSprite: {fileID: -3333449033900058284, guid: a6784e48b69d18a46813cdc35f990108, type: 3}
   attackRange: 0.5
   attackSize: 0.5
@@ -75,7 +75,7 @@ MonoBehaviour:
   swingSound: {fileID: 2596271802331651621}
   chargeDuration: 2
   chargeSpeed: 1800
-  chargeAmount: 3
+  chargeAmount: 6
   hitPeopleDuringCharge: 1
 --- !u!1 &654853841674826669
 GameObject:

@@ -11,6 +11,7 @@ namespace PlayerControllerState
             // Don't need to change the layer, as you should only change from the Ghost state which doesn't collide with anything except borders
 
             // Play possession animation for player
+            context.ghostAnimator.Play("Possess");
 
             context.possessedHazard.OnPossess(context); // Play possession animation for the hazard
 

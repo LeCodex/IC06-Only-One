@@ -34,6 +34,7 @@ namespace GameRoundState
 			if (timeToReload <= 0f)
 			{
 				SceneManager.LoadSceneAsync(1);
+				timeToReload = float.PositiveInfinity;
 			}
 		}
 

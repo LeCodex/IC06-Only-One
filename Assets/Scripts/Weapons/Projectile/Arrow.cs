@@ -16,6 +16,7 @@ namespace WeaponSystem
 			transform.rotation = Quaternion.AngleAxis(Vector2.SignedAngle(Vector2.right, direction), Vector3.forward);
 
 			solidCollider.enabled = false;
+			wallCollider.enabled = false;
 			pickupCollider.enabled = true;
 
 			PlayerScript player = collision.gameObject.GetComponent<PlayerScript>();
