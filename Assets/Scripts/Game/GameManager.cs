@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour
     public GameObject perkHudObject;
     public AsyncOperation sceneLoading;
     public PlayerScript winner;
+    public PauseMenu pauseMenu;
 
     public int currentArenaScene { private set; get; } = 0;
     public RoundState currentState { private set; get; }
@@ -123,4 +124,9 @@ public class GameManager : MonoBehaviour
         timeRatio = ratio;
         timeSlowdownTime = duration;
 	}
+
+    public void EndSlowDown()
+    {
+        timeSlowdownTime = -1;
+    }
 }

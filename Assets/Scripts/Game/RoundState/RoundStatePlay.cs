@@ -70,14 +70,30 @@ namespace GameRoundState
 				}
 			}
 
-			if (alive <= 1 && !roundEnded)
+			if (!roundEnded)
 			{
-				GameManager.current.winner = lastOne;
-				if (lastOne) lastOne.score++;
+				// Detect pause
+				if (!GameManager.current.pauseMenu.shown)
+				{
+					foreach (PlayerScript player in GameManager.current.players)
+					{
+						if (Input.GetButton("Menu"))
+						{
+							GameManager.current.pauseMenu.Show();
+						}
+					}
+				}
 
-				roundEnded = true;
-				
-				GameManager.current.ChangeState(lastOne.score < GameRules.current.GAME_MAX_SCORE ? RoundState.Intermission : RoundState.Win, 3f);
+				// Detect win
+				if (alive <= 1)
+				{
+					GameManager.current.winner = lastOne;
+					if (lastOne) lastOne.score++;
+
+					roundEnded = true;
+
+					GameManager.current.ChangeState(lastOne.score < GameRules.current.GAME_MAX_SCORE ? RoundState.Intermission : RoundState.Win, 3f);
+				}
 			}
 		}
 

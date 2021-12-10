@@ -79,9 +79,10 @@ public class PlayerSelection : MonoBehaviour
         if (joined >= 2 && canContinue)
         {
             waitTime -= Time.deltaTime;
-            title.text = "DEBUT DANS " + (Math.Floor(waitTime * 10f) / 10f).ToString().PadRight(2, '0');
-            Debug.Log(waitTime);
+
             // Display it on screen
+            title.text = "DEBUT DANS " + (Math.Floor(waitTime * 10f) / 10f).ToString().PadRight(2, '0');
+            // Debug.Log(waitTime);
         }
         else
         {
