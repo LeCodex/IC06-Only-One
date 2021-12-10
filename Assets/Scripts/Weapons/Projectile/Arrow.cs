@@ -11,6 +11,8 @@ namespace WeaponSystem
 
 		void OnCollisionEnter2D(Collision2D collision)
 		{
+			if (!thrown) return;
+
 			rb.velocity = Vector2.zero;
 			rb.angularVelocity = 0;
 			transform.rotation = Quaternion.AngleAxis(Vector2.SignedAngle(Vector2.right, direction), Vector3.forward);

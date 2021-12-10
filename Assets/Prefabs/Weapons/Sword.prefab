@@ -177,7 +177,7 @@ MonoBehaviour:
   attackDamage: 40
   hintSprite: {fileID: -3333449033900058284, guid: a6784e48b69d18a46813cdc35f990108, type: 3}
   attackRange: 1
-  attackSize: 0.7
+  attackSize: 1.5
   attackCooldown: 0.5
   attackKnockback: 50
   enemyLayers:

@@ -62,10 +62,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffa075e2834bb32449c171f4dca1abcc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackDamage: 35
+  attackDamage: 50
   hintSprite: {fileID: -3333449033900058284, guid: a6784e48b69d18a46813cdc35f990108, type: 3}
-  attackRange: 0.5
-  attackSize: 0.5
+  attackRange: 1
+  attackSize: 1.5
   attackCooldown: 0.5
   attackKnockback: 50
   enemyLayers:

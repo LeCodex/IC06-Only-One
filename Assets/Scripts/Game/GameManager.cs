@@ -59,6 +59,8 @@ public class GameManager : MonoBehaviour
         }
 
         winningTransition.Play("Hide");
+
+        Application.targetFrameRate = 60;
     }
 
     void Update()

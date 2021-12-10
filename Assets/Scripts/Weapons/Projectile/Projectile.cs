@@ -17,10 +17,12 @@ namespace WeaponSystem
 		public PlayerScript owner { private set; get; }
 		public ProjectileWeapon weapon { private set; get; }
 
+		protected bool thrown = false;
 
 		private void Awake()
 		{
 			GameEventSystem.current.onEndRound += OnEndRound;
+			thrown = false;
 		}
 
 		public void Claim(PlayerScript player)
@@ -32,9 +34,6 @@ namespace WeaponSystem
 			{
 				if (!col.isTrigger) Physics2D.IgnoreCollision(col, owner.controller.projectileCollider);
 			}
-
-			if (solidCollider) solidCollider.enabled = true;
-			if (wallCollider) wallCollider.enabled = true;
 		}
 
 		void FixedUpdate()
@@ -46,6 +45,11 @@ namespace WeaponSystem
 
 		public void Throw(Vector2 dir)
 		{
+			thrown = true;
+
+			if (solidCollider) solidCollider.enabled = true;
+			if (wallCollider) wallCollider.enabled = true;
+
 			direction = dir.normalized;
 			rb.velocity = direction * speed;
 		}

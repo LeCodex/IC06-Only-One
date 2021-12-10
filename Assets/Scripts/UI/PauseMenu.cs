@@ -6,25 +6,16 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using WeaponSystem;
 
-public class PauseMenu : MonoBehaviour
+public class PauseMenu : MenuManager
 {
-    public Transform options;
     public GameObject menu;
     public Fade fadeToBlack;
 
     public bool shown { private set; get; }
 
-    int maxOptions;
-    int currentOption;
-    float timeSinceLastInput = 0f;
-
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        maxOptions = options.childCount;
-        currentOption = 0;
-        UpdateOptionColor(new Color(0, 255, 0, 255));
-
         Hide();
     }
 
@@ -32,35 +23,10 @@ public class PauseMenu : MonoBehaviour
     void Update()
     {
         if (!shown) return;
-
-        float axis = Input.GetAxisRaw("Vertical1");
-        // Debug.Log(axis);
-
-        if (currentOption < maxOptions)
-        {
-            if (Math.Abs(axis) < .5f)
-            {
-                timeSinceLastInput = Time.unscaledTime;
-            }
-            else if (timeSinceLastInput <= Time.unscaledTime)
-            {
-                timeSinceLastInput = Time.unscaledTime + .5f;
-                UpdateOptionColor(new Color(255, 255, 255, 255));
-
-                currentOption = (currentOption - (int)Math.Round(axis) + maxOptions) % maxOptions;
-                UpdateOptionColor(new Color(0, 255, 0, 255));
-            }
-        }
-
-        if (Input.GetButtonDown("Attack1")) ChooseCurrentOption();
+        UpdateMenu();
     }
 
-    void UpdateOptionColor(Color c)
-    {
-        options.GetChild(currentOption).GetComponent<Text>().color = c;
-    }
-
-    void ChooseCurrentOption()
+    protected override void ChooseCurrentOption()
     {
         // Debug.Log("Chose " + currentOption);
         switch (currentOption)

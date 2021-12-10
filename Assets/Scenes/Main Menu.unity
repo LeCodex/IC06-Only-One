@@ -249,10 +249,10 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Cr\xE9dits:\n- Jeu fait sous Unity 2020 3 19f1\n- Code par Philippe LEFEBVRE\n-
-    Graphismes et sons par Lucas STALLKNECHT\n- Niveaux et design par L\xE9on\n-
-    Ic\xF4nes de bouton par Kenney\n- Old London Font de dafont\n- Typo Round de
-    StudioTypo"
+  m_Text: "Cr\xE9dits:\n- Jeu fait sous Unity 2020 3 22f1\n- Code par Philippe LEFEBVRE\n-
+    Graphismes et sons par Lucas STALLKNECHT\n- Niveaux et design par L\xE9on DO
+    CASTELO\n- Ic\xF4nes de bouton par Kenney\n- Old London Font de dafont\n- Typo
+    Round de StudioTypo"
 --- !u!222 &104518285
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -477,7 +477,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 268607568}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 446fd7335fc59fe468276ad032ad8549, type: 3}
+  m_Script: {fileID: 11500000, guid: 08a4766b5e2ae914a966333cd5b6c7c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   options: {fileID: 705207188}
@@ -733,7 +733,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.23529412}
+  m_Color: {r: 0, g: 0, b: 0, a: 0}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

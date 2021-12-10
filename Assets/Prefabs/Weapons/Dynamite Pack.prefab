@@ -326,7 +326,7 @@ MonoBehaviour:
   hintSprite: {fileID: -3333449033900058284, guid: a6784e48b69d18a46813cdc35f990108, type: 3}
   attackPoint: {fileID: 3544155817743322774}
   ammunition: {fileID: 6960456132966326600, guid: 2b46fc2276d43584a8791b04edc36c73, type: 3}
-  maxAmmo: 5
+  maxAmmo: 3
   ammo: 0
   hideWhenOut: 0
   shootSound: {fileID: 3465739947748265035}

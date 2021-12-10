@@ -5,14 +5,12 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class MenuManager : MonoBehaviour
+public abstract class MenuManager : MonoBehaviour
 {
     public Transform options;
-    public GameObject credits;
-    public Fade fadeToBlack;
 
+    protected int currentOption;
     int maxOptions;
-    int currentOption;
     float timeSinceLastInput = 0f;
 
     // Start is called before the first frame update
@@ -26,8 +24,11 @@ public class MenuManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        timeSinceLastInput -= Time.deltaTime;
+        UpdateMenu();
+    }
 
+    protected void UpdateMenu()
+    {
         float axis = Input.GetAxisRaw("Vertical1");
         // Debug.Log(axis);
 
@@ -35,11 +36,11 @@ public class MenuManager : MonoBehaviour
 		{
             if (Math.Abs(axis) < .5f)
             {
-                timeSinceLastInput = 0f;
+                timeSinceLastInput = Time.unscaledTime;
             }
-            else if (timeSinceLastInput <= 0f)
+            else if (timeSinceLastInput <= Time.unscaledTime)
             {
-                timeSinceLastInput = .5f;
+                timeSinceLastInput = Time.unscaledTime + .5f;
                 UpdateOptionColor(new Color(255, 255, 255, 255));
 
                 currentOption = (currentOption - (int)Math.Round(axis) + maxOptions) % maxOptions;
@@ -55,43 +56,5 @@ public class MenuManager : MonoBehaviour
         options.GetChild(currentOption).GetComponent<Text>().color = c;
     }
 
-    void ChooseCurrentOption()
-    {
-        // Debug.Log("Chose " + currentOption);
-        switch(currentOption)
-		{
-            case 0:
-                StartCoroutine(LoadGameScene());
-                break;
-
-            case 1:
-
-                break;
-
-            case 2:
-                options.gameObject.SetActive(false);
-                credits.SetActive(true);
-                currentOption = 4;
-                break;
-
-            case 3:
-                Application.Quit();
-                break;
-
-            case 4:
-                options.gameObject.SetActive(true);
-                credits.SetActive(false);
-                currentOption = 2;
-                break;
-		}
-    }
-
-    IEnumerator LoadGameScene()
-	{
-        fadeToBlack.goalFade = 1f;
-
-        yield return new WaitForSeconds(.6f);
-
-        SceneManager.LoadSceneAsync(1);
-	}
+    protected abstract void ChooseCurrentOption();
 }

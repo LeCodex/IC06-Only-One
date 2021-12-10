@@ -180,7 +180,7 @@ MonoBehaviour:
   speed: 20
   attackDamage: 10
   rb: {fileID: 3593667475628784637}
-  solidCollider: {fileID: 0}
+  solidCollider: {fileID: 161570563722061906}
   wallCollider: {fileID: 7319003503666354103}
   fuse: 2
 --- !u!114 &3131685273503820155
@@ -195,8 +195,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6898ce5c58aea64408524d42c6fd6976, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 4
-  damage: 35
+  radius: 5
+  damage: 50
   enemyLayers:
     serializedVersion: 2
     m_Bits: 8
@@ -208,7 +208,7 @@ CircleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6960456132966326600}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0

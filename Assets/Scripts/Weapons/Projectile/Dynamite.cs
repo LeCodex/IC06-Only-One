@@ -35,12 +35,13 @@ namespace WeaponSystem
 			firstLine = false;
 
 			PlayerScript player = collision.gameObject.GetComponent<PlayerScript>();
-			if (player) player.Damage(new DamageInfo(owner.id, player.id, attackDamage, "Dynamite Stick"));
+			if (player) Explode();
 		}
 
 		void Explode()
 		{
 			explosion.Explode(owner);
+			weapon.UpdateAmmoCount(1);
 			Destroy(gameObject);
 		}
 	}
