@@ -7,7 +7,7 @@ namespace PlayerControllerState
 {
     public class ControllerStateGhost : ControllerStateBase
     {
-        float dontUpdateAnimation;
+        float dontUpdateAnimation = 0f;
 
         public override void EnterState(PlayerController context)
         {
