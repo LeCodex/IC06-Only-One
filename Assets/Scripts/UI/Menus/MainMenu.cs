@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 public class MainMenu : MenuManager
 {
+    public OptionsMenu optionsMenu;
     public GameObject credits;
     public Fade fadeToBlack;
 
@@ -20,7 +21,9 @@ public class MainMenu : MenuManager
                 break;
 
             case 1:
-
+                enabled = false;
+                optionsMenu.gameObject.SetActive(true);
+                options.gameObject.SetActive(false);
                 break;
 
             case 2:

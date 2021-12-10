@@ -81,14 +81,14 @@
     <Compile Include="Assets\Scripts\Weapons\Projectile\Cannonball.cs" />
     <Compile Include="Assets\Scripts\Weapons\SwordWeapon.cs" />
     <Compile Include="Assets\Scripts\Environment\Spawner.cs" />
-    <Compile Include="Assets\Scripts\UI\MenuManager.cs" />
+    <Compile Include="Assets\Scripts\UI\Menus\MenuManager.cs" />
     <Compile Include="Assets\Scripts\Player\Controller\ControllerStatePossession.cs" />
     <Compile Include="Assets\Scripts\Game\RoundState\RoundStateIntermission.cs" />
     <Compile Include="Assets\Scripts\Game\RoundState\RoundStateWin.cs" />
     <Compile Include="Assets\Scripts\Player\Controller\ControllerStateDead.cs" />
     <Compile Include="Assets\Scripts\Game\RoundState\RoundStateBase.cs" />
     <Compile Include="Assets\Scripts\Environment\Hazards\SawbladeHazard.cs" />
-    <Compile Include="Assets\Scripts\UI\PauseMenu.cs" />
+    <Compile Include="Assets\Scripts\UI\Menus\PauseMenu.cs" />
     <Compile Include="Assets\Scripts\Weapons\Explosion.cs" />
     <Compile Include="Assets\Scripts\Weapons\Projectile\Projectile.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerState.cs" />
@@ -103,7 +103,9 @@
     <Compile Include="Assets\Scripts\Player\Controller\ControllerStateOOG.cs" />
     <Compile Include="Assets\Scripts\Perks\DefensePerk.cs" />
     <Compile Include="Assets\Scripts\Perks\DamagePerk.cs" />
-    <Compile Include="Assets\Scripts\UI\MainMenu.cs" />
+    <Compile Include="Assets\Scripts\UI\Menus\OptionsMenu.cs" />
+    <Compile Include="Assets\Scripts\UI\Menus\MainMenu.cs" />
+    <Compile Include="Assets\Scripts\Game\GameOptions.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Fonts\Typo Round\Read_Me.txt" />

@@ -8,8 +8,8 @@ using UnityEngine.UI;
 public abstract class MenuManager : MonoBehaviour
 {
     public Transform options;
+    public int currentOption;
 
-    protected int currentOption;
     int maxOptions;
     float timeSinceLastInput = 0f;
 
@@ -51,7 +51,7 @@ public abstract class MenuManager : MonoBehaviour
         if (Input.GetButtonDown("Attack1")) ChooseCurrentOption();
     }
 
-	void UpdateOptionColor(Color c)
+	protected void UpdateOptionColor(Color c)
 	{
         options.GetChild(currentOption).GetComponent<Text>().color = c;
     }
