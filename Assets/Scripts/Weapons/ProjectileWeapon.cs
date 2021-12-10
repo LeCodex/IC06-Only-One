@@ -92,6 +92,8 @@ namespace WeaponSystem
 		protected override void OnEndRound()
 		{
 			UpdateAmmoCount(maxAmmo);
+			Destroy(aimingArrow);
+			aimingArrow = null;
 			base.OnEndRound();
 		}
 	}

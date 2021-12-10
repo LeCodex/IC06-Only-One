@@ -18,6 +18,7 @@ namespace WeaponSystem
 		protected Animator animator;
 		protected bool startCharge = true;
 		protected float recharge = 0f;
+		float oldSpeed = 0f;
 
 		protected override void Start()
 		{
@@ -38,7 +39,7 @@ namespace WeaponSystem
 		{
 			if (recharge > 0f) return;
 
-			if (!startCharge) owner.controller.speed += chargeSlowdown;
+			if (!startCharge) owner.controller.speed = oldSpeed;
 			startCharge = true;
 			recharge = attackCooldown;
 		}
@@ -47,7 +48,12 @@ namespace WeaponSystem
 		{
 			if (recharge > 0f) return;
 
-			if (startCharge) owner.controller.speed -= chargeSlowdown;
+			if (startCharge)
+			{
+				oldSpeed = owner.controller.speed;
+				owner.controller.speed = chargeSlowdown;
+			}
+
 			startCharge = false;
 		}
 
