@@ -80,7 +80,6 @@ public class PlayerScript : MonoBehaviour
 
         health -= info.amount;
         healthChanges.Add(new HealthChange(info.amount, info.cause));
-        GameEventSystem.current.OnDamage(info);
 
         if (health <= 0)
         {
@@ -93,6 +92,8 @@ public class PlayerScript : MonoBehaviour
 		{
             MakeInvulnerable(1f);
         }
+
+        GameEventSystem.current.OnDamage(info);
     }
 
     public void Heal(int amount, string cause)
@@ -105,6 +106,7 @@ public class PlayerScript : MonoBehaviour
 
         if (playerState != PlayerState.Alive && health == GameRules.current.PLAYER_MAX_HEALTH)
         {
+            controller.Knockback(.5f, UnityEngine.Random.insideUnitCircle * 30f);
             ChangeState(PlayerState.Alive);
             MakeInvulnerable(2f);
         }

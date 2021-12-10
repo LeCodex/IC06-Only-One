@@ -21,7 +21,7 @@ namespace PerkSystem
 			{
 				PlayerScript victim = GameManager.current.players[info.victim - 1];
 				victim.ClearInvulnerability();
-				victim.Damage(new DamageInfo(player.id, info.victim, (int)Math.Round(info.amount * percent), "Extra"));
+				victim.Damage(new DamageInfo(info.attacker, info.victim, (int)Math.Round(info.amount * percent), "Extra"));
 			}
 		}
 

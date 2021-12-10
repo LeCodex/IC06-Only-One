@@ -24,8 +24,8 @@ namespace WeaponSystem
 			PlayerScript player = collision.gameObject.GetComponent<PlayerScript>();
 			if (!player) return;
 
-			player.Damage(new DamageInfo(owner.id, player.id, attackDamage, "Arrow"));
 			player.controller.Knockback(.5f, (player.transform.position - transform.position).normalized * 50f);
+			player.Damage(new DamageInfo(owner.id, player.id, attackDamage, "Arrow"));
 		}
 
 		void OnTriggerEnter2D(Collider2D collision)
