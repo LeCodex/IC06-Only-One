@@ -20,7 +20,7 @@ namespace ArenaEnvironment
         Animator animator;
         Collider2D selfCollider;
 
-        static string[] animationStates = { "Cannon_R", "Cannon_U", "Cannon_L", "Cannon_D" };
+        static string[] animationStates = { "Cannon_R", "Cannon_UR", "Cannon_U", "Cannon_UL", "Cannon_L", "Cannon_DL", "Cannon_D", "Cannon_DR" };
 
 		private void Awake()
 		{
@@ -51,7 +51,8 @@ namespace ArenaEnvironment
         public override void Tick()
         {
             aimingArrow.transform.Rotate(-Vector3.forward * Input.GetAxisRaw("Horizontal" + ghost.player.id) * turnSpeed * Time.fixedDeltaTime);
-            int index = (int)Math.Floor(((aimingArrow.transform.rotation.eulerAngles.z + 45f) % 360f) / 90f);
+            int index = (int)Math.Floor(((aimingArrow.transform.rotation.eulerAngles.z + 22.5f) % 360f) / 45f);
+            Debug.Log(index);
             animator.Play(animationStates[index]);
         }
 
