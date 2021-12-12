@@ -251,8 +251,8 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: "Cr\xE9dits:\n- Jeu fait sous Unity 2020 3 22f1\n- Code par Philippe LEFEBVRE\n-
     Graphismes et sons par Lucas STALLKNECHT\n- Niveaux et design par L\xE9on DO
-    CASTELO\n- Ic\xF4nes de bouton par Kenney\n- Old London Font de dafont\n- Typo
-    Round de StudioTypo"
+    CASTELO\n- Ic\xF4nes de bouton par Kenney\n- Old London Font de Dieter Steffmann\n-
+    Typo Round de StudioTypo"
 --- !u!222 &104518285
 CanvasRenderer:
   m_ObjectHideFlags: 0

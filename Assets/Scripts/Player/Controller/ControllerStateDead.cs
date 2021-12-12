@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using WeaponSystem;
 
 namespace PlayerControllerState
 {
@@ -18,6 +19,9 @@ namespace PlayerControllerState
 
             context.aliveAnimator.transform.rotation = Quaternion.Euler(0f, 0f, 90f);
             context.aliveAnimator.Play("IdleR");
+
+            context.Unpause();
+            if (context.weapon is ProjectileWeapon) ((ProjectileWeapon)context.weapon).KillAimingArrow();
 
             // Play death animation
         }

@@ -29,7 +29,7 @@ public abstract class MenuManager : MonoBehaviour
 
     protected void UpdateMenu()
     {
-        float axis = Input.GetAxisRaw("Vertical1");
+        float axis = Input.GetAxisRaw("VerticalMenu");
         // Debug.Log(axis);
 
         if (currentOption < maxOptions)
@@ -48,7 +48,7 @@ public abstract class MenuManager : MonoBehaviour
             }
         }
 
-        if (Input.GetButtonDown("Attack1")) ChooseCurrentOption();
+        if (Input.GetButtonDown("Confirm")) ChooseCurrentOption();
     }
 
 	protected void UpdateOptionColor(Color c)
