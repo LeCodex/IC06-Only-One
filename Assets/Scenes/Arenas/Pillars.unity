@@ -133,7 +133,11 @@ PrefabInstance:
     - target: {fileID: 4677375126394179568, guid: 899200f99c3c3a84e95af45683988a12, type: 3}
       propertyPath: pathParent
       value: 
-      objectReference: {fileID: 1756351777}
+      objectReference: {fileID: 704728419}
+    - target: {fileID: 4677375126394179568, guid: 899200f99c3c3a84e95af45683988a12, type: 3}
+      propertyPath: defaultSpeed
+      value: -3
+      objectReference: {fileID: 0}
     - target: {fileID: 4677375126394179568, guid: 899200f99c3c3a84e95af45683988a12, type: 3}
       propertyPath: path.Array.size
       value: 5

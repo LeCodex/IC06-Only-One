@@ -29,4 +29,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Arenas/Two Rooms.unity
     guid: 2ef83ef6b46b7f644bd004d6999f11e9
+  - enabled: 1
+    path: Assets/Scenes/Arenas/Pillars.unity
+    guid: b130c0cf5cb90b245aab6aa8bda6a316
   m_configObjects: {}

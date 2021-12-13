@@ -17,13 +17,12 @@ namespace PlayerControllerState
             context.speed = 0;
             context.gameObject.layer = LayerMask.NameToLayer("Dead"); // Collide with walls, not players
 
+            // Play death animation
             context.aliveAnimator.transform.rotation = Quaternion.Euler(0f, 0f, 90f);
             context.aliveAnimator.Play("IdleR");
 
             context.Unpause();
             if (context.weapon is ProjectileWeapon) ((ProjectileWeapon)context.weapon).KillAimingArrow();
-
-            // Play death animation
         }
 
         public override void Update(PlayerController context)
