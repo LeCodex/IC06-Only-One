@@ -65,6 +65,7 @@ namespace WeaponSystem
 			owner.controller.Pause();
 			projectile.transform.rotation = Quaternion.Euler(0f, 0f, owner.controller.lookingRight ? 0f : 180f);
 			aimingArrow.transform.position = owner.transform.position;
+			projectile.transform.position = attackPoint.position;
 			Vector2 input = Input.GetAxisRaw("Horizontal" + owner.id) * Vector2.right + Input.GetAxisRaw("Vertical" + owner.id) * Vector2.up;
 			if (input.sqrMagnitude > 0f) aimingArrow.transform.rotation = Quaternion.Euler(0f, 0f, Vector2.SignedAngle(owner.transform.right, input));
 		}
@@ -100,7 +101,8 @@ namespace WeaponSystem
 
 		public void KillAimingArrow()
 		{
-			Destroy(aimingArrow);
+			if (aimingArrow) Destroy(aimingArrow);
+			if (projectile) Destroy(projectile);
 		}
 	}
 }

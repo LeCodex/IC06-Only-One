@@ -10,6 +10,7 @@ using Cinemachine;
 public class GameManager : MonoBehaviour
 {
     static public GameManager current;
+
     public Transform playersGroup;
     public List<PlayerScript> players; // The Game manager takes care of all the players (creation, access)
     public Animator intermissionTransition;
@@ -25,6 +26,7 @@ public class GameManager : MonoBehaviour
     public AsyncOperation sceneLoading;
     public PlayerScript winner;
     public PauseMenu pauseMenu;
+    public bool roundEnded;
 
     public int currentArenaScene { private set; get; } = 0;
     public RoundState currentState { private set; get; }

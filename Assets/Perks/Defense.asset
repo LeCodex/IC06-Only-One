@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 584717278712940112, guid: bf158750ee654a940ad09c3059804c4e, type: 3}
   title: Defense
-  percent: 0.2
+  percent: 0.1

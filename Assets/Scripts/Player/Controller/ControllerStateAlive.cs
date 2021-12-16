@@ -21,6 +21,8 @@ namespace PlayerControllerState
             context.player.ammoDisplay.transform.parent.gameObject.SetActive(true);
 
             presingDownAttack = false;
+
+            context.aliveAnimator.transform.rotation = Quaternion.identity;
         }
 
         public override void Update(PlayerController context)

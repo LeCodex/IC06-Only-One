@@ -6,7 +6,6 @@ namespace GameRoundState
 {
 	public class RoundStatePlay : RoundStateBase
 	{
-		bool roundEnded = false;
 		float waitForReset;
 
 		public override void EnterState()
@@ -28,7 +27,7 @@ namespace GameRoundState
 				player.transform.position = target.position;
 			}
 
-			roundEnded = false;
+			GameManager.current.roundEnded = false;
 			waitForReset = 1f;
 
 			// Call the event
@@ -70,7 +69,7 @@ namespace GameRoundState
 				}
 			}
 
-			if (!roundEnded)
+			if (!GameManager.current.roundEnded)
 			{
 				// Detect pause
 				if (!GameManager.current.pauseMenu.shown)
@@ -95,7 +94,7 @@ namespace GameRoundState
 						if (lastOne.score >= GameRules.current.GAME_MAX_SCORE) nextState = RoundState.Win;
 					}
 
-					roundEnded = true;
+					GameManager.current.roundEnded = true;
 
 					GameManager.current.ChangeState(nextState, 3f);
 				}

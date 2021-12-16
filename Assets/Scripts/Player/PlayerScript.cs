@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using WeaponSystem;
 
 public class PlayerScript : MonoBehaviour
 {
@@ -104,10 +105,17 @@ public class PlayerScript : MonoBehaviour
         health = newHealth;
         healthChanges.Add(new HealthChange(newHealth - health, cause));
 
-        if (playerState != PlayerState.Alive && health == GameRules.current.PLAYER_MAX_HEALTH)
+        if (playerState != PlayerState.Alive && health == GameRules.current.PLAYER_MAX_HEALTH && !GameManager.current.roundEnded)
         {
             controller.Knockback(.5f, UnityEngine.Random.insideUnitCircle * 30f);
             ChangeState(PlayerState.Alive);
+
+            if (controller.weapon is ProjectileWeapon)
+            {
+                ProjectileWeapon pw = (ProjectileWeapon)controller.weapon;
+                pw.UpdateAmmoCount(pw.maxAmmo);
+            }
+
             MakeInvulnerable(2f);
         }
     }

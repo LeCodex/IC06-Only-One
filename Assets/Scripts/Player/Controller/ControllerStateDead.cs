@@ -29,7 +29,7 @@ namespace PlayerControllerState
         {
             timer -= Time.deltaTime;
 
-            if (timer <= 0f)
+            if (timer <= 0f && !GameManager.current.roundEnded)
 			{
                 context.player.ChangeState(PlayerState.Ghost);
                 context.player.resurrectSound.Play();
@@ -38,7 +38,7 @@ namespace PlayerControllerState
 
         public override void ExitState(PlayerController context)
         {
-            context.aliveAnimator.transform.rotation = Quaternion.identity;
+            
         }
     }
 }

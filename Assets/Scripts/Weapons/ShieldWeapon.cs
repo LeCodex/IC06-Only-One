@@ -41,7 +41,7 @@ namespace WeaponSystem
 
 				if (hitPeopleDuringCharge) HitPeople();
 
-				if ((oldPosition - owner.transform.position).magnitude <= 0.01f && chargeRemaining < chargeDuration) chargeRemaining = -1f;
+				if ((oldPosition - owner.transform.position).magnitude <= 0.05f && chargeRemaining < chargeDuration) chargeRemaining = -1f;
 				chargeRemaining -= Time.fixedDeltaTime;
 			} 
 			else if (chargeRemaining < 0f)

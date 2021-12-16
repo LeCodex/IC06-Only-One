@@ -70,7 +70,7 @@ namespace WeaponSystem
 
 				didHit = true;
 				enemy.Damage(new DamageInfo(owner.id, enemy.id, attackDamage, "Melee"));
-				enemy.controller.Knockback(1f, (enemy.transform.position - transform.position).normalized * attackKnockback);
+				enemy.controller.Knockback(.5f, (enemy.transform.position - transform.position).normalized * attackKnockback);
 			}
 
 			return didHit;

@@ -31,12 +31,11 @@ namespace WeaponSystem
 		void OnTriggerEnter2D(Collider2D collision)
 		{
 			PlayerScript player = collision.GetComponentInParent<PlayerScript>();
-			if (player != owner) return;
-
+			if (!player) return;
 			Weapon wep = player.controller.weapon;
-			if (wep != weapon) return;
+			if (!(wep is ProjectileWeapon)) return;
 
-			weapon.UpdateAmmoCount(1);
+			((ProjectileWeapon)wep).UpdateAmmoCount(1);
 
 			Destroy(gameObject);
 		}

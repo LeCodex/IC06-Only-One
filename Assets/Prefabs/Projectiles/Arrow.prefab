@@ -100,7 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 60
-  attackDamage: 50
+  attackDamage: 45
   rb: {fileID: 6667177424180183512}
   solidCollider: {fileID: 1165267144015121754}
   wallCollider: {fileID: 2530168741646995797}
