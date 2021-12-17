@@ -55,6 +55,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Weapons\ShieldWeapon.cs" />
     <Compile Include="Assets\Scripts\Player\Controller\ControllerStateAlive.cs" />
+    <Compile Include="Assets\Scripts\UI\Menus\MainMenu.cs" />
     <Compile Include="Assets\Scripts\Perks\RegenPerk.cs" />
     <Compile Include="Assets\Scripts\Player\HealthChange.cs" />
     <Compile Include="Assets\Scripts\Weapons\Projectile\Arrow.cs" />
@@ -70,6 +71,7 @@
     <Compile Include="Assets\Scripts\Weapons\MeleeWeapon.cs" />
     <Compile Include="Assets\Scripts\Game\RoundState\RoundStatePlay.cs" />
     <Compile Include="Assets\Scripts\Game\RoundState\RoundStateSelection.cs" />
+    <Compile Include="Assets\Scripts\UI\Menus\OptionsMenu.cs" />
     <Compile Include="Assets\Scripts\UI\Fade.cs" />
     <Compile Include="Assets\Scripts\Perks\VampirismPerk.cs" />
     <Compile Include="Assets\Scripts\Environment\Hazards\CannonHazard.cs" />
@@ -85,6 +87,7 @@
     <Compile Include="Assets\Scripts\Player\Controller\ControllerStatePossession.cs" />
     <Compile Include="Assets\Scripts\Game\RoundState\RoundStateIntermission.cs" />
     <Compile Include="Assets\Scripts\Game\RoundState\RoundStateWin.cs" />
+    <Compile Include="Assets\Scripts\Game\GameOptions.cs" />
     <Compile Include="Assets\Scripts\Player\Controller\ControllerStateDead.cs" />
     <Compile Include="Assets\Scripts\Game\RoundState\RoundStateBase.cs" />
     <Compile Include="Assets\Scripts\Environment\Hazards\SawbladeHazard.cs" />
@@ -103,9 +106,7 @@
     <Compile Include="Assets\Scripts\Player\Controller\ControllerStateOOG.cs" />
     <Compile Include="Assets\Scripts\Perks\DefensePerk.cs" />
     <Compile Include="Assets\Scripts\Perks\DamagePerk.cs" />
-    <Compile Include="Assets\Scripts\UI\Menus\OptionsMenu.cs" />
-    <Compile Include="Assets\Scripts\UI\Menus\MainMenu.cs" />
-    <Compile Include="Assets\Scripts\Game\GameOptions.cs" />
+    <Compile Include="Assets\Scripts\UI\Menus\SettingsMenu.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Fonts\Typo Round\Read_Me.txt" />

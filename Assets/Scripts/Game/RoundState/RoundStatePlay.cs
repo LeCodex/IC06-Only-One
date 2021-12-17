@@ -19,6 +19,7 @@ namespace GameRoundState
 			foreach (PlayerScript player in GameManager.current.players)
 			{
 				player.ready = false;
+				player.health = GameRules.current.PLAYER_MAX_HEALTH;
 				player.controller.Unpause();
 
 				Transform target = spawns[Random.Range(0, spawns.Count)];

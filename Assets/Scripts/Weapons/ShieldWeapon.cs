@@ -10,6 +10,7 @@ namespace WeaponSystem
 		public float chargeDuration;
 		public float chargeSpeed;
 		public int chargeAmount = 3;
+		public float maniability;
 		public bool hitPeopleDuringCharge;
 
 		float chargeRemaining;
@@ -43,9 +44,16 @@ namespace WeaponSystem
 
 				if ((oldPosition - owner.transform.position).magnitude <= 0.05f && chargeRemaining < chargeDuration) chargeRemaining = -1f;
 				chargeRemaining -= Time.fixedDeltaTime;
+
+				Vector2 input = Input.GetAxisRaw("Horizontal" + owner.id) * Vector2.right + Input.GetAxisRaw("Vertical" + owner.id) * Vector2.up;
+				if (input.magnitude > 0f) chargeDirection = Vector2.Lerp(chargeDirection, input, Math.Max(0, Vector2.Dot(chargeDirection, input)) * maniability);
+
+				//aimingArrow.transform.rotation = Quaternion.Euler(0f, 0f, Vector2.SignedAngle(owner.transform.right, chargeDirection));
+				//aimingArrow.transform.position = owner.transform.position;
 			} 
 			else if (chargeRemaining < 0f)
 			{
+				//Destroy(aimingArrow);
 				swingSound.mute = false;
 				owner.ClearInvulnerability();
 				owner.controller.Unstun();

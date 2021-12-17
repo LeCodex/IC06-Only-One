@@ -54,6 +54,7 @@ namespace ArenaEnvironment
 			base.OnUnpossess();
 			animator.Play("IdleR");
 			weapon.SetOwner(null);
+			weapon.GetComponent<CircleCollider2D>().enabled = false;
 			rb.bodyType = RigidbodyType2D.Kinematic;
 			rb.velocity = Vector2.zero;
 		}

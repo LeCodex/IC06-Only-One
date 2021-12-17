@@ -15,13 +15,6 @@ public class OptionsMenu : MenuManager
         // Debug.Log("Chose " + currentOption);
         switch(currentOption)
 		{
-            case 0:
-                AudioListener.volume -= .1f;
-                if (AudioListener.volume < 0f) AudioListener.volume = 1f;
-
-                volumeBar.value = AudioListener.volume;
-                break;
-
             case 1:
                 gameObject.SetActive(false);
                 mainMenu.options.gameObject.SetActive(true);
@@ -33,4 +26,17 @@ public class OptionsMenu : MenuManager
                 break;
 		}
     }
+
+	protected override void LeftRightCurrentOption(int axis)
+	{
+		switch(currentOption)
+		{
+            case 0:
+                AudioListener.volume -= .1f;
+                if (AudioListener.volume < 0f) AudioListener.volume = 1f;
+
+                volumeBar.value = AudioListener.volume;
+                break;
+        }
+	}
 }

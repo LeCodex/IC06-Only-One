@@ -39,7 +39,7 @@ namespace WeaponSystem
 		{
 			if (recharge > 0f) return;
 
-			if (!startCharge) owner.controller.speed = oldSpeed;
+			if (!startCharge) owner.controller.speed = oldSpeed * owner.controller.speed / chargeSlowdown;
 			startCharge = true;
 			recharge = attackCooldown;
 		}

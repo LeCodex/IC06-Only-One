@@ -10,6 +10,7 @@ public class PlayerSelection : MonoBehaviour
 {
     public Text title;
     public Fade fadeToBlack;
+    public SettingsMenu settings;
 
     SelectionHUD[] selectionHUDs;
     float waitTime = 3f;
@@ -59,6 +60,12 @@ public class PlayerSelection : MonoBehaviour
         if (Input.GetButtonDown("Menu"))
 		{
             StartCoroutine(LoadMenuScene());
+		}
+
+        if (Input.GetButtonDown("Settings"))
+		{
+            gameObject.SetActive(false);
+            settings.gameObject.SetActive(true);
 		}
     }
 
@@ -117,7 +124,9 @@ public class PlayerSelection : MonoBehaviour
         }
 
         GameManager.current.ChangeState(RoundState.Play);
-        gameObject.SetActive(false);
+        GameRules.current.PLAYER_ALIVE_SPEED = (int)Math.Round(GameRules.current.PLAYER_ALIVE_SPEED * settings.speedFactor);
+        GameRules.current.PLAYER_GHOST_SPEED = (int)Math.Round(GameRules.current.PLAYER_GHOST_SPEED * settings.speedFactor);
+        transform.parent.gameObject.SetActive(false);
     }
 
     /*public void MoveHudsBack()

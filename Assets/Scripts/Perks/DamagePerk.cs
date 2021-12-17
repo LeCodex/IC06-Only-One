@@ -17,7 +17,7 @@ namespace PerkSystem
 
 		void OnDamage(DamageInfo info)
 		{
-			if (info.attacker == player.id && info.cause != "Extra")
+			if (info.attacker == player.id && info.victim != player.id && info.cause != "Extra")
 			{
 				PlayerScript victim = GameManager.current.players[info.victim - 1];
 				victim.ClearInvulnerability();

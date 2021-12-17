@@ -76,6 +76,7 @@ MonoBehaviour:
   chargeDuration: 2
   chargeSpeed: 1800
   chargeAmount: 6
+  maniability: 0.1
   hitPeopleDuringCharge: 1
 --- !u!1 &654853841674826669
 GameObject:

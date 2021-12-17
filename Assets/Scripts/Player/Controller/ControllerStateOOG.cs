@@ -36,9 +36,12 @@ namespace PlayerControllerState
 			{
                 timeToReset = 0f;
                 if (context.weapon) context.weapon.gameObject.SetActive(true);
+                
                 context.aliveAnimator.gameObject.SetActive(true);
-                context.ghostAnimator.gameObject.SetActive(false);
+                context.aliveAnimator.transform.rotation = Quaternion.identity;
                 context.aliveAnimator.Play("IdleR");
+
+                context.ghostAnimator.gameObject.SetActive(false);
             }
             else if (timeToReset > 0f)
 			{

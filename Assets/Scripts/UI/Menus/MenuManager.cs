@@ -29,22 +29,33 @@ public abstract class MenuManager : MonoBehaviour
 
     protected void UpdateMenu()
     {
-        float axis = Input.GetAxisRaw("VerticalMenu");
+        float axisV = Input.GetAxisRaw("VerticalMenu");
+        float axisH = Input.GetAxisRaw("HorizontalMenu");
         // Debug.Log(axis);
 
         if (currentOption < maxOptions)
 		{
-            if (Math.Abs(axis) < .5f)
+            if (Math.Abs(axisV) < .5f && Math.Abs(axisH) < .5f)
             {
                 timeSinceLastInput = Time.unscaledTime;
             }
-            else if (timeSinceLastInput <= Time.unscaledTime)
+            
+            if (timeSinceLastInput <= Time.unscaledTime)
             {
-                timeSinceLastInput = Time.unscaledTime + .5f;
-                UpdateOptionColor(new Color(255, 255, 255, 255));
+                if (Math.Abs(axisV) > .7f)
+				{
+                    UpdateOptionColor(new Color(255, 255, 255, 255));
 
-                currentOption = (currentOption - (int)Math.Round(axis) + maxOptions) % maxOptions;
-                UpdateOptionColor(new Color(0, 255, 0, 255));
+                    currentOption = (currentOption - (int)Math.Round(axisV) + maxOptions) % maxOptions;
+                    UpdateOptionColor(new Color(0, 255, 0, 255));
+                    timeSinceLastInput = timeSinceLastInput + .5f;
+                }
+
+                if (Math.Abs(axisH) > .7f)
+				{
+                    LeftRightCurrentOption(Math.Sign(axisH));
+                    timeSinceLastInput = timeSinceLastInput + .3f;
+                }
             }
         }
 
@@ -57,4 +68,5 @@ public abstract class MenuManager : MonoBehaviour
     }
 
     protected abstract void ChooseCurrentOption();
+    protected virtual void LeftRightCurrentOption(int axis) {}
 }
