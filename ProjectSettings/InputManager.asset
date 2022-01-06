@@ -617,7 +617,7 @@ InputManager:
     m_Name: Cancel
     descriptiveName: 
     descriptiveNegativeName: 
-    negativeButton: backspace
+    negativeButton: escape
     positiveButton: 
     altNegativeButton: 
     altPositiveButton: 

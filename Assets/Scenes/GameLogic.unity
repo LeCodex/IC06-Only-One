@@ -399,7 +399,7 @@ RectTransform:
   m_GameObject: {fileID: 274238284}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.8125, y: 0.8125, z: 0.8125}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1441436497}
   - {fileID: 854513265}
@@ -413,7 +413,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 150, y: 68.77728}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &274238286
 MonoBehaviour:
@@ -2678,9 +2678,9 @@ MonoBehaviour:
     m_Font: {fileID: 12800000, guid: 8f7e0fd189e886648ba97eb7e8e78460, type: 3}
     m_FontSize: 30
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 3
-    m_MaxSize: 40
+    m_MaxSize: 50
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -2928,9 +2928,9 @@ MonoBehaviour:
     m_Font: {fileID: 12800000, guid: 8f7e0fd189e886648ba97eb7e8e78460, type: 3}
     m_FontSize: 30
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 3
-    m_MaxSize: 40
+    m_MaxSize: 30
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -3214,9 +3214,9 @@ MonoBehaviour:
     m_Font: {fileID: 12800000, guid: 8f7e0fd189e886648ba97eb7e8e78460, type: 3}
     m_FontSize: 30
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 3
-    m_MaxSize: 40
+    m_MaxSize: 50
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -3829,9 +3829,9 @@ MonoBehaviour:
     m_Font: {fileID: 12800000, guid: 8f7e0fd189e886648ba97eb7e8e78460, type: 3}
     m_FontSize: 30
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 3
-    m_MaxSize: 40
+    m_MaxSize: 50
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -4398,9 +4398,9 @@ MonoBehaviour:
     m_Font: {fileID: 12800000, guid: 8f7e0fd189e886648ba97eb7e8e78460, type: 3}
     m_FontSize: 30
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 3
-    m_MaxSize: 40
+    m_MaxSize: 50
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -4964,18 +4964,16 @@ MonoBehaviour:
     m_Font: {fileID: 12800000, guid: 8f7e0fd189e886648ba97eb7e8e78460, type: 3}
     m_FontSize: 30
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 3
-    m_MaxSize: 40
+    m_MaxSize: 50
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Retour
-
-'
+  m_Text: Retour
 --- !u!222 &1673040473
 CanvasRenderer:
   m_ObjectHideFlags: 0
